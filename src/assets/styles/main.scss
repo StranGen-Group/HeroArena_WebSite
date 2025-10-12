@@ -1,0 +1,31 @@
+@import 'root';
+@import 'mixins';
+@import 'animations';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-primary;
+  line-height: 1.6;
+}
+
+.app {
+  min-height: 100vh;
+  
+  &__content {
+    padding: $spacing-xl;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  &__image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}

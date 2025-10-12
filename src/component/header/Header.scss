@@ -1,0 +1,140 @@
+@import '../../assets/styles/root';
+@import '../../assets/styles/mixins';
+
+.header {
+  background: $color-white;
+  padding: $spacing-md $spacing-xl;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__logo {
+    font-weight: 700;
+    font-size: 24px;
+    color: $color-primary;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $color-secondary;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    gap: $spacing-lg;
+    list-style: none;
+
+    @include mobile {
+      display: none; // Скрыть на мобильных (можно добавить бургер-меню позже)
+    }
+
+    a {
+      text-decoration: none;
+      color: $color-gray-dark;
+      font-weight: 500;
+      font-size: $font-size-md;
+      transition: color 0.3s ease;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: $color-primary;
+        transition: width 0.3s ease;
+      }
+
+      &:hover {
+        color: $color-primary;
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  &__button {
+    background: $color-gray-light;
+    color: $color-gray-dark;
+    border: none;
+    padding: $spacing-sm $spacing-md;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &--lang {
+      position: relative;
+      min-width: 60px;
+
+      &:hover {
+        background: $color-primary;
+        color: $color-white;
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  &__lang {
+    position: relative;
+
+    &-list {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: $color-white;
+      border-radius: 8px;
+      list-style: none;
+      padding: $spacing-sm 0;
+      margin: 0;
+      min-width: 140px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      z-index: 10;
+      opacity: 0;
+      animation: fade-in-down 0.3s ease forwards;
+
+      li {
+        padding: $spacing-sm $spacing-md;
+        cursor: pointer;
+        color: $color-gray-dark;
+        font-size: $font-size-sm;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: $color-gray-light;
+          color: $color-primary;
+          padding-left: $spacing-lg;
+        }
+
+        &:first-child {
+          border-radius: 8px 8px 0 0;
+        }
+
+        &:last-child {
+          border-radius: 0 0 8px 8px;
+        }
+      }
+    }
+  }
+}
