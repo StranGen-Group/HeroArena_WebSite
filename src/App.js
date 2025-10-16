@@ -4,6 +4,7 @@ import Preloader from './component/preloader/Preloader';
 import Header from './component/header/Header';
 import HeroSection from './component/hero/HeroSection';
 import AboutSection from './component/about/AboutSection';
+import Section from './component/section/Section';
 
 import './App.scss';
 
@@ -28,6 +29,7 @@ function App() {
       <Header />
       <AboutSection />
       <HeroSection />
+      <Section />
     </div>
   );
 }
