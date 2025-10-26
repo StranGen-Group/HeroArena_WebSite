@@ -1,6 +1,6 @@
 import React from 'react';
 import './HeroSection.scss';
-import heroImage from '../../assets/image/phone/iPhone1.png';
+import heroImage from '../../assets/image/phone/iPhoneBg.png';
 import googlePlayIcon from '../../assets/image/icons/google-play.svg';
 import appStoreIcon from '../../assets/image/icons/app-store.svg';
 

@@ -6,6 +6,8 @@ import HeroSection from './component/hero/HeroSection';
 import HeaderContent from './component/headerContent/HeaderContent';
 import Section from './component/section/Section';
 import VideoContent from './component/video/VideoContent';
+import HeroSectionSlider from './component/slider/HeroSectionSlider';
+import Footer from './component/footer/Footer';
 
 import './App.scss';
 
@@ -30,8 +32,10 @@ function  App() {
       <Header />
       <HeaderContent/>
       <HeroSection />
+      <HeroSectionSlider />
       <Section />
       <VideoContent />
+      <Footer />
     </div>
   );
 }

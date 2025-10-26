@@ -5,11 +5,13 @@
 .hero {
   position: relative;
   min-height: 960px;
-  background: linear-gradient(135deg, #F32B2B 0%, #E01E1E 100%);
+  background: url('../../assets/image/background/bg1.png') no-repeat center/cover;
   overflow: hidden;
   display: flex;
   align-items: center;
   padding: $spacing-xl * 2 $spacing-xl;
+
+
 
   @include mobile {
     min-height: auto;
@@ -83,7 +85,7 @@
   &__title {
     font-size: 60px;
     font-weight: 700;
-    color: $color-black;
+    color: $color-white;
     margin-bottom: $spacing-lg;
     line-height: 1.1;
     animation: fade-in-up 1s ease-out;
@@ -101,7 +103,7 @@
   &__description {
     font-size: 28px;
     font-weight: 500;
-    color: $color-black;
+    color: $color-white;
     margin-bottom: $spacing-xl * 2;
     line-height: 1.4;
     max-width: 636px;
@@ -137,8 +139,8 @@
   }
 
   &__button {
-    width: 300px;
-    height: 90px;
+    width: 250px;
+    height: 70px;
     background: $color-black;
     border-radius: 18px;
     display: flex;
