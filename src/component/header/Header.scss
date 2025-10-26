@@ -18,16 +18,26 @@
   }
 
   &__logo {
-    font-weight: 700;
-    font-size: 24px;
-    color: $color-primary;
-    cursor: pointer;
-    transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  img {
+    width: 120px;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+
+    @include mobile {
+      width: 90px;
+    }
 
     &:hover {
-      color: $color-secondary;
+      transform: scale(1.05);
     }
   }
+}
+
 
   &__nav {
     display: flex;
@@ -35,7 +45,7 @@
     list-style: none;
 
     @include mobile {
-      display: none; // Скрыть на мобильных (можно добавить бургер-меню позже)
+      display: none;
     }
 
     a {

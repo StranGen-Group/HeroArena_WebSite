@@ -3,12 +3,13 @@ import React, { useState, useEffect } from 'react';
 import Preloader from './component/preloader/Preloader';
 import Header from './component/header/Header';
 import HeroSection from './component/hero/HeroSection';
-import AboutSection from './component/about/AboutSection';
+import HeaderContent from './component/headerContent/HeaderContent';
 import Section from './component/section/Section';
+import VideoContent from './component/video/VideoContent';
 
 import './App.scss';
 
-function App() {
+function  App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -27,9 +28,10 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <AboutSection />
+      <HeaderContent/>
       <HeroSection />
       <Section />
+      <VideoContent />
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import React from 'react';
-import './AboutSection.scss';
+import './HeaderContent.scss';
 import aboutImage from '../../assets/image/about/about-image.png'; // Замените на ваше изображение
 
-const AboutSection = () => {
+const HeaderContent = () => {
   return (
     <section className="about" id="home">
       <div className="about__content">
@@ -16,6 +16,7 @@ const AboutSection = () => {
             а воплощают мечты в реальность.
           </p>
 
+          {/* 
           <div className="about__buttons">
             <button className="about__button about__button--primary">
               <span className="about__button-text">Узнать больше</span>
@@ -25,6 +26,8 @@ const AboutSection = () => {
               <span className="about__button-text">Наша команда</span>
             </button>
           </div>
+          */}
+
         </div>
 
         <div className="about__image-wrapper">
@@ -39,4 +42,4 @@ const AboutSection = () => {
   );
 };
 
-export default AboutSection;
+export default HeaderContent;

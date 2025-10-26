@@ -1,8 +1,6 @@
 import React from 'react';
 import './Section.scss';
 import heroImage from '../../assets/image/phone/iPhone1.png';
-import googlePlayIcon from '../../assets/image/icons/google-play.svg';
-import appStoreIcon from '../../assets/image/icons/app-store.svg';
 
 const Section = () => {
   return (

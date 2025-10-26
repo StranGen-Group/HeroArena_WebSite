@@ -4,7 +4,7 @@ import heroImage from '../../assets/image/phone/iPhone1.png';
 import googlePlayIcon from '../../assets/image/icons/google-play.svg';
 import appStoreIcon from '../../assets/image/icons/app-store.svg';
 
-const HeroSection = () => {
+const HeroSection1 = () => {
   return (
     <section className="hero" id="about-game">
       <div className="hero__background">
@@ -69,4 +69,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default HeroSection1;

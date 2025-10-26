@@ -37,6 +37,7 @@
     align-items: center;
     margin: 0 auto;
     width: 100%;
+    left: 120px;
 
     @include mobile {
       grid-template-columns: 1fr;

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Header.scss';
+import LogoGame from '../../assets/image/logo/gameLogo.png';
 
 const Header = () => {
   const [langOpen, setLangOpen] = useState(false);
@@ -41,7 +42,9 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header__content">
-        <div className="header__logo">LOGO</div>
+        <div className="header__logo">
+          <img src={LogoGame} alt="Game Logo" />
+        </div>
         
         <nav className="header__nav">
           <li><a href="#home">Home</a></li>
