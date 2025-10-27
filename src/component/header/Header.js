@@ -1,26 +1,31 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Header.scss';
 import LogoGame from '../../assets/image/logo/gameLogo.png';
+import { useLanguage } from '../../context/LanguageContext';
+import { LANGUAGES } from '../../constants/translations';
+import { SECTIONS } from '../../constants/links';
 
 const Header = () => {
   const [langOpen, setLangOpen] = useState(false);
-  const [lang, setLang] = useState('EN');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { language, setLanguage, t, scrollToSection } = useLanguage();
   const langRef = useRef(null);
+  const menuRef = useRef(null);
 
   // Закрытие выпадающего списка при клике вне его
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutsideLang = (event) => {
       if (langRef.current && !langRef.current.contains(event.target)) {
         setLangOpen(false);
       }
     };
 
     if (langOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutsideLang);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutsideLang);
     };
   }, [langOpen]);
 
@@ -29,29 +34,67 @@ const Header = () => {
   };
 
   const selectLang = (selectedLang) => {
-    setLang(selectedLang);
+    setLanguage(selectedLang);
     setLangOpen(false);
   };
 
-  const languages = [
-    { code: 'RU', name: 'Русский' },
-    { code: 'EN', name: 'English' },
-    { code: 'UZ', name: "O'zbekcha" }
-  ];
+  const handleNavClick = (e, sectionId) => {
+    e.preventDefault();
+    scrollToSection(sectionId);
+    setMenuOpen(false); // Закрываем меню после клика
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  // Закрытие меню при клике вне
+  useEffect(() => {
+    const handleClickOutsideMenu = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target) && 
+          !event.target.closest('.header__burger')) {
+        setMenuOpen(false);
+      }
+    };
+
+    if (menuOpen) {
+      document.addEventListener('mousedown', handleClickOutsideMenu);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideMenu);
+    };
+  }, [menuOpen]);
 
   return (
     <header className="header">
       <div className="header__content">
         <div className="header__logo">
-          <img src={LogoGame} alt="Game Logo" />
+          <img 
+            src={LogoGame} 
+            alt="Game Logo"
+            className="header__logo-image"
+          />
         </div>
         
-        <nav className="header__nav">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about-game">About Game</a></li>
-          <li><a href="#our-team">Our Team</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#trailer">Trailer</a></li>
+        {/* Бургер-меню для мобильной версии */}
+        <button 
+          className="header__burger"
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          <span className={menuOpen ? 'header__burger-line header__burger-line--active' : 'header__burger-line'}></span>
+          <span className={menuOpen ? 'header__burger-line header__burger-line--active' : 'header__burger-line'}></span>
+          <span className={menuOpen ? 'header__burger-line header__burger-line--active' : 'header__burger-line'}></span>
+        </button>
+
+        <nav className={`header__nav ${menuOpen ? 'header__nav--open' : ''}`} ref={menuRef}>
+          <li><a href={`#${SECTIONS.HOME}`} onClick={(e) => handleNavClick(e, SECTIONS.HOME)}>{t('home')}</a></li>
+          <li><a href={`#${SECTIONS.ABOUT_GAME}`} onClick={(e) => handleNavClick(e, SECTIONS.ABOUT_GAME)}>{t('aboutGame')}</a></li>
+          <li><a href={`#${SECTIONS.OUR_TEAM}`} onClick={(e) => handleNavClick(e, SECTIONS.OUR_TEAM)}>{t('ourTeam')}</a></li>
+          <li><a href={`#${SECTIONS.SCREENSHOTS}`} onClick={(e) => handleNavClick(e, SECTIONS.SCREENSHOTS)}>{t('scrinshot')}</a></li>
+          <li><a href={`#${SECTIONS.TRAILER}`} onClick={(e) => handleNavClick(e, SECTIONS.TRAILER)}>{t('trailer')}</a></li>
+          <li><a href={`#${SECTIONS.CONTACT}`} onClick={(e) => handleNavClick(e, SECTIONS.CONTACT)}>{t('contact')}</a></li>
         </nav>
 
         <div className="header__buttons">
@@ -62,18 +105,18 @@ const Header = () => {
               aria-label="Select language"
               aria-expanded={langOpen}
             >
-              {lang}
+              {language}
             </button>
             
             {langOpen && (
               <ul className="header__lang-list">
-                {languages.map((language) => (
+                {LANGUAGES.map((langItem) => (
                   <li 
-                    key={language.code}
-                    onClick={() => selectLang(language.code)}
-                    className={lang === language.code ? 'active' : ''}
+                    key={langItem.code}
+                    onClick={() => selectLang(langItem.code)}
+                    className={language === langItem.code ? 'active' : ''}
                   >
-                    {language.name}
+                    {langItem.name}
                   </li>
                 ))}
               </ul>

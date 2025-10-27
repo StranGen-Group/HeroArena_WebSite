@@ -17,6 +17,19 @@
   }
 }
 
+// 📟 Дополнительные миксины для планшетов
+@mixin tablet-portrait {
+  @media (min-width: #{$mobile-breakpoint}) and (max-width: #{$tablet-breakpoint - 1px}) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin tablet-landscape {
+  @media (min-width: #{$mobile-breakpoint}) and (max-width: #{$tablet-breakpoint - 1px}) and (orientation: landscape) {
+    @content;
+  }
+}
+
 /* Хелперы */
 @mixin flex-center {
   display: flex;
@@ -29,4 +42,39 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+// Section helpers
+@mixin section-padding {
+  padding: $spacing-xl * 2 $spacing-xl;
+  
+  @include mobile {
+    padding: $spacing-xl $spacing-md;
+  }
+  
+  @include tablet {
+    padding: $spacing-xl * 1.5 $spacing-lg;
+  }
+}
+
+@mixin grid-responsive {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: $spacing-xl;
+  
+  @include mobile {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: $spacing-xl * 1.5;
+    text-align: center;
+  }
+  
+  @include tablet-landscape {
+    grid-template-columns: 1fr 1fr;
+    text-align: left;
+  }
 }

@@ -11,12 +11,20 @@
   align-items: center;
   padding: $spacing-xl * 2 $spacing-xl;
 
-
-
+  // 📱 Мобильная версия
   @include mobile {
     min-height: auto;
     padding: $spacing-xl $spacing-md;
     flex-direction: column;
+  }
+
+  // 📟 Планшеты
+  @include tablet {
+    min-height: 500px;
+    padding: $spacing-xl * 1.5 $spacing-lg;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 
   &__background {
@@ -29,16 +37,17 @@
     z-index: 0;
   }
 
-
   &__content {
     position: relative;
     z-index: 1;
     display: grid;
     grid-template-columns: 1fr 1.2fr;
-    gap: $spacing-xl * 1;
+    gap: $spacing-xl;
     align-items: center;
     margin: 0 auto;
     width: 100%;
+    max-width: 1400px;
+    
 
     @include mobile {
       grid-template-columns: 1fr;
@@ -46,19 +55,38 @@
       text-align: center;
     }
 
+    // 📟 Планшеты
     @include tablet {
-      grid-template-columns: 1fr;
-      gap: $spacing-xl * 2;
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-lg;
+      text-align: left;
+      align-items: center;
+      max-width: 100%;
     }
   }
 
   &__image-wrapper {
+    right: 250px;
     position: relative;
-    right: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 
     @include mobile {
       order: 2;
+      right: 16px;
       max-width: 100%;
+      justify-content: center;
+    }
+
+    // 📟 Планшеты — изображение прижато к правому краю
+    @include tablet {
+      order: 1;
+      right: 30px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-right: -20px; // Прижимаем к краю
     }
   }
 
@@ -68,7 +96,14 @@
 
     @include mobile {
       max-width: 100%;
-      transform: rotate(0deg);
+    }
+
+    // 📟 Планшеты — изображение прижато к правому краю
+    @include tablet {
+      width: auto;
+      max-width: 500px;
+      height: auto;
+      margin-right: 0;
     }
   }
 
@@ -79,6 +114,14 @@
 
     @include mobile {
       order: 1;
+      text-align: center;
+    }
+
+    // 📟 Планшеты
+    @include tablet {
+      order: 1;
+      text-align: left;
+      padding-right: $spacing-md;
     }
   }
 
@@ -95,8 +138,10 @@
       margin-bottom: $spacing-md;
     }
 
+    // 📟 Планшеты
     @include tablet {
-      font-size: 56px;
+      font-size: 48px;
+      margin-bottom: $spacing-md;
     }
   }
 
@@ -116,8 +161,11 @@
       max-width: 100%;
     }
 
+    // 📟 Планшеты
     @include tablet {
       font-size: 22px;
+      margin-bottom: $spacing-xl * 1.5;
+      max-width: 500px;
     }
   }
 
@@ -133,8 +181,11 @@
       align-items: center;
     }
 
+    // 📟 Планшеты
     @include tablet {
-      justify-content: center;
+      justify-content: flex-start;
+      gap: $spacing-md;
+      flex-direction: row;
     }
   }
 
@@ -159,6 +210,12 @@
       height: 90px;
     }
 
+    // 📟 Планшеты
+    @include tablet {
+      width: 200px;
+      height: 65px;
+    }
+
     &::before {
       content: '';
       position: absolute;
@@ -166,11 +223,10 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 255, 255, 0.1), 
-        transparent
-      );
+      background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent);
       transition: left 0.5s ease;
     }
 
@@ -224,7 +280,57 @@
   }
 }
 
-// Дополнительная анимация плавания
+// 📟 Дополнительные улучшения для планшетов в ландшафтной ориентации
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .hero {
+    min-height: 700px;
+    
+    &__content {
+      gap: $spacing-xl;
+    }
+    
+    &__title {
+      font-size: 44px;
+    }
+    
+    &__description {
+      font-size: 20px;
+      max-width: 450px;
+    }
+    
+    &__image-wrapper {
+      margin-right: -30px; // Сильнее прижимаем в ландшафте
+    }
+    
+    &__image {
+      max-width: 450px;
+    }
+  }
+}
+
+// 📟 Планшеты в портретной ориентации
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .hero {
+    &__title {
+      font-size: 42px;
+    }
+    
+    &__description {
+      font-size: 20px;
+      max-width: 400px;
+    }
+    
+    &__image-wrapper {
+      margin-right: -15px;
+    }
+    
+    &__image {
+      max-width: 400px;
+    }
+  }
+}
+
+// 🌊 Плавная анимация
 @keyframes float {
   0%, 100% {
     transform: translateY(0) rotate(0deg);
@@ -237,7 +343,7 @@
   }
 }
 
-// Адаптивность для очень маленьких экранов
+// 📱 Очень маленькие экраны
 @media (max-width: 400px) {
   .hero {
     &__title {

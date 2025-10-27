@@ -1,29 +1,41 @@
 import React from 'react';
 import './Section.scss';
 import heroImage from '../../assets/image/phone/iPhone1.png';
+import { useLanguage } from '../../context/LanguageContext';
+import useInView from '../../hooks/useInView';
+import { ANIMATION_CONFIG, ANIMATION_CLASSES } from '../../constants/animation';
+import { SECTIONS } from '../../constants/links';
 
 const Section = () => {
+  const { t } = useLanguage();
+  const [textRef, textInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.HIGH });
+  const [imageRef, imageInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.HIGH });
+
   return (
-    <section className="section" id="about-game">
+    <section className="section" id={SECTIONS.OUR_TEAM}>
       <div className="section__background">
         <div className="section__shape hero__shape--cyan"></div>
       </div>
 
       <div className="section__content">
-        
-
-        <div className="section__text-content">
+        <div 
+          ref={textRef}
+          className={`section__text-content ${textInView ? `${ANIMATION_CLASSES.FADE_IN_RIGHT} ${ANIMATION_CLASSES.ANIMATED}` : ANIMATION_CLASSES.HIDDEN}`}
+        >
           <h1 className="section__title">
-            Это потрясающая игра
+            {t('sectionTitle')}
           </h1>
           
           <p className="section__description">
-            В этой игре столько страданий, помогите нам денежкой! 
-            Поддержите разработку и станьте частью нашей истории.
+            {t('sectionDescription')}
           </p>
         </div>
 
-        <div className="section__image-wrapper">
+        <div 
+          ref={imageRef}
+          className={`section__image-wrapper ${imageInView ? `${ANIMATION_CLASSES.FADE_IN_LEFT} ${ANIMATION_CLASSES.ANIMATED}` : ANIMATION_CLASSES.HIDDEN}`}
+          style={{ animationDelay: ANIMATION_CONFIG.DELAY.LONG }}
+        >
           <img 
             src={heroImage} 
             alt="Game Screenshot" 

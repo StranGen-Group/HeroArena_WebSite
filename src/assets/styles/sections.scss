@@ -1,0 +1,141 @@
+/**
+ * Общие стили для секций
+ * Используется всеми секциями для избежания дублирования кода
+ */
+
+@import './root';
+@import './mixins';
+@import './animations';
+
+// =============================================================================
+// БАЗОВЫЕ СТИЛИ ДЛЯ СЕКЦИЙ
+// =============================================================================
+
+%section-base {
+  position: relative;
+  min-height: 960px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: $spacing-xl * 2 $spacing-xl;
+
+  @include mobile {
+    min-height: auto;
+    padding: $spacing-xl $spacing-md;
+    flex-direction: column;
+  }
+
+  @include tablet {
+    min-height: 600px;
+    padding: $spacing-xl * 1.5 $spacing-lg;
+  }
+}
+
+%section-content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: $spacing-xl * 1;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+    text-align: center;
+  }
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: $spacing-xl * 2;
+  }
+}
+
+%section-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+// =============================================================================
+// СТИЛИ ДЛЯ КОНТЕНТА ВНУТРИ СЕКЦИЙ
+// =============================================================================
+
+%text-content {
+  @include mobile {
+    order: 2;
+  }
+}
+
+%image-wrapper {
+  @include mobile {
+    order: 1;
+    max-width: 100%;
+  }
+}
+
+%title {
+  font-weight: 700;
+  margin-bottom: $spacing-lg;
+  line-height: 1.1;
+
+  @include mobile {
+    font-size: 36px !important;
+    margin-bottom: $spacing-md;
+  }
+
+  @include tablet {
+    font-size: 56px !important;
+  }
+}
+
+%description {
+  font-weight: 500;
+
+  @include mobile {
+    font-size: 16px !important;
+  }
+
+  @include tablet {
+    font-size: 20px !important;
+  }
+}
+
+%large-image {
+  width: 1044px;
+  height: auto;
+
+  @include mobile {
+    max-width: 100%;
+    transform: rotate(0deg);
+  }
+}
+
+// =============================================================================
+// АНИМАЦИИ ДЛЯ СЕКЦИЙ
+// =============================================================================
+
+%animation-fade-in-left {
+  opacity: 0;
+  animation: fade-in-left 1s ease-out;
+  animation-fill-mode: both;
+}
+
+%animation-fade-in-right {
+  opacity: 0;
+  animation: fade-in-right 1s ease-out;
+  animation-fill-mode: both;
+}
+
+%animation-fade-in-up {
+  opacity: 0;
+  animation: fade-in-up 1s ease-out;
+  animation-fill-mode: both;
+}
+

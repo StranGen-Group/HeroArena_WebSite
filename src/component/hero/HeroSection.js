@@ -3,16 +3,29 @@ import './HeroSection.scss';
 import heroImage from '../../assets/image/phone/iPhoneBg.png';
 import googlePlayIcon from '../../assets/image/icons/google-play.svg';
 import appStoreIcon from '../../assets/image/icons/app-store.svg';
+import { useLanguage } from '../../context/LanguageContext';
+import useInView from '../../hooks/useInView';
+import { APP_LINKS } from '../../constants/links';
+import { SECTIONS } from '../../constants/links';
+import { ANIMATION_CONFIG, ANIMATION_CLASSES } from '../../constants/animation';
 
 const HeroSection1 = () => {
+  const { t } = useLanguage();
+  const [imageRef, imageInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.HIGH });
+  const [textRef, textInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.HIGH });
+  const [buttonsRef, buttonsInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.MEDIUM });
+
   return (
-    <section className="hero" id="about-game">
+    <section className="hero" id={SECTIONS.ABOUT_GAME}>
       <div className="hero__background">
         <div className="hero__shape hero__shape--cyan"></div>
       </div>
 
       <div className="hero__content">
-        <div className="hero__image-wrapper">
+        <div 
+          ref={imageRef}
+          className={`hero__image-wrapper ${imageInView ? `${ANIMATION_CLASSES.FADE_IN_LEFT} ${ANIMATION_CLASSES.ANIMATED}` : ANIMATION_CLASSES.HIDDEN}`}
+        >
           <img 
             src={heroImage} 
             alt="Game Screenshot" 
@@ -21,18 +34,28 @@ const HeroSection1 = () => {
         </div>
 
         <div className="hero__text-content">
-          <h1 className="hero__title">
-            Это потрясающая игра
+          <h1 
+            ref={textRef}
+            className={`hero__title ${textInView ? `${ANIMATION_CLASSES.FADE_IN_RIGHT} ${ANIMATION_CLASSES.ANIMATED}` : ANIMATION_CLASSES.HIDDEN}`}
+            style={{ animationDelay: ANIMATION_CONFIG.DELAY.MEDIUM }}
+          >
+            {t('heroTitle')}
           </h1>
           
-          <p className="hero__description">
-            В этой игре столько страданий, помогите нам денежкой! 
-            Поддержите разработку и станьте частью нашей истории.
+          <p 
+            className={`hero__description ${textInView ? `${ANIMATION_CLASSES.FADE_IN_RIGHT} ${ANIMATION_CLASSES.ANIMATED}` : ANIMATION_CLASSES.HIDDEN}`}
+            style={{ animationDelay: ANIMATION_CONFIG.DELAY.LONG }}
+          >
+            {t('heroDescription')}
           </p>
 
-          <div className="hero__buttons">
+          <div 
+            ref={buttonsRef}
+            className={`hero__buttons ${buttonsInView ? `${ANIMATION_CLASSES.FADE_IN_UP} ${ANIMATION_CLASSES.ANIMATED}` : ANIMATION_CLASSES.HIDDEN}`}
+            style={{ animationDelay: ANIMATION_CONFIG.DELAY.EXTRA_LONG }}
+          >
             <a 
-              href="https://play.google.com/store" 
+              href={APP_LINKS.GOOGLE_PLAY} 
               target="_blank" 
               rel="noopener noreferrer"
               className="hero__button hero__button--google"
@@ -48,7 +71,7 @@ const HeroSection1 = () => {
             </a>
 
             <a 
-              href="https://www.apple.com/app-store/" 
+              href={APP_LINKS.APP_STORE} 
               target="_blank" 
               rel="noopener noreferrer"
               className="hero__button hero__button--apple"

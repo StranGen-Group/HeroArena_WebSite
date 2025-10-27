@@ -8,29 +8,35 @@ import Telegram from '../../assets/image/icons/Social Icons-3.svg';
 
 import googlePlayIcon from '../../assets/image/icons/google-play.svg';
 import appStoreIcon from '../../assets/image/icons/app-store.svg';
+import { APP_LINKS } from '../../constants/links';
 
 const Footer = () => {
+    const socialLinks = [
+        { icon: Discord, url: APP_LINKS.SOCIAL.DISCORD, alt: 'Discord' },
+        { icon: Instagram, url: APP_LINKS.SOCIAL.INSTAGRAM, alt: 'Instagram' },
+        { icon: YouTube, url: APP_LINKS.SOCIAL.YOUTUBE, alt: 'YouTube' },
+        { icon: Telegram, url: APP_LINKS.SOCIAL.TELEGRAM, alt: 'Telegram' },
+    ];
+
     return (
         <footer className="footer">
             <div className="footer__content">
                 <div className="footer__icons">
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                        <img src={Discord} alt="Discord" />
-                    </a>
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                        <img src={Instagram} alt="Instagram" />
-                    </a>
-                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-                        <img src={YouTube} alt="YouTube" />
-                    </a>
-                    <a href="https://telegram.org" target="_blank" rel="noopener noreferrer">
-                        <img src={Telegram} alt="Telegram" />
-                    </a>
+                    {socialLinks.map((link, index) => (
+                        <a 
+                            key={index}
+                            href={link.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                        >
+                            <img src={link.icon} alt={link.alt} />
+                        </a>
+                    ))}
                 </div>
 
                 <div className="footer__buttons">
                     <a
-                        href="https://play.google.com/store"
+                        href={APP_LINKS.GOOGLE_PLAY}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="footer__button footer__button--google"
@@ -46,7 +52,7 @@ const Footer = () => {
                     </a>
 
                     <a
-                        href="https://www.apple.com/app-store/"
+                        href={APP_LINKS.APP_STORE}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="footer__button footer__button--apple"

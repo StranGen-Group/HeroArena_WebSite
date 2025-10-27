@@ -433,6 +433,50 @@
   animation-fill-mode: both;
 }
 
+// Класс для элементов, которые должны начинать скрытыми
+.hidden-until-inview {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease, transform 0.6s ease, visibility 0.6s ease;
+}
+
+// Класс для элементов, которые появляются в viewport
+.in-view {
+  opacity: 1;
+  visibility: visible;
+}
+
+// Классы для fade-in анимаций
+.fade-in-left.animated {
+  animation-name: fade-in-left;
+  opacity: 1;
+  visibility: visible;
+}
+
+.fade-in-right.animated {
+  animation-name: fade-in-right;
+  opacity: 1;
+  visibility: visible;
+}
+
+.fade-in-up.animated {
+  animation-name: fade-in-up;
+  opacity: 1;
+  visibility: visible;
+}
+
+.fade-in-down.animated {
+  animation-name: fade-in-down;
+  opacity: 1;
+  visibility: visible;
+}
+
+.fade-in.animated {
+  animation-name: fade-in;
+  opacity: 1;
+  visibility: visible;
+}
+
 .animated.infinite {
   animation-iteration-count: infinite;
 }
