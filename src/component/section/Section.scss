@@ -12,14 +12,12 @@
   padding: $spacing-xl * 2 $spacing-xl;
 
 
-  // 📱 Мобильная версия
   @include mobile {
     min-height: auto;
     padding: $spacing-xl $spacing-md;
     flex-direction: column;
   }
 
-  // 📟 Планшеты
   @include tablet {
     min-height: 500px;
     padding: $spacing-xl * 1.5 $spacing-lg;
@@ -73,6 +71,58 @@
     }
   }
 
+  &__icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    animation: fade-in-up 1s ease-out 0.4s;
+    animation-fill-mode: both;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      transition: all 0.3s ease;
+      padding: 10px;
+      border-radius: 12px;
+
+      &:hover {
+        transform: translateY(-4px);
+        animation: pulse 0.5s ease;
+      }
+
+      img {
+        width: 38px;
+        height: 38px;
+        filter: brightness(0) invert(1);
+        transition: all 0.3s ease;
+      }
+
+      &:hover img {
+        transform: scale(1.1);
+        animation: glow 0.8s ease;
+      }
+    }
+  }
+
+  @include mobile {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    a {
+      width: 45px;
+      height: 45px;
+
+      img {
+        width: 22px;
+        height: 22px;
+      }
+    }
+  }
+
   &__image-wrapper {
     position: relative;
     rotate: 180deg;
@@ -98,7 +148,16 @@
       align-items: center;
       margin-right: -20px; // Прижимаем к краю
     }
+
+    @include mobile {
+      order: 2;
+      max-width: 90%;
+      justify-content: center;
+      left: 50px;
+    }
   }
+
+
 
   &__image {
     width: 1044px;

@@ -6,10 +6,12 @@ export const APP_LINKS = {
   APP_STORE: 'https://www.apple.com/app-store/',
   
   SOCIAL: {
-    DISCORD: 'https://discord.com',
-    INSTAGRAM: 'https://instagram.com',
-    YOUTUBE: 'https://youtube.com',
-    TELEGRAM: 'https://telegram.org',
+    DISCORD: 'https://discord.gg/XDNaVyuhr7',
+    INSTAGRAM: 'https://www.instagram.com/strangengroup',
+    YOUTUBE: 'https://www.youtube.com/@strangen2454',
+    TELEGRAM: 'https://t.me/StrangenGroup',
+    X: 'https://twitter.com/StrangeNGroup',
+    FACEBOOK: 'https://www.facebook.com/StrangenGroup'
   },
 };
 
@@ -26,6 +28,6 @@ export const SECTIONS = {
   ABOUT_GAME: 'about-game',
   GALLERY: 'gallery',
   TRAILER: 'trailer',
-  CONTACT: 'contact',
+  SOCIALS: 'socials',
 };
 

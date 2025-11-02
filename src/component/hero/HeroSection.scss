@@ -41,13 +41,13 @@
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: $spacing-xl;
+    grid-template-columns: 0.2fr 1fr;
+    gap: 0;
     align-items: center;
     margin: 0 auto;
     width: 100%;
-    max-width: 1400px;
-    
+    max-width: 1600px;
+
 
     @include mobile {
       grid-template-columns: 1fr;
@@ -191,7 +191,7 @@
 
   &__button {
     width: 250px;
-    height: 70px;
+    height: 80px;
     background: $color-black;
     border-radius: 18px;
     display: flex;
@@ -224,9 +224,9 @@
       width: 100%;
       height: 100%;
       background: linear-gradient(90deg,
-        transparent,
-        rgba(255, 255, 255, 0.1),
-        transparent);
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent);
       transition: left 0.5s ease;
     }
 
@@ -284,24 +284,24 @@
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   .hero {
     min-height: 700px;
-    
+
     &__content {
       gap: $spacing-xl;
     }
-    
+
     &__title {
       font-size: 44px;
     }
-    
+
     &__description {
       font-size: 20px;
       max-width: 450px;
     }
-    
+
     &__image-wrapper {
       margin-right: -30px; // Сильнее прижимаем в ландшафте
     }
-    
+
     &__image {
       max-width: 450px;
     }
@@ -314,16 +314,16 @@
     &__title {
       font-size: 42px;
     }
-    
+
     &__description {
       font-size: 20px;
       max-width: 400px;
     }
-    
+
     &__image-wrapper {
       margin-right: -15px;
     }
-    
+
     &__image {
       max-width: 400px;
     }
@@ -332,12 +332,16 @@
 
 // 🌊 Плавная анимация
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) rotate(0deg);
   }
+
   33% {
     transform: translateY(-20px) rotate(2deg);
   }
+
   66% {
     transform: translateY(10px) rotate(-1deg);
   }

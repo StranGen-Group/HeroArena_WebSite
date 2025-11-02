@@ -8,14 +8,18 @@ import Telegram from '../../assets/image/icons/Social Icons-3.svg';
 
 import googlePlayIcon from '../../assets/image/icons/google-play.svg';
 import appStoreIcon from '../../assets/image/icons/app-store.svg';
+import X from '../../assets/image/icons/Social Icons-5.svg';
+import Facebook from '../../assets/image/icons/Social Icons-4.svg';
 import { APP_LINKS } from '../../constants/links';
 
 const Footer = () => {
     const socialLinks = [
+        { icon: YouTube, url: APP_LINKS.SOCIAL.YOUTUBE, alt: 'YouTube' },
         { icon: Discord, url: APP_LINKS.SOCIAL.DISCORD, alt: 'Discord' },
         { icon: Instagram, url: APP_LINKS.SOCIAL.INSTAGRAM, alt: 'Instagram' },
-        { icon: YouTube, url: APP_LINKS.SOCIAL.YOUTUBE, alt: 'YouTube' },
         { icon: Telegram, url: APP_LINKS.SOCIAL.TELEGRAM, alt: 'Telegram' },
+        { icon: X, url: APP_LINKS.SOCIAL.X, alt: 'X' },
+        { icon: Facebook, url: APP_LINKS.SOCIAL.FACEBOOK, alt: 'Facebook' },
     ];
 
     return (
@@ -23,10 +27,10 @@ const Footer = () => {
             <div className="footer__content">
                 <div className="footer__icons">
                     {socialLinks.map((link, index) => (
-                        <a 
+                        <a
                             key={index}
-                            href={link.url} 
-                            target="_blank" 
+                            href={link.url}
+                            target="_blank"
                             rel="noopener noreferrer"
                         >
                             <img src={link.icon} alt={link.alt} />

@@ -7,7 +7,7 @@ export const TRANSLATIONS = {
         home: 'Home',
         aboutGame: 'Hero Arena',
         gallery: 'Gallery',
-        contact: 'Socials',
+        socials: 'Socials',
         trailer: 'Trailers',
 
         // Header Content
@@ -22,7 +22,6 @@ export const TRANSLATIONS = {
         sectionTitle: 'Follow StrangenGroup!',
         sectionDescription: 'Join our journey to bring Hero Arena to life! Follow us on social media to stay up to date with the latest news and updates.',
 
-
         // Video
         videoTitle1: 'Game Pitch for President Tech Award',
         videoTitle2: 'Official Game Trailer',
@@ -33,7 +32,7 @@ export const TRANSLATIONS = {
         home: 'Главная',
         aboutGame: 'Hero Arena',
         gallery: 'Галерея',
-        contact: 'Соцсети',
+        socials: 'Соцсети',
         trailer: 'Трейлеры',
 
         // Заголовок
@@ -58,7 +57,7 @@ export const TRANSLATIONS = {
         home: 'Bosh sahifa',
         aboutGame: 'Hero Arena',
         gallery: 'Galereya',
-        contact: 'Ijtimoiy tarmoqlar',
+        socials: 'Ijtimoiy tarmoqlar',
         trailer: 'Trelerlar',
 
         // Sarlavha
@@ -80,8 +79,8 @@ export const TRANSLATIONS = {
 };
 
 export const LANGUAGES = [
-    { code: 'RU', name: 'Русский' },
     { code: 'EN', name: 'English' },
+    { code: 'RU', name: 'Русский' },
     { code: 'UZ', name: "O'zbekcha" },
 ];
 
