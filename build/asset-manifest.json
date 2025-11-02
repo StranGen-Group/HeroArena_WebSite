@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ea2a560f.css",
+    "main.js": "/static/js/main.f460cc78.js",
+    "static/js/453.d0e71f3b.chunk.js": "/static/js/453.d0e71f3b.chunk.js",
+    "static/media/bg1.png": "/static/media/bg1.2113d6bc168476a6b862.png",
+    "static/media/gameLogo.png": "/static/media/gameLogo.b7b20dffb74712b63975.png",
+    "static/media/iPhone1.png": "/static/media/iPhone1.56680b839f7a32607913.png",
+    "static/media/iPhoneBg.png": "/static/media/iPhoneBg.2a158f5131bfdd5998e9.png",
+    "static/media/about-image.png": "/static/media/about-image.89210d34feeee13d91c9.png",
+    "static/media/logo_str.png": "/static/media/logo_str.0e6427dd62dab97e3e88.png",
+    "static/media/app-store.svg": "/static/media/app-store.79f79bf7a60feedca379941b945ce9a3.svg",
+    "static/media/google-play.svg": "/static/media/google-play.d88c9e31756afd8fd63c07e33d7d87af.svg",
+    "static/media/Social Icons-2.svg": "/static/media/Social Icons-2.55c182e736bbc0019a2a022fa148f82a.svg",
+    "static/media/Social Icons-1.svg": "/static/media/Social Icons-1.2e0be249b4e36d7ba0d820556884201c.svg",
+    "static/media/Social Icons-3.svg": "/static/media/Social Icons-3.d8e38cc6f61625a16cb93c4362addb33.svg",
+    "static/media/Social Icons.svg": "/static/media/Social Icons.84500c6582537f32c9bb4adf6a3f60b5.svg",
+    "static/media/youtube-icon.svg": "/static/media/youtube-icon.d56bdf87cf8d831e782a65ee0e9826b0.svg",
+    "index.html": "/index.html",
+    "main.ea2a560f.css.map": "/static/css/main.ea2a560f.css.map",
+    "main.f460cc78.js.map": "/static/js/main.f460cc78.js.map",
+    "453.d0e71f3b.chunk.js.map": "/static/js/453.d0e71f3b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ea2a560f.css",
+    "static/js/main.f460cc78.js"
+  ]
+}
