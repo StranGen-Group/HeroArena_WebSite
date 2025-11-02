@@ -24,8 +24,7 @@ export const VIDEO_LINKS = {
 export const SECTIONS = {
   HOME: 'home',
   ABOUT_GAME: 'about-game',
-  OUR_TEAM: 'our-team',
-  SCREENSHOTS: 'scrinshot',
+  GALLERY: 'gallery',
   TRAILER: 'trailer',
   CONTACT: 'contact',
 };

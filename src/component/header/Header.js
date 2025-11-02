@@ -91,10 +91,9 @@ const Header = () => {
         <nav className={`header__nav ${menuOpen ? 'header__nav--open' : ''}`} ref={menuRef}>
           <li><a href={`#${SECTIONS.HOME}`} onClick={(e) => handleNavClick(e, SECTIONS.HOME)}>{t('home')}</a></li>
           <li><a href={`#${SECTIONS.ABOUT_GAME}`} onClick={(e) => handleNavClick(e, SECTIONS.ABOUT_GAME)}>{t('aboutGame')}</a></li>
-          <li><a href={`#${SECTIONS.OUR_TEAM}`} onClick={(e) => handleNavClick(e, SECTIONS.OUR_TEAM)}>{t('ourTeam')}</a></li>
-          <li><a href={`#${SECTIONS.SCREENSHOTS}`} onClick={(e) => handleNavClick(e, SECTIONS.SCREENSHOTS)}>{t('scrinshot')}</a></li>
-          <li><a href={`#${SECTIONS.TRAILER}`} onClick={(e) => handleNavClick(e, SECTIONS.TRAILER)}>{t('trailer')}</a></li>
+          <li><a href={`#${SECTIONS.GALLERY}`} onClick={(e) => handleNavClick(e, SECTIONS.GALLERY)}>{t('gallery')}</a></li>
           <li><a href={`#${SECTIONS.CONTACT}`} onClick={(e) => handleNavClick(e, SECTIONS.CONTACT)}>{t('contact')}</a></li>
+          <li><a href={`#${SECTIONS.TRAILER}`} onClick={(e) => handleNavClick(e, SECTIONS.TRAILER)}>{t('trailer')}</a></li>
         </nav>
 
         <div className="header__buttons">

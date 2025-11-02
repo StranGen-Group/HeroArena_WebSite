@@ -9,7 +9,7 @@ import { APP_LINKS } from '../../constants/links';
 import { SECTIONS } from '../../constants/links';
 import { ANIMATION_CONFIG, ANIMATION_CLASSES } from '../../constants/animation';
 
-const HeroSection1 = () => {
+const HeroSection = () => {
   const { t } = useLanguage();
   const [imageRef, imageInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.HIGH });
   const [textRef, textInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.HIGH });
@@ -92,4 +92,4 @@ const HeroSection1 = () => {
   );
 };
 
-export default HeroSection1;
+export default HeroSection;

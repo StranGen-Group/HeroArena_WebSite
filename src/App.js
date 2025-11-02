@@ -10,7 +10,6 @@ import HeaderContent from './component/headerContent/HeaderContent';
 import Section from './component/section/Section';
 import VideoContent from './component/video/VideoContent';
 import HeroSectionSlider from './component/slider/HeroSectionSlider';
-import ContactSection from './component/contact/ContactSection';
 import Footer from './component/footer/Footer';
 
 import './App.scss';
@@ -40,11 +39,10 @@ function App() {
         <HeroSectionSlider />
         <Section />
         <VideoContent />
-        <ContactSection />
         <Footer />
       </div>
     </LanguageProvider>
   );
 }
 
-export default App;
+export default App; 

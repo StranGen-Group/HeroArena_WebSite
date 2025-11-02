@@ -14,7 +14,7 @@ const HeroSectionSlider = () => {
     const [sliderRef, sliderInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.HIGH });
     
     return (
-        <section className="slider" id={SECTIONS.SCREENSHOTS}>
+        <section className="slider" id={SECTIONS.GALLERY}>
             <div className="slider__content">
                 <div 
                     ref={sliderRef}
