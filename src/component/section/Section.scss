@@ -219,4 +219,51 @@
       max-width: 500px;
     }
   }
+
+  // ✅ Fix for Mac M1 Pro (16:10 aspect ratio displays)
+  @media (min-width: 1280px) and (max-width: 1600px) {
+    .section {
+      &__content {
+        grid-template-columns: 1fr 1fr;
+        gap: $spacing-lg;
+        max-width: 1300px;
+      }
+
+      // &__image-wrapper {
+      //   // left: 0; // Remove the 156px offset
+      //   // justify-content: center;
+      //   // margin-right: 0;
+      // }
+
+      &__image {
+        width: auto;
+        max-width: 700px;
+      }
+
+      &__text-content {
+        padding-right: $spacing-xl;
+      }
+
+      &__title {
+        font-size: 54px;
+      }
+
+      &__description {
+        font-size: 26px;
+        max-width: 650px;
+      }
+
+      &__icons {
+        a {
+          width: 65px;
+          height: 65px;
+
+          img {
+            width: 44px;
+            height: 44px;
+          }
+        }
+      }
+    }
+  }
 }
