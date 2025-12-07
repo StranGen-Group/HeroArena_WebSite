@@ -330,6 +330,50 @@
   }
 }
 
+// ✅ Add this section for Mac M1 Pro and similar 16:10 aspect ratio displays
+@media (min-width: 1280px) and (max-width: 1600px) {
+  .hero {
+    &__content {
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-lg;
+      max-width: 1300px;
+    }
+
+    &__image-wrapper {
+      // right: 0; // Remove the 250px offset
+      justify-content: center;
+      margin-right: 0;
+    }
+
+    &__image {
+      width: auto;
+      max-width: 700px;
+    }
+
+    &__text-content {
+      padding-left: $spacing-lg;
+    }
+
+    &__title {
+      font-size: 52px;
+    }
+
+    &__description {
+      font-size: 28px;
+      max-width: 650px;
+    }
+
+    &__buttons {
+      gap: $spacing-md;
+    }
+
+    &__button {
+      width: 220px;
+      height: 70px;
+    }
+  }
+}
+
 // 🌊 Плавная анимация
 @keyframes float {
 
