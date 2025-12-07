@@ -1,11 +1,11 @@
 /**
  * Константы для слайдера
  */
-import slide1 from '../assets/image/background/bg1.png';
-import slide2 from '../assets/image/background/bg1.png';
-import slide3 from '../assets/image/background/bg1.png';
-import slide4 from '../assets/image/background/bg1.png';
-import slide5 from '../assets/image/background/bg1.png';
+import slide1 from '../assets/image/background/screenshot1.png';
+import slide2 from '../assets/image/background/screenshot2.png';
+import slide3 from '../assets/image/background/screenshot3.png';
+import slide4 from '../assets/image/background/screenshot4.png';
+import slide5 from '../assets/image/background/screenshot5.png';
 
 export const SLIDER_SLIDES = [
   { id: 1, img: slide1 },
