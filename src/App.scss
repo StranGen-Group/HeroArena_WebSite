@@ -35,7 +35,10 @@ body,
 .header,
 .about,
 .slider,
-.video-content {
+.video-content,
+.about__title,
+.about__description,
+.video-content__video-title {
   transition:
     background-color var(--duration-fast) var(--ease-in-out),
     border-color var(--duration-fast) var(--ease-in-out),

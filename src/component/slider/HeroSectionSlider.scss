@@ -73,7 +73,8 @@
       background: var(--bg-elevated);
       transition:
         transform var(--duration-fast) var(--ease-smooth-out),
-        box-shadow var(--duration-fast) var(--ease-smooth-out);
+        box-shadow var(--duration-fast) var(--ease-smooth-out),
+        background-color var(--duration-fast) var(--ease-in-out);
       cursor: pointer;
 
       @include mobile {

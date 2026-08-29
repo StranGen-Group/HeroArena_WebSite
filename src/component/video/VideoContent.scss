@@ -43,7 +43,8 @@
       0 0 0 1px var(--line);
     transition:
       transform var(--duration-fast) var(--ease-smooth-out),
-      box-shadow var(--duration-fast) var(--ease-smooth-out);
+      box-shadow var(--duration-fast) var(--ease-smooth-out),
+      background-color var(--duration-fast) var(--ease-in-out);
     position: relative;
     overflow: hidden;
 
