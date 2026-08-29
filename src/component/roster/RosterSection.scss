@@ -150,12 +150,11 @@
   }
 
   &__portrait--locked {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: color-mix(in srgb, var(--sg-ink) 40%, black);
-
-    img {
-      opacity: .35;
-      filter: grayscale(1);
-    }
+    border: 1px dashed color-mix(in srgb, #f4f6f8 25%, transparent);
   }
 
   &__lock {
