@@ -26,22 +26,35 @@
     align-items: center;
   }
 
-  // Затемняющая вуаль поверх фотофона: текст в этой секции светлый в обеих темах.
-  // Градиент плотнее слева — там лежит текстовый блок.
+  // Подложка под текстовой колонкой, а не вуаль на всю секцию.
+  // Плотная там, где лежит текст, и полностью прозрачная к середине —
+  // арт справа остаётся в своих настоящих цветах.
+  // --veil-hold: докуда держится плотность (от края с текстом),
+  // --veil-end:  где подложка уходит в ноль.
+  --veil-hold: 50%;
+  --veil-end: 68%;
+
   &::before {
     content: '';
     position: absolute;
     inset: 0;
     z-index: 0;
     pointer-events: none;
+    // 90deg — линия градиента смотрит вправо, т.е. 0% у левого края,
+    // где стоит текстовый блок секции.
     background: linear-gradient(90deg,
-        color-mix(in srgb, var(--sg-ink) 82%, transparent) 0%,
-        color-mix(in srgb, var(--sg-ink) 52%, transparent) 55%,
-        color-mix(in srgb, var(--sg-ink) 18%, transparent) 100%);
+        color-mix(in srgb, var(--sg-ink) 76%, transparent) 0%,
+        color-mix(in srgb, var(--sg-ink) 70%, transparent) var(--veil-hold),
+        color-mix(in srgb, var(--sg-ink) 24%, transparent) calc(var(--veil-end) - 8%),
+        transparent var(--veil-end));
 
-    // На узких экранах блоки складываются в колонку — вуаль равномерная.
+    // На узких экранах блоки складываются в колонку: текст сверху, арт снизу.
+    // Градиент разворачивается по вертикали и заметно легче прежнего.
     @include mobile {
-      background: color-mix(in srgb, var(--sg-ink) 66%, transparent);
+      background: linear-gradient(180deg,
+          color-mix(in srgb, var(--sg-ink) 72%, transparent) 0%,
+          color-mix(in srgb, var(--sg-ink) 56%, transparent) 45%,
+          color-mix(in srgb, var(--sg-ink) 30%, transparent) 100%);
     }
   }
 
