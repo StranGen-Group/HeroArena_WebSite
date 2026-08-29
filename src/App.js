@@ -67,8 +67,8 @@ function App() {
             <RosterSection />
             <HeaderContent />
             <HeroSectionSlider />
-            <Section />
             <VideoContent />
+            <Section />
             <Footer />
           </div>
         </LanguageProvider>

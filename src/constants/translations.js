@@ -47,6 +47,7 @@ export const TRANSLATIONS = {
         sectionDescription: 'Join our journey to bring Hero Arena to life! Follow us on social media to stay up to date with the latest news and updates.',
 
         // Video
+        videoSectionTitle: 'Watch It in Action',
         videoTitle1: 'Game Pitch for President Tech Award',
         videoTitle2: 'Official Game Trailer',
     },
@@ -96,6 +97,7 @@ export const TRANSLATIONS = {
         sectionDescription: 'Следи за тем, как мы воплощаем Hero Arena в жизнь! Будь в курсе всех новостей и обновлений.',
 
         // Видео
+        videoSectionTitle: 'Смотри в деле',
         videoTitle1: 'Презентация игры для President Tech Award',
         videoTitle2: 'Официальный трейлер игры',
     },
@@ -145,6 +147,7 @@ export const TRANSLATIONS = {
         sectionDescription: 'Hero Arena loyihasini hayotga tatbiq etish yo‘lida bizga qo‘shiling! Ijtimoiy tarmoqlarda bizni kuzating va yangiliklardan xabardor bo‘ling.',
 
         // Video
+        videoSectionTitle: 'Harakatda tomosha qiling',
         videoTitle1: 'President Tech Award uchun o‘yin taqdimoti',
         videoTitle2: 'Rasmiy o‘yin treyleri',
     },
