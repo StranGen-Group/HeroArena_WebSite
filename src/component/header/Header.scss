@@ -260,7 +260,7 @@
       box-shadow: var(--shadow-card);
       z-index: 10;
       opacity: 0;
-      animation: fade-in-down 0.3s ease forwards;
+      animation: fade-in-down var(--duration-fast) var(--ease-smooth-out) forwards;
 
       li {
         padding: $spacing-sm $spacing-md;

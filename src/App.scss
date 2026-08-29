@@ -26,7 +26,20 @@ body {
   background: var(--bg);
   color: var(--ink);
   overflow-x: hidden;
-  transition: background-color .3s ease, color .3s ease;
+}
+
+// Переключение темы. Раньше плавно ехал только body, а шапка и секции
+// перекрашивались мгновенно — получался смаз. Теперь все поверхности,
+// у которых нет своего перехода, едут одной длительностью.
+body,
+.header,
+.about,
+.slider,
+.video-content {
+  transition:
+    background-color var(--duration-fast) var(--ease-in-out),
+    border-color var(--duration-fast) var(--ease-in-out),
+    color var(--duration-fast) var(--ease-in-out);
 }
 
 .app {

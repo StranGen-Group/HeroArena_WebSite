@@ -45,8 +45,8 @@
   }
 
   &__text-content {
-    animation: fade-in-left 1s ease-out;
-    animation-delay: 0.2s;
+    animation: fade-in-left var(--duration-very-slow) var(--ease-reveal);
+    animation-delay: 70ms;
     animation-fill-mode: both;
 
     @include mobile {
@@ -68,7 +68,7 @@
     color: var(--ink);
     margin-bottom: $spacing-xl;
     line-height: $heading-leading;
-    animation: fade-in-up 1s ease-out;
+    animation: fade-in-up var(--duration-very-slow) var(--ease-reveal);
 
     @include mobile {
       font-size: 36px;
@@ -89,7 +89,7 @@
     margin-bottom: $spacing-xl * 2;
     line-height: 1.5;
     max-width: 796px;
-    animation: fade-in-up 1s ease-out 0.2s;
+    animation: fade-in-up var(--duration-very-slow) var(--ease-reveal) 70ms;
     animation-fill-mode: both;
 
     @include mobile {
@@ -106,7 +106,7 @@
   &__buttons {
     display: flex;
     gap: $spacing-lg;
-    animation: fade-in-up 1s ease-out 0.4s;
+    animation: fade-in-up var(--duration-very-slow) var(--ease-reveal) 140ms;
     animation-fill-mode: both;
 
     @include mobile {
@@ -131,7 +131,10 @@
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    transition: all 0.4s ease;
+    transition:
+      transform var(--duration-fast) var(--ease-smooth-out),
+      background-color var(--duration-fast) var(--ease-smooth-out),
+      border-color var(--duration-fast) var(--ease-smooth-out);
 
     @include mobile {
       width: 100%;
@@ -167,16 +170,17 @@
       background: var(--ha-blue);
       color: var(--on-blue);
       box-shadow: var(--shadow-card);
-      animation: bounce-in 0.8s ease-out 0.6s;
+      animation: bounce-in var(--duration-slow) var(--ease-smooth-out) 210ms;
       animation-fill-mode: both;
 
       &:hover {
+        transition-duration: var(--duration-quick);
         background: var(--ha-blue-hover);
-        transform: translateY(-6px) scale(1.02);
+        transform: translateY(-3px);
       }
 
       &:active {
-        transform: translateY(-2px) scale(0.98);
+        transform: translateY(-1px);
       }
     }
 
@@ -185,17 +189,18 @@
       color: var(--ink);
       border: 1px solid var(--line);
       box-shadow: var(--shadow-card);
-      animation: bounce-in 0.8s ease-out 0.8s;
+      animation: bounce-in var(--duration-slow) var(--ease-smooth-out) 280ms;
       animation-fill-mode: both;
 
       &:hover {
+        transition-duration: var(--duration-quick);
         border-color: var(--sg-red);
         color: var(--sg-red);
-        transform: translateY(-6px) scale(1.02);
+        transform: translateY(-3px);
       }
 
       &:active {
-        transform: translateY(-2px) scale(0.98);
+        transform: translateY(-1px);
       }
     }
   }
@@ -210,8 +215,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: fade-in-right 1s ease-out;
-    animation-delay: 0.4s;
+    animation: fade-in-right var(--duration-very-slow) var(--ease-reveal);
+    animation-delay: 140ms;
     animation-fill-mode: both;
 
 
@@ -243,10 +248,11 @@
     width: 100%;
     max-width: 436px;
     height: auto;
-    transition: transform 0.5s ease;
+    transition: transform var(--duration-slow) var(--ease-smooth-out);
 
     &:hover {
-      transform: scale(1.05) rotate(2deg);
+      transition-duration: var(--duration-fast);
+      transform: scale(1.02);
     }
 
     @include mobile {

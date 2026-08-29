@@ -124,19 +124,19 @@
 
 %animation-fade-in-left {
   opacity: 0;
-  animation: fade-in-left 1s ease-out;
+  animation: fade-in-left var(--duration-very-slow) var(--ease-reveal);
   animation-fill-mode: both;
 }
 
 %animation-fade-in-right {
   opacity: 0;
-  animation: fade-in-right 1s ease-out;
+  animation: fade-in-right var(--duration-very-slow) var(--ease-reveal);
   animation-fill-mode: both;
 }
 
 %animation-fade-in-up {
   opacity: 0;
-  animation: fade-in-up 1s ease-out;
+  animation: fade-in-up var(--duration-very-slow) var(--ease-reveal);
   animation-fill-mode: both;
 }
 

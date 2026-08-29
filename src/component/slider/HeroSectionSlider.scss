@@ -71,7 +71,9 @@
         var(--shadow-card),
         0 0 0 1px var(--line);
       background: var(--bg-elevated);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition:
+        transform var(--duration-fast) var(--ease-smooth-out),
+        box-shadow var(--duration-fast) var(--ease-smooth-out);
       cursor: pointer;
 
       @include mobile {
@@ -79,17 +81,18 @@
       }
 
       &:hover {
-        transform: translateY(-12px) scale(1.02);
+        transition-duration: var(--duration-quick);
+        transform: translateY(-4px);
         box-shadow:
           var(--shadow-card),
           0 0 0 2px var(--ha-blue);
 
         @include mobile {
-          transform: translateY(-4px);
+          transform: translateY(-2px);
         }
 
         .slider__slide-image {
-          transform: scale(1.08);
+          transform: scale(1.04);
         }
       }
 
@@ -105,7 +108,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform var(--duration-slow) var(--ease-smooth-out);
         display: block;
       }
     }
@@ -255,7 +258,7 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn var(--duration-fast) var(--ease-smooth-out);
 
   @include mobile {
     padding: 10px;
@@ -311,7 +314,7 @@
     width: 100%;
     max-width: 1400px;
     max-height: 90vh;
-    animation: scaleIn 0.3s ease;
+    animation: scaleIn var(--duration-fast) var(--ease-smooth-out);
 
     @include mobile {
       max-height: 85vh;
@@ -456,7 +459,7 @@
 @keyframes scaleIn {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(var(--scale-large));
   }
   to {
     opacity: 1;

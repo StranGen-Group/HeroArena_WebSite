@@ -41,12 +41,15 @@
     box-shadow:
       var(--shadow-card),
       0 0 0 1px var(--line);
-    transition: all 0.3s ease;
+    transition:
+      transform var(--duration-fast) var(--ease-smooth-out),
+      box-shadow var(--duration-fast) var(--ease-smooth-out);
     position: relative;
     overflow: hidden;
 
     &:hover {
-      transform: translateY(-10px);
+      transition-duration: var(--duration-quick);
+      transform: translateY(-4px);
       box-shadow:
         var(--shadow-card),
         0 0 0 2px color-mix(in srgb, var(--ha-blue) 60%, transparent);

@@ -37,7 +37,7 @@
     max-width: 50%;
     height: auto;
 
-    animation: fade-in-up 2s ease-out forwards;
+    animation: fade-in-up var(--duration-slow) var(--ease-reveal) forwards;
   }
 
   // Разметка спиннера существует в Preloader.js, но правил у неё никогда не было.

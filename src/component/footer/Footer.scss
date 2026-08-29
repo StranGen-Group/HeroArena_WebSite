@@ -34,7 +34,7 @@
     display: flex;
     gap: $spacing-lg;
     align-items: center;
-    animation: fade-in-up 1s ease-out 0.4s;
+    animation: fade-in-up var(--duration-very-slow) var(--ease-reveal) 140ms;
     animation-fill-mode: both;
 
     a {
@@ -43,14 +43,17 @@
       justify-content: center;
       width: 60px;
       height: 60px;
-      transition: all 0.3s ease;
+      // hover-in быстрее, чем hover-out: подсветка гаснет мягче, чем зажигается
+      transition:
+        transform var(--duration-fast) var(--ease-smooth-out),
+        background-color var(--duration-fast) var(--ease-smooth-out);
       padding: 10px;
       border-radius: 12px;
 
       &:hover {
-        transform: translateY(-4px);
+        transition-duration: var(--duration-quick);
+        transform: translateY(-3px);
         background: color-mix(in srgb, var(--sg-red) 22%, transparent);
-        animation: pulse 0.5s ease;
       }
 
       &:focus-visible {
@@ -62,12 +65,12 @@
         width: 32px;
         height: 32px;
         filter: brightness(0) invert(1);
-        transition: all 0.3s ease;
+        transition: transform var(--duration-fast) var(--ease-smooth-out);
       }
 
       &:hover img {
-        transform: scale(1.1);
-        animation: glow 0.8s ease;
+        transition-duration: var(--duration-quick);
+        transform: scale(1.08);
       }
     }
 
@@ -114,7 +117,10 @@
     justify-content: center;
     outline: 1px solid color-mix(in srgb, var(--ha-blue-bright) 45%, transparent);
     outline-offset: -1px;
-    transition: all 0.3s ease;
+    transition:
+      transform var(--duration-fast) var(--ease-smooth-out),
+      box-shadow var(--duration-fast) var(--ease-smooth-out),
+      outline-color var(--duration-fast) var(--ease-smooth-out);
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -140,14 +146,14 @@
     }
 
     &:hover {
-      transform: translateY(-4px);
+      transition-duration: var(--duration-quick);
+      transform: translateY(-3px);
       box-shadow: var(--shadow-card);
       outline-color: var(--ha-blue-bright);
     }
 
     &:active {
-      transform: translateY(-2px);
-      animation: none;
+      transform: translateY(-1px);
     }
 
     &:focus-visible {

@@ -86,8 +86,8 @@
   }
 
   &__text-content {
-    animation: fade-in-right 1s ease-out;
-    animation-delay: 0.3s;
+    animation: fade-in-right var(--duration-very-slow) var(--ease-reveal);
+    animation-delay: 70ms;
     animation-fill-mode: both;
 
     @include mobile {
@@ -108,7 +108,7 @@
     justify-content: center;
     gap: 10px;
     align-items: center;
-    animation: fade-in-up 1s ease-out 0.4s;
+    animation: fade-in-up var(--duration-very-slow) var(--ease-reveal) 140ms;
     animation-fill-mode: both;
 
     a {
@@ -117,14 +117,17 @@
       justify-content: center;
       width: 60px;
       height: 60px;
-      transition: all 0.3s ease;
+      // hover-in быстрее, чем hover-out: подсветка гаснет мягче, чем зажигается
+      transition:
+        transform var(--duration-fast) var(--ease-smooth-out),
+        background-color var(--duration-fast) var(--ease-smooth-out);
       padding: 10px;
       border-radius: 12px;
 
       &:hover {
-        transform: translateY(-4px);
+        transition-duration: var(--duration-quick);
+        transform: translateY(-3px);
         background: color-mix(in srgb, var(--ha-blue-bright) 22%, transparent);
-        animation: pulse 0.5s ease;
       }
 
       &:focus-visible {
@@ -136,12 +139,12 @@
         width: 38px;
         height: 38px;
         filter: brightness(0) invert(1);
-        transition: all 0.3s ease;
+        transition: transform var(--duration-fast) var(--ease-smooth-out);
       }
 
       &:hover img {
-        transform: scale(1.1);
-        animation: glow 0.8s ease;
+        transition-duration: var(--duration-quick);
+        transform: scale(1.08);
       }
     }
   }
@@ -221,7 +224,7 @@
     color: #f4f6f8; // текст лежит на фото, светлый в обеих темах
     margin-bottom: $spacing-lg;
     line-height: $heading-leading;
-    animation: fade-in-up 1s ease-out;
+    animation: fade-in-up var(--duration-very-slow) var(--ease-reveal);
 
     @include mobile {
       font-size: 36px;
@@ -242,7 +245,7 @@
     margin-bottom: $spacing-xl * 2;
     line-height: 1.4;
     max-width: 636px;
-    animation: fade-in-up 1s ease-out 0.2s;
+    animation: fade-in-up var(--duration-very-slow) var(--ease-reveal) 70ms;
     animation-fill-mode: both;
 
     @include mobile {
