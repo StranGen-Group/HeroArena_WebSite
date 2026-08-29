@@ -95,7 +95,7 @@ const Header = () => {
 
         <nav className={`header__nav ${menuOpen ? 'header__nav--open' : ''}`} ref={menuRef}>
           <li><a href={`#${SECTIONS.HOME}`} onClick={(e) => handleNavClick(e, SECTIONS.HOME)}>{t('home')}</a></li>
-          <li><a href={`#${SECTIONS.STUDIO}`} onClick={(e) => handleNavClick(e, SECTIONS.STUDIO)}>{t('aboutGame')}</a></li>
+          <li><a href={`#${SECTIONS.STUDIO}`} onClick={(e) => handleNavClick(e, SECTIONS.STUDIO)}>{t('studio')}</a></li>
           <li><a href={`#${SECTIONS.GALLERY}`} onClick={(e) => handleNavClick(e, SECTIONS.GALLERY)}>{t('gallery')}</a></li>
           <li><a href={`#${SECTIONS.SOCIALS}`} onClick={(e) => handleNavClick(e, SECTIONS.SOCIALS)}>{t('socials')}</a></li>
           <li><a href={`#${SECTIONS.TRAILER}`} onClick={(e) => handleNavClick(e, SECTIONS.TRAILER)}>{t('trailer')}</a></li>

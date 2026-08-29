@@ -5,7 +5,7 @@ export const TRANSLATIONS = {
     EN: {
         // Navigation
         home: 'Home',
-        aboutGame: 'Hero Arena',
+        studio: 'Studio',
         gallery: 'Gallery',
         socials: 'Socials',
         trailer: 'Trailers',
@@ -66,7 +66,7 @@ export const TRANSLATIONS = {
     RU: {
         // Навигация
         home: 'Главная',
-        aboutGame: 'Hero Arena',
+        studio: 'Студия',
         gallery: 'Галерея',
         socials: 'Соцсети',
         trailer: 'Трейлеры',
@@ -127,7 +127,7 @@ export const TRANSLATIONS = {
     UZ: {
         // Navigatsiya
         home: 'Bosh sahifa',
-        aboutGame: 'Hero Arena',
+        studio: 'Studiya',
         gallery: 'Galereya',
         socials: 'Ijtimoiy tarmoqlar',
         trailer: 'Trelerlar',
