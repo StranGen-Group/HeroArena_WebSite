@@ -26,3 +26,8 @@ test('toggling flips the theme, the attribute and storage', () => {
   expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
   expect(localStorage.getItem('theme')).toBe('dark');
 });
+
+test('a plain mount does not write localStorage', () => {
+  renderHook(() => useTheme());
+  expect(localStorage.getItem('theme')).toBeNull();
+});

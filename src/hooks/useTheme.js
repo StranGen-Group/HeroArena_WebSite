@@ -18,15 +18,18 @@ const useTheme = () => {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    try {
-      localStorage.setItem(STORAGE_KEY, theme);
-    } catch (e) {
-      // storage unavailable — the attribute is still applied for this session
-    }
   }, [theme]);
 
   const toggleTheme = useCallback(() => {
-    setTheme((current) => (current === 'dark' ? 'light' : 'dark'));
+    setTheme((current) => {
+      const next = current === 'dark' ? 'light' : 'dark';
+      try {
+        localStorage.setItem(STORAGE_KEY, next);
+      } catch (e) {
+        // storage unavailable — the attribute still flips for this session
+      }
+      return next;
+    });
   }, []);
 
   return { theme, toggleTheme };
