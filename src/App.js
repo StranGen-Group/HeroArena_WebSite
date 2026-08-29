@@ -52,24 +52,26 @@ function App() {
     };
   }, []);
 
-  if (isLoading) {
-    return <Preloader />;
-  }
-
   return (
-    <LanguageProvider>
-      <div className="app">
-        <Header />
-        <HeaderContent />
-        <HeroSection />
-        <HeroSectionSlider />
-        <Section />
-        <VideoContent />
-        <Footer />
-        <Analytics />
-        <SpeedInsights />
-      </div>
-    </LanguageProvider>
+    <>
+      <Analytics />
+      <SpeedInsights />
+      {isLoading ? (
+        <Preloader />
+      ) : (
+        <LanguageProvider>
+          <div className="app">
+            <Header />
+            <HeaderContent />
+            <HeroSection />
+            <HeroSectionSlider />
+            <Section />
+            <VideoContent />
+            <Footer />
+          </div>
+        </LanguageProvider>
+      )}
+    </>
   );
 }
 
