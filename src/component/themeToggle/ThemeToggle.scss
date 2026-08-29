@@ -1,0 +1,26 @@
+@import '../../assets/styles/root';
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--bg-elevated);
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color .25s ease, color .25s ease, transform .25s ease;
+
+  &:hover {
+    color: var(--sg-red);
+    border-color: var(--sg-red);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ha-blue);
+    outline-offset: 2px;
+  }
+}

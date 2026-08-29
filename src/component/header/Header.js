@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Header.scss';
+import ThemeToggle from '../themeToggle/ThemeToggle';
 import LogoGame from '../../assets/image/logo/gameLogo.webp';
 import { useLanguage } from '../../context/LanguageContext';
 import { LANGUAGES } from '../../constants/translations';
@@ -99,6 +100,7 @@ const Header = () => {
         </nav>
 
         <div className="header__buttons">
+          <ThemeToggle />
           <div className="header__lang" ref={langRef}>
             <button
               className="header__button header__button--lang"

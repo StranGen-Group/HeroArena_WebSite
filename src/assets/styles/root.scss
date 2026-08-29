@@ -1,13 +1,15 @@
-/* Цвета */
-$color-primary: #2563eb;
-$color-secondary: #7c3aed;
-$color-black: #000000;
-$color-white: #ffffff;
-$color-gray-dark: #4b5563;
-$color-gray-light: #e5e7eb;
+/* Цвета — значения живут в tokens.scss, здесь только псевдонимы */
+$color-primary: var(--ha-orange);
+$color-secondary: var(--ha-blue);
+$color-black: var(--ink);
+$color-white: var(--bg);
+$color-gray-dark: var(--ink-muted);
+$color-gray-light: var(--line);
+$color-brand-red: var(--sg-red);
 
 /* Типографика */
-$font-primary: 'Arial', 'Helvetica', sans-serif;
+$font-primary: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+$font-display: 'Baloo 2', 'Inter', system-ui, sans-serif;
 $font-size-sm: 14px;
 $font-size-md: 18px;
 $font-size-lg: 24px;

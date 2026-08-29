@@ -1,3 +1,4 @@
+@import './assets/styles/tokens';
 @import './assets/styles/root';
 @import './assets/styles/mixins';
 
@@ -14,9 +15,10 @@ html {
 body {
   font-family: $font-primary;
   line-height: 1.6;
-  background: $color-white;
-  color: $color-black;
+  background: var(--bg);
+  color: var(--ink);
   overflow-x: hidden;
+  transition: background-color .3s ease, color .3s ease;
 }
 
 .app {
