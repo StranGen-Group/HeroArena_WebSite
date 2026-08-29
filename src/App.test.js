@@ -1,8 +1,9 @@
+jest.mock('./component/slider/HeroSectionSlider', () => () => null);
+
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders the site header once loading finishes', async () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(await screen.findByRole('banner')).toBeInTheDocument();
 });

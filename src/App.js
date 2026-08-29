@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import { LanguageProvider } from './context/LanguageContext';
-import { ANIMATION_CONFIG } from './constants/animation';
 
 import Preloader from './component/preloader/Preloader';
 import Header from './component/header/Header';
@@ -18,12 +17,20 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Симулируем загрузку приложения
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, ANIMATION_CONFIG.PRELOADER_DURATION);
+    const done = () => setIsLoading(false);
+    // ceiling: never hold the page hostage if an asset stalls
+    const ceiling = setTimeout(done, 1500);
 
-    return () => clearTimeout(timer);
+    if (document.readyState === 'complete') {
+      done();
+    } else {
+      window.addEventListener('load', done);
+    }
+
+    return () => {
+      clearTimeout(ceiling);
+      window.removeEventListener('load', done);
+    };
   }, []);
 
   if (isLoading) {

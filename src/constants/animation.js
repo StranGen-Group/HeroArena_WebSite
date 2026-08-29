@@ -16,9 +16,6 @@ export const ANIMATION_CONFIG = {
     LONG: '0.3s',
     EXTRA_LONG: '0.4s',
   },
-  
-  // Длительность загрузки прелоадера (в миллисекундах)
-  PRELOADER_DURATION: 2500,
 };
 
 export const ANIMATION_CLASSES = {
