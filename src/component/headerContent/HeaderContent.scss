@@ -147,7 +147,7 @@
       height: 100%;
       background: linear-gradient(90deg,
           transparent,
-          color-mix(in srgb, var(--ha-orange) 30%, transparent),
+          color-mix(in srgb, var(--on-blue) 30%, transparent),
           transparent);
       transition: left 0.6s ease;
     }
@@ -162,14 +162,14 @@
     }
 
     &--primary {
-      background: var(--ha-orange);
-      color: var(--sg-ink);
+      background: var(--ha-blue);
+      color: var(--on-blue);
       box-shadow: var(--shadow-card);
       animation: bounce-in 0.8s ease-out 0.6s;
       animation-fill-mode: both;
 
       &:hover {
-        background: var(--ha-orange-deep);
+        background: var(--ha-blue-hover);
         transform: translateY(-6px) scale(1.02);
       }
 

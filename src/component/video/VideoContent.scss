@@ -49,7 +49,7 @@
       transform: translateY(-10px);
       box-shadow:
         var(--shadow-card),
-        0 0 0 2px color-mix(in srgb, var(--ha-orange) 60%, transparent);
+        0 0 0 2px color-mix(in srgb, var(--ha-blue) 60%, transparent);
 
       .video-content__frame::before {
         opacity: 1;
@@ -63,7 +63,7 @@
       left: -2px;
       right: -2px;
       bottom: -2px;
-      background: linear-gradient(45deg, var(--ha-blue), var(--ha-orange), var(--ha-blue));
+      background: linear-gradient(45deg, var(--ha-blue), var(--ha-blue-bright), var(--ha-blue));
       z-index: -1;
       opacity: 0;
       transition: opacity 0.3s ease;

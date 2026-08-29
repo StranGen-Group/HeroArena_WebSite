@@ -5,10 +5,12 @@
   --ink-muted:    #5a6572;
   --line:         rgba(16, 20, 24, .10);
 
-  --ha-orange:      #f09000;
-  --ha-orange-deep: #d87800;
   --ha-blue:        #0078a8;
   --ha-blue-bright: #30c0f0;
+  /* Заливка акцента = var(--ha-blue) (тема переопределяет его ниже).
+     --on-blue — цвет подписи поверх этой заливки, --ha-blue-hover — состояние hover. */
+  --ha-blue-hover:  #005f87;
+  --on-blue:        #ffffff;
 
   --sg-red: #c03048;
   --sg-ink: #181818;
@@ -24,8 +26,10 @@
   --ink-muted:   #9aa5b2;
   --line:        rgba(255, 255, 255, .10);
 
-  --ha-blue: #30c0f0;
-  --sg-red:  #e03a56;
+  --ha-blue:       #30c0f0;
+  --ha-blue-hover: #5cd2f7;
+  --on-blue:       #181818;
+  --sg-red:        #e03a56;
 
   --shadow-card: 0 12px 32px -16px rgba(0, 0, 0, .8);
 }
