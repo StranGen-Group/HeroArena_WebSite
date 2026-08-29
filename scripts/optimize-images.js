@@ -42,6 +42,21 @@ async function run() {
     .resize({ width: 1200, height: 630, fit: 'cover', position: 'centre' })
     .jpeg({ quality: 82 }).toFile(og);
   console.log(`og-image.jpg  1200x630  ${(ogInfo.size / 1024).toFixed(0)} KB`);
+
+  // PWA/apple-touch icons: the CRA scaffold logos (logo192/512.png) were never
+  // replaced, so an installed shortcut read "Hero Arena" under React's atom.
+  // gameLogo.png is a wide two-line lockup ("HERO" / "ARENA") — a centred
+  // contain-fit on the app's dark background keeps the full wordmark legible
+  // at 192px instead of squashing it or cropping to a mark that doesn't exist.
+  const logoSrc = path.join(SRC, 'logo/gameLogo.png');
+  for (const size of [192, 512]) {
+    const out = path.join(PUBLIC, `logo${size}.png`);
+    const info = await sharp(logoSrc)
+      .resize({ width: size, height: size, fit: 'contain', background: '#0c1016' })
+      .flatten({ background: '#0c1016' })
+      .png().toFile(out);
+    console.log(`logo${size}.png  ${info.width}x${info.height}  ${(info.size / 1024).toFixed(0)} KB`);
+  }
 }
 
 run().catch((err) => { console.error(err); process.exit(1); });
