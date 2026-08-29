@@ -30,8 +30,8 @@ export const getVideoId = (embedUrl) => embedUrl.split('/embed/')[1].split('?')[
  * Секции сайта для навигации
  */
 export const SECTIONS = {
-  HOME: 'home',
-  ABOUT_GAME: 'about-game',
+  HOME: 'home', // top of page: the game (HeroSection) after the reorder
+  STUDIO: 'studio', // studio pitch (HeaderContent), now second on the page
   GALLERY: 'gallery',
   TRAILER: 'trailer',
   SOCIALS: 'socials',

@@ -13,7 +13,7 @@ const HeaderContent = () => {
   const [imageRef, imageInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.MEDIUM });
 
   return (
-    <section className="about" id={SECTIONS.HOME}>
+    <section className="about" id={SECTIONS.STUDIO}>
       <div className="about__content">
         <div
           ref={titleRef}

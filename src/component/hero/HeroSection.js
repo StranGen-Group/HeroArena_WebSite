@@ -17,7 +17,7 @@ const HeroSection = () => {
   const [buttonsRef, buttonsInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.MEDIUM });
 
   return (
-    <section className="hero" id={SECTIONS.ABOUT_GAME}>
+    <section className="hero" id={SECTIONS.HOME}>
       <div className="hero__background">
         <div className="hero__shape hero__shape--cyan"></div>
       </div>

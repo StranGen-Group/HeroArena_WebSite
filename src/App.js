@@ -62,8 +62,8 @@ function App() {
         <LanguageProvider>
           <div className="app">
             <Header />
-            <HeaderContent />
             <HeroSection />
+            <HeaderContent />
             <HeroSectionSlider />
             <Section />
             <VideoContent />
