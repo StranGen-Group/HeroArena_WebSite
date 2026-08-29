@@ -62,6 +62,9 @@ export const TRANSLATIONS = {
         videoTitle1: 'Game Pitch for President Tech Award',
         videoTitle2: 'Official Game Trailer',
         playVideo: 'Play',
+
+        // Footer
+        footerCopyright: '© StranGen Group',
     },
 
     RU: {
@@ -124,6 +127,9 @@ export const TRANSLATIONS = {
         videoTitle1: 'Презентация игры для President Tech Award',
         videoTitle2: 'Официальный трейлер игры',
         playVideo: 'Смотреть',
+
+        // Футер
+        footerCopyright: '© StranGen Group',
     },
 
     UZ: {
@@ -187,6 +193,9 @@ export const TRANSLATIONS = {
         videoTitle1: 'President Tech Award uchun o‘yin taqdimoti',
         videoTitle2: 'Rasmiy o‘yin treyleri',
         playVideo: "Ko'rish",
+
+        // Footer
+        footerCopyright: '© StranGen Group',
     },
 };
 

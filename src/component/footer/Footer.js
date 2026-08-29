@@ -13,8 +13,10 @@ import Facebook from '../../assets/image/icons/Social Icons-4.svg';
 import LogoStr from '../../assets/image/logo/logo_str.png';
 import { APP_LINKS } from '../../constants/links';
 import { track } from '../../utils/analytics';
+import { useLanguage } from '../../context/LanguageContext';
 
 const Footer = () => {
+    const { t } = useLanguage();
     const socialLinks = [
         { icon: YouTube, url: APP_LINKS.SOCIAL.YOUTUBE, alt: 'YouTube', size: 30 },
         { icon: Discord, url: APP_LINKS.SOCIAL.DISCORD, alt: 'Discord', size: 30 },
@@ -90,7 +92,7 @@ const Footer = () => {
                     width={2407}
                     height={870}
                 />
-                <span className="footer__studio-copy">&copy; StranGen Group</span>
+                <span className="footer__studio-copy">{t('footerCopyright')}</span>
             </div>
         </footer>
     );
