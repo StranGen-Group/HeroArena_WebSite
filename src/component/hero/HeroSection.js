@@ -34,6 +34,10 @@ const HeroSection = () => {
             width={929}
             height={580}
           />
+          <div
+            className={`hero__logo-sweep ${imageInView ? 'hero__logo-sweep--active' : ''}`}
+            aria-hidden="true"
+          ></div>
         </div>
 
         <div className="hero__text-content">

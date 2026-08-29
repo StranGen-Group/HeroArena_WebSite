@@ -5,7 +5,11 @@
 .hero {
   position: relative;
   min-height: 960px;
-  background: url('../../assets/image/background/bg1.webp') no-repeat center/cover;
+  // Фоновая картинка живёт на .hero__background (отдельный слой, ниже вуали),
+  // чтобы её можно было медленно скейлить/сдвигать transform'ом, не трогая
+  // расположение текста и не вызывая reflow. Тут — только цвет-заглушка на
+  // время загрузки, тон в тон с тёмным краем вуали.
+  background: var(--sg-ink);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -39,7 +43,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    z-index: 0;
+    z-index: 1;
     pointer-events: none;
     // 270deg — линия градиента смотрит влево, т.е. 0% у правого края,
     // где стоит текстовый блок героя.
@@ -60,18 +64,27 @@
   }
 
   &__background {
+    // Оверскан на 4% с каждой стороны: слой можно скейлить/сдвигать
+    // transform'ом на небольшую амплитуду, ни разу не открыв край картинки.
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: -4%;
+    left: -4%;
+    width: 108%;
+    height: 108%;
+    background: url('../../assets/image/background/bg1.webp') no-repeat center/cover;
     pointer-events: none;
-    z-index: 0;
+    z-index: 0; // ниже вуали (::before, z-index: 1), выше сплошного фона .hero
+    animation: hero-bg-drift 48s var(--ease-in-out) infinite alternate;
+    will-change: transform;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
   }
 
   &__content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     display: grid;
     grid-template-columns: 0.2fr 1fr;
     gap: 0;
@@ -122,9 +135,58 @@
     }
   }
 
+  // Полоса света один раз пробегает по логотипу "Hero Arena" на экране
+  // телефона. Координаты — приблизительная область логотипа на исходном
+  // растре (iPhoneBg.webp), в процентах от рамки картинки, так что подстройка
+  // под breakpoints не нужна — она скейлится вместе с изображением.
+  &__logo-sweep {
+    position: absolute;
+    top: 8%;
+    left: 30%;
+    width: 32%;
+    height: 40%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: -70%;
+      width: 40%;
+      height: 160%;
+      background: linear-gradient(100deg,
+          transparent,
+          color-mix(in srgb, #ffffff 55%, transparent),
+          transparent);
+      transform: translateX(0) skewX(-20deg);
+      opacity: 0;
+    }
+
+    &--active::before {
+      animation: hero-logo-sweep 900ms var(--ease-in-out) 500ms 1 both;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      &--active::before {
+        animation: none;
+      }
+    }
+  }
+
   &__image {
     width: 1044px;
     height: auto;
+    // Едва заметный дрейф вверх-вниз, чтобы мокап читался живым, а не застывшим.
+    // 7s и лёгкий отрицательный delay — специально не в фазе с hero-bg-drift (48s).
+    animation: hero-phone-float 7s var(--ease-in-out) infinite;
+    animation-delay: -2.3s;
+    will-change: transform;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
 
     @include mobile {
       max-width: 100%;
@@ -409,20 +471,52 @@
   }
 }
 
-// 🌊 Плавная анимация
-@keyframes float {
+// 🌊 Амбиентное движение хиро: фон, мокап телефона, разовый блик по лого.
+// Только transform/opacity — reflow эти анимации не вызывают.
+
+// Очень медленный дрейф арт-фона: масштаб/сдвиг такой маленькой амплитуды,
+// что не читается как движение, только как «жизнь».
+@keyframes hero-bg-drift {
+  0% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: scale(1.045) translate3d(-1.1%, -0.7%, 0);
+  }
+}
+
+// Пара пикселей вверх-вниз — телефон слегка «дышит», не более того.
+@keyframes hero-phone-float {
 
   0%,
   100% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0);
   }
 
-  33% {
-    transform: translateY(-20px) rotate(2deg);
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+// Разовая полоса света поперёк лого "Hero Arena" при появлении секции.
+@keyframes hero-logo-sweep {
+  0% {
+    transform: translateX(0) skewX(-20deg);
+    opacity: 0;
   }
 
-  66% {
-    transform: translateY(10px) rotate(-1deg);
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(320%) skewX(-20deg);
+    opacity: 0;
   }
 }
 
