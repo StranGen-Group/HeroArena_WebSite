@@ -7,10 +7,12 @@ const Preloader = () => {
     <div className="preloader">
       <div className="preloader__content">
         <div className="preloader__logo-container">
-          <img 
+          <img
             src={LogoStr}
-            alt="Loading..." 
+            alt="Loading..."
             className="preloader__logo"
+            width={2407}
+            height={870}
           />
         </div>
         <div className="preloader__spinner"></div>

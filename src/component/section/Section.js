@@ -21,12 +21,12 @@ const Section = () => {
   const [imageRef, imageInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.HIGH });
 
   const socialLinks = [
-    { icon: YouTube, url: APP_LINKS.SOCIAL.YOUTUBE, alt: 'YouTube' },
-    { icon: Discord, url: APP_LINKS.SOCIAL.DISCORD, alt: 'Discord' },
-    { icon: Instagram, url: APP_LINKS.SOCIAL.INSTAGRAM, alt: 'Instagram' },
-    { icon: Telegram, url: APP_LINKS.SOCIAL.TELEGRAM, alt: 'Telegram' },
-    { icon: X, url: APP_LINKS.SOCIAL.X, alt: 'X' },
-    { icon: Facebook, url: APP_LINKS.SOCIAL.FACEBOOK, alt: 'Facebook' },
+    { icon: YouTube, url: APP_LINKS.SOCIAL.YOUTUBE, alt: 'YouTube', size: 30 },
+    { icon: Discord, url: APP_LINKS.SOCIAL.DISCORD, alt: 'Discord', size: 30 },
+    { icon: Instagram, url: APP_LINKS.SOCIAL.INSTAGRAM, alt: 'Instagram', size: 30 },
+    { icon: Telegram, url: APP_LINKS.SOCIAL.TELEGRAM, alt: 'Telegram', size: 30 },
+    { icon: X, url: APP_LINKS.SOCIAL.X, alt: 'X', size: 48 },
+    { icon: Facebook, url: APP_LINKS.SOCIAL.FACEBOOK, alt: 'Facebook', size: 48 },
   ];
 
   return (
@@ -57,7 +57,7 @@ const Section = () => {
                 rel="noopener noreferrer"
                 onClick={() => track('social_click', { network: link.alt.toLowerCase() })}
               >
-                <img src={link.icon} alt={link.alt} />
+                <img src={link.icon} alt={link.alt} width={link.size} height={link.size} />
               </a>
             ))}
           </div>
