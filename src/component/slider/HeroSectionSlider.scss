@@ -22,6 +22,7 @@
 
   &__content {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -31,6 +32,40 @@
 
     @include mobile {
       padding: 0 10px;
+    }
+  }
+
+  &__heading {
+    text-align: center;
+    margin-bottom: $spacing-sm;
+  }
+
+  // HUD-style readout, echoing the game's own "Wave: 1" label. Decorative —
+  // aria-hidden in the markup so it never gets read as part of the heading.
+  &__eyebrow {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ha-blue);
+    margin-bottom: $spacing-sm;
+  }
+
+  &__title {
+    font-size: 44px;
+    font-weight: $heading-weight;
+    letter-spacing: $heading-tracking;
+    line-height: $heading-leading;
+    color: var(--ink);
+    margin: 0;
+
+    @include mobile {
+      font-size: 30px;
+    }
+
+    @include tablet {
+      font-size: 38px;
     }
   }
 

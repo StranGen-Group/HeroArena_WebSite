@@ -25,6 +25,7 @@ const RosterSection = () => {
   return (
     <section className="roster">
       <div className="roster__content">
+        <span className="roster__eyebrow" aria-hidden="true">{t('waveRoster')}</span>
         <h2 className="roster__title">{t('rosterTitle')}</h2>
         <p className="roster__status">{t('rosterStatus')}</p>
 

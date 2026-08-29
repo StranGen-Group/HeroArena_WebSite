@@ -14,6 +14,14 @@ export const TRANSLATIONS = {
         headerContentTitle: 'We make games!',
         headerContentDescription: 'We are a passionate team of Uzbek developers and artists creating an epic hero-based tower defense game - packed with stunning visuals, deep progression, and global appeal.',
 
+        // Wave eyebrows: the game's own HUD reads "Wave: 1" in Latin script
+        // regardless of locale, so these stay literal like the hero names do.
+        waveGame: 'WAVE 01',
+        waveRoster: 'WAVE 02',
+        waveGallery: 'WAVE 03',
+        waveTrailer: 'WAVE 04',
+        waveSocials: 'WAVE 05',
+
         // Hero Section
         heroTitle: 'Hero Arena',
         heroDescription: 'A strategy game where heroes lead the defense. Recruit, upgrade, and command your champions to fight back. The fate of the castle is in your hands.',
@@ -34,6 +42,9 @@ export const TRANSLATIONS = {
         rosterHero4Role: 'Magic Damage',
         rosterHero4Description: 'Burns down enemies with magic damage.',
         rosterLockedLabel: 'More heroes in development',
+
+        // Gallery
+        galleryTitle: 'Screenshots',
 
         // Gallery captions
         galleryCaption1: 'Rank up, upgrade, and build your team of four.',
@@ -64,6 +75,14 @@ export const TRANSLATIONS = {
         headerContentTitle: 'Мы создаём игры!',
         headerContentDescription: 'Мы команда узбекских разработчиков и художников, создающих эпичную игру в жанре tower defense с героями - с потрясающей графикой, глубокой прогрессией и мировым потенциалом.',
 
+        // Эйбраузы волн: в самой игре HUD всегда пишет "Wave: 1" латиницей,
+        // поэтому эти ярлыки не переводятся, как и имена героев.
+        waveGame: 'WAVE 01',
+        waveRoster: 'WAVE 02',
+        waveGallery: 'WAVE 03',
+        waveTrailer: 'WAVE 04',
+        waveSocials: 'WAVE 05',
+
         // Герои
         heroTitle: 'Hero Arena',
         heroDescription: 'Стратегическая игра, где герои возглавляют оборону. Нанимай, улучшай и командуй своими чемпионами. Судьба замка в твоих руках.',
@@ -84,6 +103,9 @@ export const TRANSLATIONS = {
         rosterHero4Role: 'Магический урон',
         rosterHero4Description: 'Сжигает врагов магическим уроном.',
         rosterLockedLabel: 'Ещё герои в разработке',
+
+        // Галерея
+        galleryTitle: 'Скриншоты',
 
         // Подписи галереи
         galleryCaption1: 'Повышай ранг, улучшай героев и собирай отряд из четырёх.',
@@ -114,6 +136,15 @@ export const TRANSLATIONS = {
         headerContentTitle: 'Biz o‘yinlar yaratamiz!',
         headerContentDescription: 'Biz — o‘z ishiga mehr qo‘ygan o‘zbekistonlik dasturchilar va rassomlar jamoasimiz. Biz qahramonlarga asoslangan epik tower defense o‘yinini yaratyapmiz — ajoyib grafika, chuqur rivojlanish tizimi va global auditoriya uchun.',
 
+        // Wave yorliqlari: o'yinning o'zida HUD har doim lotin yozuvida
+        // "Wave: 1" deb ko'rsatadi, shuning uchun bu yorliqlar tarjima
+        // qilinmaydi, xuddi qahramon ismlari kabi.
+        waveGame: 'WAVE 01',
+        waveRoster: 'WAVE 02',
+        waveGallery: 'WAVE 03',
+        waveTrailer: 'WAVE 04',
+        waveSocials: 'WAVE 05',
+
         // Qahramonlar bo‘limi
         heroTitle: 'Hero Arena',
         heroDescription: 'Bu strategiya o‘yini, unda qahramonlar qal’ani himoya qiladi. Qahramonlaringni yollang, kuchaytiring va boshqaring. Qal’aning taqdiri sizning qo‘lingizda.',
@@ -134,6 +165,9 @@ export const TRANSLATIONS = {
         rosterHero4Role: 'Sehrli zarar',
         rosterHero4Description: 'Dushmanlarni sehrli zarar bilan kuydiradi.',
         rosterLockedLabel: 'Yana qahramonlar ishlab chiqilmoqda',
+
+        // Galereya
+        galleryTitle: 'Skrinshotlar',
 
         // Galereya sarlavhalari
         galleryCaption1: 'Darajani oshiring, qahramonlarni kuchaytiring va to\'rt kishilik jamoa tuzing.',

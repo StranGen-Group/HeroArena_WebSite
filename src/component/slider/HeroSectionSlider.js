@@ -77,6 +77,10 @@ const HeroSectionSlider = () => {
     return (
         <section className="slider" id={SECTIONS.GALLERY}>
             <div className="slider__content">
+                <div className="slider__heading">
+                    <span className="slider__eyebrow" aria-hidden="true">{t('waveGallery')}</span>
+                    <h2 className="slider__title">{t('galleryTitle')}</h2>
+                </div>
                 <div
                     ref={sliderRef}
                     className={`slider__slider-wrapper ${sliderInView ? `${ANIMATION_CLASSES.FADE_IN_UP} ${ANIMATION_CLASSES.ANIMATED}` : ANIMATION_CLASSES.HIDDEN}`}

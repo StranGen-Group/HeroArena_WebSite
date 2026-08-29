@@ -219,6 +219,18 @@
     }
   }
 
+  // HUD-style readout, echoing the game's own "Wave: 1" label. Decorative —
+  // aria-hidden in the markup so it never gets read as part of the heading.
+  &__eyebrow {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ha-blue-bright);
+    margin-bottom: $spacing-sm;
+  }
+
   &__title {
     font-size: 60px;
     font-weight: $heading-weight;

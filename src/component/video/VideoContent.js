@@ -42,6 +42,7 @@ const VideoContent = () => {
   return (
     <section className="video-content" id={SECTIONS.TRAILER}>
       <div className="video-content__container">
+        <span className="video-content__eyebrow" aria-hidden="true">{t('waveTrailer')}</span>
         <h2 className="video-content__title">{t('videoSectionTitle')}</h2>
 
         <div className="video-content__grid">

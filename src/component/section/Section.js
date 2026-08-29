@@ -40,6 +40,7 @@ const Section = () => {
           ref={textRef}
           className={`section__text-content ${textInView ? `${ANIMATION_CLASSES.FADE_IN_RIGHT} ${ANIMATION_CLASSES.ANIMATED}` : ANIMATION_CLASSES.HIDDEN}`}
         >
+          <span className="section__eyebrow" aria-hidden="true">{t('waveSocials')}</span>
           <h1 className="section__title">
             {t('sectionTitle')}
           </h1>

@@ -41,7 +41,8 @@ const HeroSection = () => {
         </div>
 
         <div className="hero__text-content">
-          <h1 
+          <span className="hero__eyebrow" aria-hidden="true">{t('waveGame')}</span>
+          <h1
             ref={textRef}
             className={`hero__title ${textInView ? `${ANIMATION_CLASSES.FADE_IN_RIGHT} ${ANIMATION_CLASSES.ANIMATED}` : ANIMATION_CLASSES.HIDDEN}`}
             style={{ animationDelay: ANIMATION_CONFIG.DELAY.MEDIUM }}
