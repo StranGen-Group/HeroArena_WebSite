@@ -12,20 +12,21 @@ import slide4_1600 from '../assets/image/background/screenshot4-1600.webp';
 import slide5_800 from '../assets/image/background/screenshot5-800.webp';
 import slide5_1600 from '../assets/image/background/screenshot5-1600.webp';
 
-const slide = (id, small, large) => ({
+const slide = (id, small, large, captionKey) => ({
   id,
   src: large,
   srcSet: `${small} 800w, ${large} 1600w`,
   width: 1600,
   height: 842,
+  captionKey,
 });
 
 export const SLIDER_SLIDES = [
-  slide(1, slide1_800, slide1_1600),
-  slide(2, slide2_800, slide2_1600),
-  slide(3, slide3_800, slide3_1600),
-  slide(4, slide4_800, slide4_1600),
-  slide(5, slide5_800, slide5_1600),
+  slide(1, slide1_800, slide1_1600, 'galleryCaption1'),
+  slide(2, slide2_800, slide2_1600, 'galleryCaption2'),
+  slide(3, slide3_800, slide3_1600, 'galleryCaption3'),
+  slide(4, slide4_800, slide4_1600, 'galleryCaption4'),
+  slide(5, slide5_800, slide5_1600, 'galleryCaption5'),
 ];
 
 export const SLIDER_CONFIG = {

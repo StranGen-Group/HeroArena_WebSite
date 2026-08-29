@@ -35,6 +35,13 @@ export const TRANSLATIONS = {
         rosterHero4Description: 'Burns down enemies with magic damage.',
         rosterLockedLabel: 'More heroes in development',
 
+        // Gallery captions
+        galleryCaption1: 'Rank up, upgrade, and build your team of four.',
+        galleryCaption2: 'Abilities turn a losing lane around.',
+        galleryCaption3: 'Four heroes, one screen, no pausing to think.',
+        galleryCaption4: 'Your tower anchors the lane. Heroes hold the flanks.',
+        galleryCaption5: 'Later waves send cavalry. Faster, and it hits harder.',
+
         // Section
         sectionTitle: 'Follow StrangenGroup!',
         sectionDescription: 'Join our journey to bring Hero Arena to life! Follow us on social media to stay up to date with the latest news and updates.',
@@ -77,6 +84,13 @@ export const TRANSLATIONS = {
         rosterHero4Description: 'Сжигает врагов магическим уроном.',
         rosterLockedLabel: 'Ещё герои в разработке',
 
+        // Подписи галереи
+        galleryCaption1: 'Повышай ранг, улучшай героев и собирай отряд из четырёх.',
+        galleryCaption2: 'Способности переламывают ход боя.',
+        galleryCaption3: 'Четыре героя на одном экране — думать некогда.',
+        galleryCaption4: 'Башня держит центр, герои — фланги.',
+        galleryCaption5: 'Поздние волны присылают кавалерию — быстрее и сильнее.',
+
         // Раздел
         sectionTitle: 'Подписывайся на StrangenGroup!',
         sectionDescription: 'Следи за тем, как мы воплощаем Hero Arena в жизнь! Будь в курсе всех новостей и обновлений.',
@@ -118,6 +132,13 @@ export const TRANSLATIONS = {
         rosterHero4Role: 'Sehrli zarar',
         rosterHero4Description: 'Dushmanlarni sehrli zarar bilan kuydiradi.',
         rosterLockedLabel: 'Yana qahramonlar ishlab chiqilmoqda',
+
+        // Galereya sarlavhalari
+        galleryCaption1: 'Darajani oshiring, qahramonlarni kuchaytiring va to\'rt kishilik jamoa tuzing.',
+        galleryCaption2: 'Qobiliyatlar jang yo\'nalishini o\'zgartiradi.',
+        galleryCaption3: 'To\'rt qahramon, bitta ekran — o\'ylashga vaqt yo\'q.',
+        galleryCaption4: 'Minora markazni, qahramonlar qanotlarni ushlab turadi.',
+        galleryCaption5: 'Keyingi to\'lqinlarda otliqlar keladi — tezroq va kuchliroq.',
 
         // Bo‘lim
         sectionTitle: 'StrangenGroup’ni kuzating!',

@@ -10,8 +10,10 @@ import { SLIDER_SLIDES, SLIDER_CONFIG } from '../../constants/slider';
 import { SECTIONS } from '../../constants/links';
 import { ANIMATION_CONFIG, ANIMATION_CLASSES } from '../../constants/animation';
 import { track } from '../../utils/analytics';
+import { useLanguage } from '../../context/LanguageContext';
 
 const HeroSectionSlider = () => {
+    const { t } = useLanguage();
     const [sliderRef, sliderInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.HIGH });
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedSlideIndex, setSelectedSlideIndex] = useState(0);
@@ -118,6 +120,7 @@ const HeroSectionSlider = () => {
                                             loading="lazy"
                                         />
                                     </div>
+                                    <p className="slider__slide-caption">{t(slide.captionKey)}</p>
                                 </div>
                             </SwiperSlide>
                         ))}
@@ -188,6 +191,7 @@ const HeroSectionSlider = () => {
                                             className="slider-modal__image"
                                             loading="eager"
                                         />
+                                        <p className="slider-modal__caption">{t(slide.captionKey)}</p>
                                     </div>
                                 </SwiperSlide>
                             ))}
