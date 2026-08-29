@@ -10,6 +10,7 @@ import googlePlayIcon from '../../assets/image/icons/google-play.svg';
 import appStoreIcon from '../../assets/image/icons/app-store.svg';
 import X from '../../assets/image/icons/Social Icons-5.svg';
 import Facebook from '../../assets/image/icons/Social Icons-4.svg';
+import LogoStr from '../../assets/image/logo/logo_str.png';
 import { APP_LINKS } from '../../constants/links';
 import { track } from '../../utils/analytics';
 
@@ -75,6 +76,17 @@ const Footer = () => {
                         </div>
                     </a>
                 </div>
+            </div>
+
+            <div className="footer__studio">
+                <img
+                    src={LogoStr}
+                    alt=""
+                    className="footer__studio-logo"
+                    width={2407}
+                    height={870}
+                />
+                <span className="footer__studio-copy">&copy; StranGen Group</span>
             </div>
         </footer>
     );

@@ -38,6 +38,12 @@
     height: auto;
 
     animation: fade-in-up var(--duration-slow) var(--ease-reveal) forwards;
+
+    // В тёмной теме подложка почти чёрная, а половина букв знака — тоже.
+    // Без инверсии от логотипа остаётся одна красная дуга.
+    [data-theme="dark"] & {
+      filter: brightness(0) invert(1);
+    }
   }
 
   // Разметка спиннера существует в Preloader.js, но правил у неё никогда не было.

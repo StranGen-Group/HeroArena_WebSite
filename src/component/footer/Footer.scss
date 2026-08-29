@@ -162,6 +162,47 @@
     }
   }
 
+  // Студийный кредит: марка StranGen живёт на странице постоянно,
+  // а не мелькает в прелоадере.
+  &__studio {
+    max-width: 1200px;
+    margin: $spacing-xl auto 0;
+    padding-top: $spacing-lg;
+    border-top: 1px solid color-mix(in srgb, #f4f6f8 12%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-md;
+
+    @include mobile {
+      flex-direction: column;
+      gap: $spacing-sm;
+    }
+  }
+
+  &__studio-logo {
+    // Знак широкий (2.77:1), а словесная часть — нижняя четверть картинки,
+    // поэтому 26px читались как пятно. 38px — всё ещё скромно.
+    height: 38px;
+    width: auto;
+    // Плашка футера near-black в обеих темах, а в знаке половина букв чёрные.
+    // Монохромный белый знак — тот же приём, что у соц-иконок выше.
+    filter: brightness(0) invert(1);
+    opacity: .9;
+
+    @include mobile {
+      height: 32px;
+    }
+  }
+
+  &__studio-copy {
+    font-size: $font-size-sm;
+    font-weight: 500;
+    letter-spacing: .01em;
+    // 7.4:1 к плашке --sg-ink
+    color: color-mix(in srgb, #f4f6f8 65%, transparent);
+  }
+
   &__button-content {
     position: relative;
     z-index: 1;

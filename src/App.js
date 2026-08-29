@@ -19,9 +19,25 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const done = () => setIsLoading(false);
+    // floor: the StranGen mark has to be on screen long enough to register
+    const MIN_VISIBLE = 800;
     // ceiling: never hold the page hostage if an asset stalls
-    const ceiling = setTimeout(done, 1500);
+    const MAX_VISIBLE = 1500;
+    const shownAt = Date.now();
+    const hide = () => setIsLoading(false);
+
+    let floor;
+    const done = () => {
+      const remaining = MIN_VISIBLE - (Date.now() - shownAt);
+      if (remaining > 0) {
+        floor = setTimeout(hide, remaining);
+      } else {
+        hide();
+      }
+    };
+
+    // the ceiling is independent of the floor: it hides regardless
+    const ceiling = setTimeout(hide, MAX_VISIBLE);
 
     if (document.readyState === 'complete') {
       done();
@@ -31,6 +47,7 @@ function App() {
 
     return () => {
       clearTimeout(ceiling);
+      clearTimeout(floor);
       window.removeEventListener('load', done);
     };
   }, []);
