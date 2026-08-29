@@ -215,18 +215,25 @@
     animation-fill-mode: both;
 
 
+    // Свет за магом, а не цветной диск: у пятна нет края, оно растворяется.
+    // Нижний слой нейтральный (--bg-elevated — в тёмной теме это глубокий
+    // сине-чёрный), верхний добавляет холодный блик.
     &::before {
       content: '';
       position: absolute;
-      width: 110%;
+      width: 124%;
       height: 0;
-      padding-bottom: 110%;
-      background: linear-gradient(135deg,
-          color-mix(in srgb, var(--sg-red) 14%, transparent) 0%,
-          color-mix(in srgb, var(--sg-red) 4%, transparent) 100%);
-      border-radius: 50%;
+      padding-bottom: 124%;
       z-index: 0;
-      animation: pulse 3s ease-in-out infinite;
+      background:
+        radial-gradient(circle at 50% 42%,
+            color-mix(in srgb, var(--ha-blue-bright) 20%, transparent) 0%,
+            color-mix(in srgb, var(--ha-blue-bright) 7%, transparent) 36%,
+            transparent 64%),
+        radial-gradient(circle at 50% 46%,
+            var(--bg-elevated) 0%,
+            color-mix(in srgb, var(--bg-elevated) 55%, transparent) 50%,
+            transparent 72%);
     }
   }
 
@@ -251,19 +258,5 @@
       max-width: 50%;
       margin-left: 0;
     }
-  }
-}
-
-@keyframes pulse-bg {
-
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.5;
-  }
-
-  50% {
-    transform: scale(1.1);
-    opacity: 0.8;
   }
 }
