@@ -21,6 +21,12 @@ export const VIDEO_LINKS = {
 };
 
 /**
+ * Pulls the video id out of a `.../embed/<id>?...` URL so the id lives in one
+ * place instead of being hardcoded wherever a poster/watch link is built.
+ */
+export const getVideoId = (embedUrl) => embedUrl.split('/embed/')[1].split('?')[0];
+
+/**
  * Секции сайта для навигации
  */
 export const SECTIONS = {

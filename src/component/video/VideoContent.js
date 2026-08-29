@@ -3,7 +3,7 @@ import './VideoContent.scss';
 import YoutubeIcon from '../../assets/image/icons/youtube-icon.svg';
 import { useLanguage } from '../../context/LanguageContext';
 import useInView from '../../hooks/useInView';
-import { VIDEO_LINKS, SECTIONS } from '../../constants/links';
+import { VIDEO_LINKS, SECTIONS, getVideoId } from '../../constants/links';
 import { ANIMATION_CONFIG, ANIMATION_CLASSES } from '../../constants/animation';
 import { track } from '../../utils/analytics';
 
@@ -13,16 +13,18 @@ const VideoContent = () => {
   const [video2Ref, video2InView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.HIGH });
 
   const videos = [
-    { 
-      src: VIDEO_LINKS.VIDEO_1, 
-      title: t('videoTitle1'), 
-      ref: video1Ref, 
-      inView: video1InView 
+    {
+      src: VIDEO_LINKS.VIDEO_1,
+      id: getVideoId(VIDEO_LINKS.VIDEO_1),
+      title: t('videoTitle1'),
+      ref: video1Ref,
+      inView: video1InView
     },
-    { 
-      src: VIDEO_LINKS.VIDEO_2, 
-      title: t('videoTitle2'), 
-      ref: video2Ref, 
+    {
+      src: VIDEO_LINKS.VIDEO_2,
+      id: getVideoId(VIDEO_LINKS.VIDEO_2),
+      title: t('videoTitle2'),
+      ref: video2Ref,
       inView: video2InView,
       delay: ANIMATION_CONFIG.DELAY.MEDIUM
     },
@@ -55,8 +57,14 @@ const VideoContent = () => {
 
               <div className="video-content__info">
                 <h3 className="video-content__video-title">{video.title}</h3>
-                <a href={video.src}>
-                  <img src={YoutubeIcon} alt="YouTube Icon" className="video-content__youtube-icon" />
+                <a href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={YoutubeIcon}
+                    alt="YouTube Icon"
+                    className="video-content__youtube-icon"
+                    width={60}
+                    height={60}
+                  />
                 </a>
               </div>
             </div>
