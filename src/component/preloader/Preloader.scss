@@ -11,7 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: $color-white;
+  background: var(--bg);
   z-index: 9999;
 
   &__content {

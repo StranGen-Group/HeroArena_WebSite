@@ -2,9 +2,9 @@
 @import '../../assets/styles/mixins';
 
 .header {
-  background: $color-white;
+  background: var(--bg);
   padding: $spacing-md $spacing-xl;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -56,12 +56,17 @@
     @include tablet {
       display: flex;
     }
+
+    &:focus-visible {
+      outline: 2px solid var(--ha-blue);
+      outline-offset: 2px;
+    }
   }
 
   &__burger-line {
     width: 28px;
     height: 3px;
-    background: $color-gray-dark;
+    background: var(--ink);
     border-radius: 2px;
     transition: all 0.3s ease;
   }
@@ -102,7 +107,7 @@
       transform: translateX(-100%);
       transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       padding-top: $spacing-xl * 4;
-      box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow-card);
 
       &--open {
         transform: translateX(0);
@@ -122,7 +127,7 @@
           transition: all 0.3s ease;
           
           &:hover {
-            background: $color-gray-light;
+            background: var(--bg-elevated);
           }
         }
       }
@@ -144,7 +149,7 @@
       transform: translateX(-100%);
       transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       padding-top: $spacing-xl * 4;
-      box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow-card);
 
       &--open {
         transform: translateX(0);
@@ -164,7 +169,7 @@
           transition: all 0.3s ease;
           
           &:hover {
-            background: $color-gray-light;
+            background: var(--bg-elevated);
           }
         }
       }
@@ -172,7 +177,7 @@
 
     a {
       text-decoration: none;
-      color: $color-gray-dark;
+      color: var(--ink-muted);
       font-weight: 500;
       font-size: $font-size-md;
       transition: color 0.3s ease;
@@ -185,16 +190,21 @@
         left: 0;
         width: 0;
         height: 2px;
-        background: $color-primary;
+        background: var(--sg-red);
         transition: width 0.3s ease;
       }
 
       &:hover {
-        color: $color-primary;
+        color: var(--sg-red);
 
         &::after {
           width: 100%;
         }
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--ha-blue);
+        outline-offset: 2px;
       }
     }
   }
@@ -206,9 +216,9 @@
   }
 
   &__button {
-    background: $color-gray-light;
-    color: $color-gray-dark;
-    border: none;
+    background: var(--bg-elevated);
+    color: var(--ink);
+    border: 1px solid var(--line);
     padding: $spacing-sm $spacing-md;
     border-radius: 8px;
     cursor: pointer;
@@ -216,13 +226,18 @@
     font-weight: 600;
     transition: all 0.3s ease;
 
+    &:focus-visible {
+      outline: 2px solid var(--ha-blue);
+      outline-offset: 2px;
+    }
+
     &--lang {
       position: relative;
       min-width: 60px;
 
       &:hover {
-        background: $color-primary;
-        color: $color-white;
+        color: var(--sg-red);
+        border-color: var(--sg-red);
         transform: translateY(-2px);
       }
     }
@@ -235,13 +250,14 @@
       position: absolute;
       top: calc(100% + 8px);
       right: 0;
-      background: $color-white;
+      background: var(--bg-elevated);
+      border: 1px solid var(--line);
       border-radius: 8px;
       list-style: none;
       padding: $spacing-sm 0;
       margin: 0;
       min-width: 140px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      box-shadow: var(--shadow-card);
       z-index: 10;
       opacity: 0;
       animation: fade-in-down 0.3s ease forwards;
@@ -249,14 +265,23 @@
       li {
         padding: $spacing-sm $spacing-md;
         cursor: pointer;
-        color: $color-gray-dark;
+        color: var(--ink);
         font-size: $font-size-sm;
         transition: all 0.2s ease;
 
+        &:hover,
+        &.active {
+          background: color-mix(in srgb, var(--sg-red) 12%, transparent);
+          color: var(--sg-red);
+        }
+
         &:hover {
-          background: $color-gray-light;
-          color: $color-primary;
           padding-left: $spacing-lg;
+        }
+
+        &:focus-visible {
+          outline: 2px solid var(--ha-blue);
+          outline-offset: -2px;
         }
 
         &:first-child {

@@ -9,7 +9,7 @@
   align-items: center;
   overflow: hidden;
   padding: 80px 0;
-  background: #ffffff;
+  background: var(--bg);
 
   @include mobile {
     min-height: 30vh;
@@ -68,9 +68,9 @@
       border-radius: 16px;
       overflow: hidden;
       box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.12),
-        0 0 0 1px rgba(0, 0, 0, 0.06);
-      background: #f8f9fa;
+        var(--shadow-card),
+        0 0 0 1px var(--line);
+      background: var(--bg-elevated);
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
 
@@ -81,8 +81,8 @@
       &:hover {
         transform: translateY(-12px) scale(1.02);
         box-shadow:
-          0 30px 60px rgba(0, 0, 0, 0.25),
-          0 0 0 1px rgba(0, 0, 0, 0.12);
+          var(--shadow-card),
+          0 0 0 2px var(--ha-blue);
 
         @include mobile {
           transform: translateY(-4px);
@@ -98,7 +98,7 @@
         width: 100%;
         height: 100%;
         overflow: hidden;
-        background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+        background: var(--bg-elevated);
       }
 
       &-image {
@@ -116,29 +116,29 @@
       transform: translateY(-50%);
       width: 52px;
       height: 52px;
-      background: rgba(255, 255, 255, 0.95);
+      background: color-mix(in srgb, var(--bg-elevated) 95%, transparent);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-radius: 50%;
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--line);
       cursor: pointer;
       z-index: 10;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+      box-shadow: var(--shadow-card);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      color: #1a202c;
+      color: var(--ha-blue);
 
       svg {
         transition: transform 0.3s ease;
       }
 
       &:hover {
-        background: #ffffff;
+        background: var(--bg);
         transform: translateY(-50%) scale(1.15);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
-        border-color: rgba(0, 0, 0, 0.12);
+        box-shadow: var(--shadow-card);
+        border-color: var(--ha-blue);
 
         svg {
           transform: scale(1.1);
@@ -147,6 +147,11 @@
 
       &:active {
         transform: translateY(-50%) scale(1.05);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--ha-blue);
+        outline-offset: 2px;
       }
 
       &--prev {
@@ -181,7 +186,7 @@
       @include mobile {
         width: 40px;
         height: 40px;
-        background: rgba(255, 255, 255, 0.9);
+        background: color-mix(in srgb, var(--bg-elevated) 90%, transparent);
 
         svg {
           width: 20px;
@@ -200,7 +205,7 @@
       &-bullet {
         width: 10px;
         height: 10px;
-        background: rgba(0, 0, 0, 0.25);
+        background: color-mix(in srgb, var(--ink) 25%, transparent);
         opacity: 1;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         margin: 0 6px !important;
@@ -212,14 +217,19 @@
         }
 
         &:hover {
-          background: rgba(0, 0, 0, 0.4);
+          background: color-mix(in srgb, var(--ink) 45%, transparent);
           transform: scale(1.3);
         }
 
+        &:focus-visible {
+          outline: 2px solid var(--ha-blue);
+          outline-offset: 2px;
+        }
+
         &-active {
-          background: #1a202c;
+          background: var(--ha-blue);
           transform: scale(1.5);
-          box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 8px color-mix(in srgb, var(--ha-blue) 50%, transparent);
 
           @include mobile {
             transform: scale(1.3);
@@ -237,7 +247,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.95);
+  background: color-mix(in srgb, var(--sg-ink) 95%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 9999;
@@ -257,11 +267,11 @@
     right: 30px;
     width: 50px;
     height: 50px;
-    background: rgba(255, 255, 255, 0.1);
+    background: color-mix(in srgb, var(--ha-blue-bright) 14%, transparent);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid color-mix(in srgb, var(--ha-blue-bright) 35%, transparent);
     border-radius: 50%;
-    color: #ffffff;
+    color: var(--ha-blue-bright);
     cursor: pointer;
     z-index: 10001;
     display: flex;
@@ -282,12 +292,17 @@
     }
 
     &:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: color-mix(in srgb, var(--ha-blue-bright) 28%, transparent);
       transform: scale(1.1) rotate(90deg);
     }
 
     &:active {
       transform: scale(0.95) rotate(90deg);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ha-blue-bright);
+      outline-offset: 2px;
     }
   }
 
@@ -317,7 +332,7 @@
       &-bullet {
         width: 12px;
         height: 12px;
-        background: rgba(255, 255, 255, 0.4);
+        background: color-mix(in srgb, var(--ha-blue-bright) 40%, transparent);
         opacity: 1;
         margin: 0 8px !important;
         transition: all 0.3s ease;
@@ -329,12 +344,12 @@
         }
 
         &:hover {
-          background: rgba(255, 255, 255, 0.6);
+          background: color-mix(in srgb, var(--ha-blue-bright) 65%, transparent);
           transform: scale(1.3);
         }
 
         &-active {
-          background: #ffffff;
+          background: var(--ha-blue-bright);
           transform: scale(1.5);
 
           @include mobile {
@@ -360,7 +375,7 @@
     height: auto;
     object-fit: contain;
     border-radius: 12px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: var(--shadow-card);
 
     @include mobile {
       max-height: 85vh;
@@ -374,11 +389,11 @@
     transform: translateY(-50%);
     width: 60px;
     height: 60px;
-    background: rgba(255, 255, 255, 0.1);
+    background: color-mix(in srgb, var(--ha-blue-bright) 14%, transparent);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid color-mix(in srgb, var(--ha-blue-bright) 35%, transparent);
     border-radius: 50%;
-    color: #ffffff;
+    color: var(--ha-blue-bright);
     cursor: pointer;
     z-index: 10;
     display: flex;
@@ -397,12 +412,17 @@
     }
 
     &:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: color-mix(in srgb, var(--ha-blue-bright) 28%, transparent);
       transform: translateY(-50%) scale(1.1);
     }
 
     &:active {
       transform: translateY(-50%) scale(0.95);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ha-blue-bright);
+      outline-offset: 2px;
     }
 
     &--prev {

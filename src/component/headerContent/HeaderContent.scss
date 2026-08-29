@@ -5,7 +5,7 @@
 .about {
   position: relative;
   min-height: 688px;
-  background: $color-white;
+  background: var(--bg);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -62,9 +62,9 @@
 
   &__title {
     font-size: 80px;
-    font-family: 'Montserrat', $font-primary;
+    font-family: $font-display;
     font-weight: 700;
-    color: $color-black;
+    color: var(--ink);
     margin-bottom: $spacing-xl;
     line-height: 1.1;
     animation: fade-in-up 1s ease-out;
@@ -84,7 +84,7 @@
     font-size: 24px;
     font-family: 'Montserrat', $font-primary;
     font-weight: 400;
-    color: $color-black;
+    color: var(--ink-muted);
     margin-bottom: $spacing-xl * 2;
     line-height: 1.5;
     max-width: 796px;
@@ -147,7 +147,7 @@
       height: 100%;
       background: linear-gradient(90deg,
           transparent,
-          rgba(255, 255, 255, 0.3),
+          color-mix(in srgb, var(--ha-orange) 30%, transparent),
           transparent);
       transition: left 0.6s ease;
     }
@@ -156,16 +156,21 @@
       left: 100%;
     }
 
+    &:focus-visible {
+      outline: 2px solid var(--ha-blue);
+      outline-offset: 2px;
+    }
+
     &--primary {
-      background: linear-gradient(180deg, #0083EF 0%, #003FC7 100%);
-      color: $color-white;
-      box-shadow: 0 8px 24px rgba(0, 131, 239, 0.3);
+      background: var(--ha-orange);
+      color: var(--sg-ink);
+      box-shadow: var(--shadow-card);
       animation: bounce-in 0.8s ease-out 0.6s;
       animation-fill-mode: both;
 
       &:hover {
+        background: var(--ha-orange-deep);
         transform: translateY(-6px) scale(1.02);
-        box-shadow: 0 16px 40px rgba(0, 131, 239, 0.5);
       }
 
       &:active {
@@ -174,15 +179,17 @@
     }
 
     &--secondary {
-      background: linear-gradient(180deg, #0083EF 0%, #003FC7 100%);
-      color: $color-white;
-      box-shadow: 0 8px 24px rgba(0, 131, 239, 0.3);
+      background: var(--bg-elevated);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-card);
       animation: bounce-in 0.8s ease-out 0.8s;
       animation-fill-mode: both;
 
       &:hover {
+        border-color: var(--sg-red);
+        color: var(--sg-red);
         transform: translateY(-6px) scale(1.02);
-        box-shadow: 0 16px 40px rgba(0, 131, 239, 0.5);
       }
 
       &:active {
@@ -213,8 +220,8 @@
       height: 0;
       padding-bottom: 110%;
       background: linear-gradient(135deg,
-          rgba(0, 131, 239, 0.1) 0%,
-          rgba(0, 63, 199, 0.1) 100%);
+          color-mix(in srgb, var(--sg-red) 14%, transparent) 0%,
+          color-mix(in srgb, var(--sg-red) 4%, transparent) 100%);
       border-radius: 50%;
       z-index: 0;
       animation: pulse 3s ease-in-out infinite;

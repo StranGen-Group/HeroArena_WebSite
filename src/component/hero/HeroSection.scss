@@ -27,6 +27,25 @@
     align-items: center;
   }
 
+  // Затемняющая вуаль поверх фотофона: текст в этой секции светлый в обеих темах.
+  // Градиент плотнее справа — там лежит текстовый блок.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(270deg,
+        color-mix(in srgb, var(--sg-ink) 82%, transparent) 0%,
+        color-mix(in srgb, var(--sg-ink) 52%, transparent) 55%,
+        color-mix(in srgb, var(--sg-ink) 18%, transparent) 100%);
+
+    // На узких экранах блоки складываются в колонку — вуаль равномерная.
+    @include mobile {
+      background: color-mix(in srgb, var(--sg-ink) 66%, transparent);
+    }
+  }
+
   &__background {
     position: absolute;
     top: 0;
@@ -128,7 +147,7 @@
   &__title {
     font-size: 60px;
     font-weight: 700;
-    color: $color-white;
+    color: #f4f6f8; // текст лежит на фото, светлый в обеих темах
     margin-bottom: $spacing-lg;
     line-height: 1.1;
     animation: fade-in-up 1s ease-out;
@@ -148,7 +167,7 @@
   &__description {
     font-size: 28px;
     font-weight: 500;
-    color: $color-white;
+    color: #f4f6f8; // текст лежит на фото, светлый в обеих темах
     margin-bottom: $spacing-xl * 2;
     line-height: 1.4;
     max-width: 636px;
@@ -192,12 +211,13 @@
   &__button {
     width: 250px;
     height: 80px;
-    background: $color-black;
+    // Бейджи сторов: белая штатная графика требует тёмной подложки в обеих темах.
+    background: var(--sg-ink);
     border-radius: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    outline: 1px solid #4d4d4d;
+    outline: 1px solid color-mix(in srgb, var(--ha-orange) 45%, transparent);
     outline-offset: -1px;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -225,15 +245,15 @@
       height: 100%;
       background: linear-gradient(90deg,
           transparent,
-          rgba(255, 255, 255, 0.1),
+          color-mix(in srgb, var(--ha-orange) 22%, transparent),
           transparent);
       transition: left 0.5s ease;
     }
 
     &:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
-      outline-color: $color-white;
+      box-shadow: var(--shadow-card);
+      outline-color: var(--ha-orange);
 
       &::before {
         left: 100%;
@@ -244,22 +264,19 @@
       transform: translateY(-2px);
     }
 
+    &:focus-visible {
+      outline: 2px solid var(--ha-blue-bright);
+      outline-offset: 2px;
+    }
+
     &--google {
       animation: bounce-in 0.8s ease-out 0.6s;
       animation-fill-mode: both;
-
-      &:hover {
-        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-      }
     }
 
     &--apple {
       animation: bounce-in 0.8s ease-out 0.8s;
       animation-fill-mode: both;
-
-      &:hover {
-        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-      }
     }
   }
 

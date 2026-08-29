@@ -3,9 +3,12 @@
 @import '../../assets/styles/animations';
 
 .footer {
-  background-color: $color-black;
+  // Студийная плашка: near-black StranGen в обеих темах.
+  background-color: var(--sg-ink);
   padding: $spacing-xl * 2 $spacing-xl;
-  color: $color-white;
+  border-top: 1px solid var(--sg-red);
+  // Светлый ink-литерал: плашка тёмная в обеих темах, var(--ink) здесь инвертировался бы.
+  color: #f4f6f8;
 
   &__content {
     max-width: 1200px;
@@ -46,7 +49,13 @@
 
       &:hover {
         transform: translateY(-4px);
+        background: color-mix(in srgb, var(--sg-red) 22%, transparent);
         animation: pulse 0.5s ease;
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--ha-blue-bright);
+        outline-offset: 2px;
       }
 
       img {
@@ -98,12 +107,12 @@
   &__button {
     width: 200px;
     height: 60px;
-    background: $color-black;
+    background: var(--sg-ink);
     border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    outline: 1px solid #4d4d4d;
+    outline: 1px solid color-mix(in srgb, var(--ha-orange) 45%, transparent);
     outline-offset: -1px;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -125,20 +134,25 @@
       height: 100%;
       background: linear-gradient(90deg,
           transparent,
-          rgba(255, 255, 255, 0.1),
+          color-mix(in srgb, var(--ha-orange) 22%, transparent),
           transparent);
       transition: left 0.5s ease;
     }
 
     &:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
-      outline-color: $color-white;
+      box-shadow: var(--shadow-card);
+      outline-color: var(--ha-orange);
     }
 
     &:active {
       transform: translateY(-2px);
       animation: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ha-blue-bright);
+      outline-offset: 2px;
     }
   }
 

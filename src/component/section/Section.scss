@@ -26,6 +26,25 @@
     align-items: center;
   }
 
+  // Затемняющая вуаль поверх фотофона: текст в этой секции светлый в обеих темах.
+  // Градиент плотнее слева — там лежит текстовый блок.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg,
+        color-mix(in srgb, var(--sg-ink) 82%, transparent) 0%,
+        color-mix(in srgb, var(--sg-ink) 52%, transparent) 55%,
+        color-mix(in srgb, var(--sg-ink) 18%, transparent) 100%);
+
+    // На узких экранах блоки складываются в колонку — вуаль равномерная.
+    @include mobile {
+      background: color-mix(in srgb, var(--sg-ink) 66%, transparent);
+    }
+  }
+
   &__content {
     position: relative;
     z-index: 1;
@@ -91,7 +110,13 @@
 
       &:hover {
         transform: translateY(-4px);
+        background: color-mix(in srgb, var(--ha-blue-bright) 22%, transparent);
         animation: pulse 0.5s ease;
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--ha-blue-bright);
+        outline-offset: 2px;
       }
 
       img {
@@ -179,7 +204,7 @@
   &__title {
     font-size: 60px;
     font-weight: 700;
-    color: $color-white;
+    color: #f4f6f8; // текст лежит на фото, светлый в обеих темах
     margin-bottom: $spacing-lg;
     line-height: 1.1;
     animation: fade-in-up 1s ease-out;
@@ -199,7 +224,7 @@
   &__description {
     font-size: 28px;
     font-weight: 500;
-    color: $color-white;
+    color: #f4f6f8; // текст лежит на фото, светлый в обеих темах
     margin-bottom: $spacing-xl * 2;
     line-height: 1.4;
     max-width: 636px;
