@@ -97,8 +97,8 @@ const Header = () => {
           <li><a href={`#${SECTIONS.HOME}`} onClick={(e) => handleNavClick(e, SECTIONS.HOME)}>{t('home')}</a></li>
           <li><a href={`#${SECTIONS.STUDIO}`} onClick={(e) => handleNavClick(e, SECTIONS.STUDIO)}>{t('studio')}</a></li>
           <li><a href={`#${SECTIONS.GALLERY}`} onClick={(e) => handleNavClick(e, SECTIONS.GALLERY)}>{t('gallery')}</a></li>
-          <li><a href={`#${SECTIONS.SOCIALS}`} onClick={(e) => handleNavClick(e, SECTIONS.SOCIALS)}>{t('socials')}</a></li>
           <li><a href={`#${SECTIONS.TRAILER}`} onClick={(e) => handleNavClick(e, SECTIONS.TRAILER)}>{t('trailer')}</a></li>
+          <li><a href={`#${SECTIONS.SOCIALS}`} onClick={(e) => handleNavClick(e, SECTIONS.SOCIALS)}>{t('socials')}</a></li>
         </nav>
 
         <div className="header__buttons">
