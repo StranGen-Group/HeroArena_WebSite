@@ -68,7 +68,7 @@ const VideoContent = () => {
                   type="button"
                   className="video-content__frame video-content__poster"
                   onClick={() => handlePlay(index)}
-                  aria-label={`Play ${video.title}`}
+                  aria-label={`${t('playVideo')} ${video.title}`}
                 >
                   <img
                     src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}

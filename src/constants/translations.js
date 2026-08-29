@@ -61,6 +61,7 @@ export const TRANSLATIONS = {
         videoSectionTitle: 'Watch It in Action',
         videoTitle1: 'Game Pitch for President Tech Award',
         videoTitle2: 'Official Game Trailer',
+        playVideo: 'Play',
     },
 
     RU: {
@@ -122,6 +123,7 @@ export const TRANSLATIONS = {
         videoSectionTitle: 'Смотри в деле',
         videoTitle1: 'Презентация игры для President Tech Award',
         videoTitle2: 'Официальный трейлер игры',
+        playVideo: 'Смотреть',
     },
 
     UZ: {
@@ -184,6 +186,7 @@ export const TRANSLATIONS = {
         videoSectionTitle: 'Harakatda tomosha qiling',
         videoTitle1: 'President Tech Award uchun o‘yin taqdimoti',
         videoTitle2: 'Rasmiy o‘yin treyleri',
+        playVideo: "Ko'rish",
     },
 };
 
