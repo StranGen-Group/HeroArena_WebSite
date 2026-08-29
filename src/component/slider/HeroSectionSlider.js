@@ -60,8 +60,12 @@ const HeroSectionSlider = () => {
                                 >
                                     <div className="slider__slide-image-container">
                                         <img
-                                            src={slide.img}
-                                            alt="Game screenshot"
+                                            src={slide.src}
+                                            srcSet={slide.srcSet}
+                                            sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                                            width={slide.width}
+                                            height={slide.height}
+                                            alt="Hero Arena gameplay screenshot"
                                             className="slider__slide-image"
                                             loading="lazy"
                                         />
@@ -115,9 +119,14 @@ const HeroSectionSlider = () => {
                                 <SwiperSlide key={slide.id}>
                                     <div className="slider-modal__slide">
                                         <img
-                                            src={slide.img}
-                                            alt="Game screenshot"
+                                            src={slide.src}
+                                            srcSet={slide.srcSet}
+                                            sizes="100vw"
+                                            width={slide.width}
+                                            height={slide.height}
+                                            alt="Hero Arena gameplay screenshot"
                                             className="slider-modal__image"
+                                            loading="eager"
                                         />
                                     </div>
                                 </SwiperSlide>

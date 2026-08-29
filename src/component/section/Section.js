@@ -1,6 +1,6 @@
 import React from 'react';
 import './Section.scss';
-import heroImage from '../../assets/image/phone/iPhone1.png';
+import heroImage from '../../assets/image/phone/iPhone1.webp';
 import { useLanguage } from '../../context/LanguageContext';
 import useInView from '../../hooks/useInView';
 import { ANIMATION_CONFIG, ANIMATION_CLASSES } from '../../constants/animation';
@@ -71,6 +71,8 @@ const Section = () => {
             src={heroImage}
             alt="Game Screenshot"
             className="section__image"
+            width={929}
+            height={580}
           />
         </div>
       </div>

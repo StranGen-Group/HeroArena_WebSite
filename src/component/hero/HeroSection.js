@@ -1,6 +1,6 @@
 import React from 'react';
 import './HeroSection.scss';
-import heroImage from '../../assets/image/phone/iPhoneBg.png';
+import heroImage from '../../assets/image/phone/iPhoneBg.webp';
 import googlePlayIcon from '../../assets/image/icons/google-play.svg';
 import appStoreIcon from '../../assets/image/icons/app-store.svg';
 import { useLanguage } from '../../context/LanguageContext';
@@ -26,10 +26,12 @@ const HeroSection = () => {
           ref={imageRef}
           className={`hero__image-wrapper ${imageInView ? `${ANIMATION_CLASSES.FADE_IN_LEFT} ${ANIMATION_CLASSES.ANIMATED}` : ANIMATION_CLASSES.HIDDEN}`}
         >
-          <img 
-            src={heroImage} 
-            alt="Game Screenshot" 
+          <img
+            src={heroImage}
+            alt="Game Screenshot"
             className="hero__image"
+            width={929}
+            height={580}
           />
         </div>
 

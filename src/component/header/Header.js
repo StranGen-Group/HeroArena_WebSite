@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Header.scss';
-import LogoGame from '../../assets/image/logo/gameLogo.png';
+import LogoGame from '../../assets/image/logo/gameLogo.webp';
 import { useLanguage } from '../../context/LanguageContext';
 import { LANGUAGES } from '../../constants/translations';
 import { SECTIONS } from '../../constants/links';
@@ -70,10 +70,12 @@ const Header = () => {
     <header className="header">
       <div className="header__content">
         <div className="header__logo">
-          <img 
-            src={LogoGame} 
+          <img
+            src={LogoGame}
             alt="Game Logo"
             className="header__logo-image"
+            width={320}
+            height={195}
           />
         </div>
         
