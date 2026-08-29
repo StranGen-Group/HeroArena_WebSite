@@ -191,12 +191,12 @@
         left: 0;
         width: 0;
         height: 2px;
-        background: var(--sg-red);
+        background: var(--ha-blue);
         transition: width 0.3s ease;
       }
 
       &:hover {
-        color: var(--sg-red);
+        color: var(--ha-blue);
 
         &::after {
           width: 100%;
@@ -237,8 +237,8 @@
       min-width: 60px;
 
       &:hover {
-        color: var(--sg-red);
-        border-color: var(--sg-red);
+        color: var(--ha-blue);
+        border-color: var(--ha-blue);
         transform: translateY(-2px);
       }
     }
@@ -272,8 +272,8 @@
 
         &:hover,
         &.active {
-          background: color-mix(in srgb, var(--sg-red) 12%, transparent);
-          color: var(--sg-red);
+          background: color-mix(in srgb, var(--ha-blue) 12%, transparent);
+          color: var(--ha-blue);
         }
 
         &:hover {

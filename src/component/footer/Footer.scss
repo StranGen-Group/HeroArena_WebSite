@@ -6,7 +6,7 @@
   // Студийная плашка: near-black StranGen в обеих темах.
   background-color: var(--sg-ink);
   padding: $spacing-xl * 2 $spacing-xl;
-  border-top: 1px solid var(--sg-red);
+  border-top: 1px solid var(--ha-blue-bright);
   // Светлый ink-литерал: плашка тёмная в обеих темах, var(--ink) здесь инвертировался бы.
   color: #f4f6f8;
 
@@ -53,7 +53,7 @@
       &:hover {
         transition-duration: var(--duration-quick);
         transform: translateY(-3px);
-        background: color-mix(in srgb, var(--sg-red) 22%, transparent);
+        background: color-mix(in srgb, var(--ha-blue-bright) 22%, transparent);
       }
 
       &:focus-visible {
