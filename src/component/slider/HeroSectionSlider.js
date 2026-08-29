@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import './HeroSectionSlider.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
@@ -14,16 +14,21 @@ const HeroSectionSlider = () => {
     const [sliderRef, sliderInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.HIGH });
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedSlideIndex, setSelectedSlideIndex] = useState(0);
+    const openerRef = useRef(null);
+    const modalRef = useRef(null);
+    const closeButtonRef = useRef(null);
 
-    const handleSlideClick = (index) => {
+    const closeModal = useCallback(() => {
+        setIsModalOpen(false);
+        document.body.style.overflow = ''; // Восстанавливаем прокрутку
+        if (openerRef.current) openerRef.current.focus();
+    }, []);
+
+    const handleSlideClick = (index, event) => {
+        openerRef.current = event.currentTarget;
         setSelectedSlideIndex(index);
         setIsModalOpen(true);
         document.body.style.overflow = 'hidden'; // Блокируем прокрутку фона
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-        document.body.style.overflow = ''; // Восстанавливаем прокрутку
     };
 
     const handleBackdropClick = (e) => {
@@ -31,6 +36,39 @@ const HeroSectionSlider = () => {
             closeModal();
         }
     };
+
+    useEffect(() => {
+        if (!isModalOpen) return undefined;
+
+        if (closeButtonRef.current) closeButtonRef.current.focus();
+
+        const onKeyDown = (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+                return;
+            }
+            if (e.key !== 'Tab' || !modalRef.current) return;
+
+            // keep focus inside the dialog while it is open
+            const focusable = modalRef.current.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            if (focusable.length === 0) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        };
+
+        document.addEventListener('keydown', onKeyDown);
+        return () => document.removeEventListener('keydown', onKeyDown);
+    }, [isModalOpen, closeModal]);
 
     return (
         <section className="slider" id={SECTIONS.GALLERY}>
@@ -56,7 +94,15 @@ const HeroSectionSlider = () => {
                             <SwiperSlide key={slide.id}>
                                 <div
                                     className="slider__slide"
-                                    onClick={() => handleSlideClick(index)}
+                                    role="button"
+                                    tabIndex={0}
+                                    onClick={(event) => handleSlideClick(index, event)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            handleSlideClick(index, e);
+                                        }
+                                    }}
                                 >
                                     <div className="slider__slide-image-container">
                                         <img
@@ -90,8 +136,20 @@ const HeroSectionSlider = () => {
 
             {/* Модальное окно */}
             {isModalOpen && (
-                <div className="slider-modal" onClick={handleBackdropClick}>
-                    <button className="slider-modal__close" onClick={closeModal}>
+                <div
+                    className="slider-modal"
+                    onClick={handleBackdropClick}
+                    ref={modalRef}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Gallery"
+                >
+                    <button
+                        className="slider-modal__close"
+                        onClick={closeModal}
+                        aria-label="Close gallery"
+                        ref={closeButtonRef}
+                    >
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                             <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
