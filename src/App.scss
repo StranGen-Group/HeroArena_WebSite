@@ -12,6 +12,14 @@ html {
   scroll-behavior: smooth;
 }
 
+// Заголовки: Inter Tight 800 с плотным трекингом. Размеры задаются в секциях.
+h1, h2, h3 {
+  font-family: $font-display;
+  font-weight: $heading-weight;
+  letter-spacing: $heading-tracking;
+  line-height: $heading-leading;
+}
+
 body {
   font-family: $font-primary;
   line-height: 1.6;

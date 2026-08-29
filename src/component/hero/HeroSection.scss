@@ -146,10 +146,11 @@
 
   &__title {
     font-size: 60px;
-    font-weight: 700;
+    font-weight: $heading-weight;
+    letter-spacing: $heading-tracking;
     color: #f4f6f8; // текст лежит на фото, светлый в обеих темах
     margin-bottom: $spacing-lg;
-    line-height: 1.1;
+    line-height: $heading-leading;
     animation: fade-in-up 1s ease-out;
 
     @include mobile {

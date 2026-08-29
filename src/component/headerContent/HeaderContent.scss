@@ -63,10 +63,11 @@
   &__title {
     font-size: 80px;
     font-family: $font-display;
-    font-weight: 700;
+    font-weight: $heading-weight;
+    letter-spacing: $heading-tracking;
     color: var(--ink);
     margin-bottom: $spacing-xl;
-    line-height: 1.1;
+    line-height: $heading-leading;
     animation: fade-in-up 1s ease-out;
 
     @include mobile {
@@ -82,7 +83,7 @@
 
   &__description {
     font-size: 24px;
-    font-family: 'Montserrat', $font-primary;
+    font-family: $font-primary;
     font-weight: 400;
     color: var(--ink-muted);
     margin-bottom: $spacing-xl * 2;
@@ -125,7 +126,8 @@
     border-radius: 20px;
     font-size: 20px;
     font-weight: 700;
-    font-family: 'Montserrat', $font-primary;
+    letter-spacing: -0.01em;
+    font-family: $font-primary;
     cursor: pointer;
     position: relative;
     overflow: hidden;

@@ -81,9 +81,10 @@
 }
 
 %title {
-  font-weight: 700;
+  font-weight: $heading-weight;
+  letter-spacing: $heading-tracking;
   margin-bottom: $spacing-lg;
-  line-height: 1.1;
+  line-height: $heading-leading;
 
   @include mobile {
     font-size: 36px !important;
