@@ -6,10 +6,11 @@ const initialTheme = () => {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored === 'light' || stored === 'dark') return stored;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   } catch (e) {
-    // private mode or blocked storage — fall through to the system preference
+    // private mode/blocked storage, or no matchMedia support — fail safe to light
+    return 'light';
   }
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 };
 
 const useTheme = () => {
