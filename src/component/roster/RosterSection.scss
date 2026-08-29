@@ -1,0 +1,172 @@
+@import '../../assets/styles/root';
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/animations';
+
+.roster {
+  position: relative;
+  padding: $spacing-xl * 2 $spacing-xl;
+  background: var(--bg);
+
+  @include mobile {
+    padding: $spacing-xl $spacing-md;
+  }
+
+  @include tablet {
+    padding: $spacing-xl * 1.5 $spacing-lg;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    max-width: 1600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 44px;
+    font-weight: $heading-weight;
+    letter-spacing: $heading-tracking;
+    line-height: $heading-leading;
+    color: var(--ink);
+    margin-bottom: $spacing-sm;
+
+    @include mobile {
+      font-size: 30px;
+    }
+
+    @include tablet {
+      font-size: 38px;
+    }
+  }
+
+  &__status {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    margin-bottom: $spacing-xl * 1.5;
+
+    @include mobile {
+      font-size: 15px;
+      margin-bottom: $spacing-xl;
+    }
+  }
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $spacing-lg;
+  }
+
+  // Each card mirrors the game's own dark roster-slot panel: it stays this
+  // ink tone regardless of the site's light/dark theme, the same way the
+  // hero screen inside the game is always dark on the player's device.
+  &__card {
+    width: 220px;
+    padding: $spacing-lg $spacing-md;
+    border-radius: var(--radius);
+    background: var(--sg-ink);
+    box-shadow: var(--shadow-card);
+
+    @include mobile {
+      width: 100%;
+      max-width: 320px;
+    }
+  }
+
+  &__portrait {
+    position: relative;
+    width: 128px;
+    height: 128px;
+    margin: 0 auto $spacing-md;
+    border-radius: 12px;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--ha-blue) 22%, transparent);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__rank {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    color: #ffd166;
+    font-size: 16px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .6);
+  }
+
+  &__name {
+    font-size: 19px;
+    font-weight: $heading-weight;
+    letter-spacing: $heading-tracking;
+    color: #f4f6f8; // fixed light text on the always-dark card, both themes
+    margin: 0 0 4px;
+  }
+
+  &__role {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--on-blue);
+    background: var(--ha-blue-bright);
+    border-radius: 999px;
+    padding: 3px 10px;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__description {
+    font-size: 14px;
+    line-height: 1.45;
+    color: color-mix(in srgb, #f4f6f8 78%, transparent);
+    margin: 0;
+  }
+
+  // The locked slot reads as "roster still filling up," not a broken card:
+  // one dimmed, greyscale portrait carrying a count instead of a name.
+  &__card--locked {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__portrait--locked {
+    background: color-mix(in srgb, var(--sg-ink) 40%, black);
+
+    img {
+      opacity: .35;
+      filter: grayscale(1);
+    }
+  }
+
+  &__lock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 14px));
+    color: color-mix(in srgb, #f4f6f8 70%, transparent);
+  }
+
+  &__more {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% + 20px));
+    font-size: 20px;
+    font-weight: $heading-weight;
+    color: #f4f6f8;
+  }
+
+  &__locked-label {
+    font-size: 13px;
+    color: color-mix(in srgb, #f4f6f8 65%, transparent);
+    margin: $spacing-md 0 0;
+  }
+}

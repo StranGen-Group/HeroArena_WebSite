@@ -18,6 +18,16 @@ const JOBS = [
   ['phone/iPhone1.png', 'phone', 'iPhone1', [1200], 80],
   ['phone/iPhoneBg.png', 'phone', 'iPhoneBg', [1200], 80],
   ['logo/gameLogo.png', 'logo', 'gameLogo', [320], 80],
+  // Hero roster portraits, hand-sliced from the game's icon atlas. Transparent
+  // PNGs -> WebP keeps the alpha channel, unlike a JPEG fallback would.
+  ['heroes/hero-1.png', 'heroes', 'hero-1', [256], 82],
+  ['heroes/hero-1-locked.png', 'heroes', 'hero-1-locked', [256], 82],
+  ['heroes/hero-2.png', 'heroes', 'hero-2', [256], 82],
+  ['heroes/hero-2-locked.png', 'heroes', 'hero-2-locked', [256], 82],
+  ['heroes/hero-3.png', 'heroes', 'hero-3', [256], 82],
+  ['heroes/hero-3-locked.png', 'heroes', 'hero-3-locked', [256], 82],
+  ['heroes/hero-4.png', 'heroes', 'hero-4', [256], 82],
+  ['heroes/hero-4-locked.png', 'heroes', 'hero-4-locked', [256], 82],
 ];
 
 async function run() {

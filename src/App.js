@@ -7,6 +7,7 @@ import { LanguageProvider } from './context/LanguageContext';
 import Preloader from './component/preloader/Preloader';
 import Header from './component/header/Header';
 import HeroSection from './component/hero/HeroSection';
+import RosterSection from './component/roster/RosterSection';
 import HeaderContent from './component/headerContent/HeaderContent';
 import Section from './component/section/Section';
 import VideoContent from './component/video/VideoContent';
@@ -63,6 +64,7 @@ function App() {
           <div className="app">
             <Header />
             <HeroSection />
+            <RosterSection />
             <HeaderContent />
             <HeroSectionSlider />
             <Section />
