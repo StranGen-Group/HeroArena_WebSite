@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import { LanguageProvider } from './context/LanguageContext';
 
@@ -47,6 +49,8 @@ function App() {
         <Section />
         <VideoContent />
         <Footer />
+        <Analytics />
+        <SpeedInsights />
       </div>
     </LanguageProvider>
   );

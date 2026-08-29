@@ -5,6 +5,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import useInView from '../../hooks/useInView';
 import { VIDEO_LINKS, SECTIONS } from '../../constants/links';
 import { ANIMATION_CONFIG, ANIMATION_CLASSES } from '../../constants/animation';
+import { track } from '../../utils/analytics';
 
 const VideoContent = () => {
   const { t } = useLanguage();
@@ -39,8 +40,11 @@ const VideoContent = () => {
               className={`video-content__item ${video.inView ? `${ANIMATION_CLASSES.FADE_IN_UP} ${ANIMATION_CLASSES.ANIMATED}` : ANIMATION_CLASSES.HIDDEN}`}
               style={{ animationDelay: video.delay }}
             >
-              <div className="video-content__frame">
-                <iframe 
+              <div
+                className="video-content__frame"
+                onClick={() => track('trailer_play', { video: index === 0 ? 'pitch' : 'trailer' })}
+              >
+                <iframe
                   className="video-content__player"
                   src={video.src} 
                   title="YouTube video player" 

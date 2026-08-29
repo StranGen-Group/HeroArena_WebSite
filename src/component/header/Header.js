@@ -5,6 +5,7 @@ import LogoGame from '../../assets/image/logo/gameLogo.webp';
 import { useLanguage } from '../../context/LanguageContext';
 import { LANGUAGES } from '../../constants/translations';
 import { SECTIONS } from '../../constants/links';
+import { track } from '../../utils/analytics';
 
 const Header = () => {
   const [langOpen, setLangOpen] = useState(false);
@@ -35,6 +36,7 @@ const Header = () => {
   };
 
   const selectLang = (selectedLang) => {
+    track('language_switch', { to: selectedLang.toLowerCase() });
     setLanguage(selectedLang);
     setLangOpen(false);
   };

@@ -8,6 +8,7 @@ import useInView from '../../hooks/useInView';
 import { APP_LINKS } from '../../constants/links';
 import { SECTIONS } from '../../constants/links';
 import { ANIMATION_CONFIG, ANIMATION_CLASSES } from '../../constants/animation';
+import { track } from '../../utils/analytics';
 
 const HeroSection = () => {
   const { t } = useLanguage();
@@ -57,11 +58,12 @@ const HeroSection = () => {
             style={{ animationDelay: ANIMATION_CONFIG.DELAY.EXTRA_LONG }}
           >
             <a 
-              href={APP_LINKS.GOOGLE_PLAY} 
-              target="_blank" 
+              href={APP_LINKS.GOOGLE_PLAY}
+              target="_blank"
               rel="noopener noreferrer"
               className="hero__button hero__button--google"
               aria-label="Download on Google Play"
+              onClick={() => track('cta_click', { target: 'google_play' })}
             >
               <div className="hero__button-content">
                 <img 
@@ -73,11 +75,12 @@ const HeroSection = () => {
             </a>
 
             <a 
-              href={APP_LINKS.APP_STORE} 
-              target="_blank" 
+              href={APP_LINKS.APP_STORE}
+              target="_blank"
               rel="noopener noreferrer"
               className="hero__button hero__button--apple"
               aria-label="Download on App Store"
+              onClick={() => track('cta_click', { target: 'app_store' })}
             >
               <div className="hero__button-content">
                 <img 

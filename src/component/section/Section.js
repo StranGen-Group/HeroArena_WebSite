@@ -13,6 +13,7 @@ import Telegram from '../../assets/image/icons/Social Icons-3.svg';
 import X from '../../assets/image/icons/Social Icons-5.svg';
 import Facebook from '../../assets/image/icons/Social Icons-4.svg';
 import { APP_LINKS } from '../../constants/links';
+import { track } from '../../utils/analytics';
 
 const Section = () => {
   const { t } = useLanguage();
@@ -54,6 +55,7 @@ const Section = () => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => track('social_click', { network: link.alt.toLowerCase() })}
               >
                 <img src={link.icon} alt={link.alt} />
               </a>

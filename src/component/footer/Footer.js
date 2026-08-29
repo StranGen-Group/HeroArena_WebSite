@@ -11,6 +11,7 @@ import appStoreIcon from '../../assets/image/icons/app-store.svg';
 import X from '../../assets/image/icons/Social Icons-5.svg';
 import Facebook from '../../assets/image/icons/Social Icons-4.svg';
 import { APP_LINKS } from '../../constants/links';
+import { track } from '../../utils/analytics';
 
 const Footer = () => {
     const socialLinks = [
@@ -32,6 +33,7 @@ const Footer = () => {
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={() => track('social_click', { network: link.alt.toLowerCase() })}
                         >
                             <img src={link.icon} alt={link.alt} />
                         </a>
@@ -45,6 +47,7 @@ const Footer = () => {
                         rel="noopener noreferrer"
                         className="footer__button footer__button--google"
                         aria-label="Download on Google Play"
+                        onClick={() => track('cta_click', { target: 'google_play' })}
                     >
                         <div className="footer__button-content">
                             <img
@@ -61,6 +64,7 @@ const Footer = () => {
                         rel="noopener noreferrer"
                         className="footer__button footer__button--apple"
                         aria-label="Download on App Store"
+                        onClick={() => track('cta_click', { target: 'app_store' })}
                     >
                         <div className="footer__button-content">
                             <img

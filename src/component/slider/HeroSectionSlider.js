@@ -9,6 +9,7 @@ import useInView from '../../hooks/useInView';
 import { SLIDER_SLIDES, SLIDER_CONFIG } from '../../constants/slider';
 import { SECTIONS } from '../../constants/links';
 import { ANIMATION_CONFIG, ANIMATION_CLASSES } from '../../constants/animation';
+import { track } from '../../utils/analytics';
 
 const HeroSectionSlider = () => {
     const [sliderRef, sliderInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.HIGH });
@@ -25,6 +26,7 @@ const HeroSectionSlider = () => {
     }, []);
 
     const handleSlideClick = (index, event) => {
+        track('gallery_open', { index });
         openerRef.current = event.currentTarget;
         setSelectedSlideIndex(index);
         setIsModalOpen(true);
