@@ -28,11 +28,6 @@
       "react-app/jest"
     ]
   },
-  "jest": {
-    "moduleNameMapper": {
-      "^@vercel/analytics$": "<rootDir>/node_modules/@vercel/analytics/dist/index.js"
-    }
-  },
   "browserslist": {
     "production": [
       ">0.2%",
