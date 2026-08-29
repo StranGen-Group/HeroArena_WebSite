@@ -8,6 +8,7 @@ import hero4Locked from '../../assets/image/heroes/hero-2-locked.webp';
 import { useLanguage } from '../../context/LanguageContext';
 import useInView from '../../hooks/useInView';
 import { ANIMATION_CONFIG, ANIMATION_CLASSES } from '../../constants/animation';
+import { SECTIONS } from '../../constants/links';
 
 // Card order follows the brief's table, not the source atlas's numbering —
 // hero-3.png is Swordsman, hero-4.png is Archer, and so on.
@@ -23,7 +24,7 @@ const RosterSection = () => {
   const [rowRef, rowInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.MEDIUM });
 
   return (
-    <section className="roster">
+    <section className="roster" id={SECTIONS.ROSTER}>
       <div className="roster__content">
         <span className="roster__eyebrow" aria-hidden="true">{t('waveRoster')}</span>
         <h2 className="roster__title">{t('rosterTitle')}</h2>
