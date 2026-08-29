@@ -17,6 +17,9 @@
   &__content {
     text-align: center;
     display: flex;
+    // Колонка, чтобы спиннер встал под логотипом, а не сбоку от него.
+    flex-direction: column;
+    gap: $spacing-lg;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -35,6 +38,20 @@
     height: auto;
 
     animation: fade-in-up 2s ease-out forwards;
+  }
+
+  // Разметка спиннера существует в Preloader.js, но правил у неё никогда не было.
+  &__spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--line);
+    border-top-color: var(--sg-red);
+    border-radius: 50%;
+    animation: rotate-360 0.9s linear infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
   }
 
 }
