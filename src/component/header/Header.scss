@@ -2,9 +2,10 @@
 @import '../../assets/styles/mixins';
 
 .header {
-  background: var(--bg);
+  background: var(--bg-elevated);
   padding: $spacing-md $spacing-xl;
   border-bottom: 1px solid var(--line);
+  box-shadow: 0 4px 16px -8px color-mix(in srgb, var(--ink) 12%, transparent);
   position: sticky;
   top: 0;
   z-index: 100;
