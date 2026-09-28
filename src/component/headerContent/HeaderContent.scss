@@ -4,210 +4,49 @@
 
 .about {
   position: relative;
-  min-height: 688px;
   background: var(--bg);
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: $spacing-xl * 2.6 $spacing-xl;
-
-  @include mobile {
-    min-height: auto;
-    padding: $spacing-xl * 2 $spacing-md;
-  }
-
-  @include tablet {
-    padding: $spacing-xl * 3 $spacing-lg;
-  }
+  padding: calc(var(--section-pad) * .5) clamp(16px, 4vw, 48px) var(--section-pad);
 
   &__content {
-    position: relative;
-    z-index: 1;
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: $spacing-xl * 4;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(32px, 6vw, 96px);
     align-items: center;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
-    width: 100%;
 
     @include mobile {
-      grid-template-columns: 1fr;
-      gap: $spacing-xl * 2;
-    }
-
-    @include tablet {
-      grid-template-columns: 1fr;
-      gap: $spacing-xl * 2;
+      grid-template-columns: minmax(0, 1fr);
       text-align: center;
     }
   }
 
   &__text-content {
-    animation: fade-in-left var(--duration-very-slow) var(--ease-reveal);
-    animation-delay: 70ms;
-    animation-fill-mode: both;
+    animation: fade-in-left var(--duration-very-slow) var(--ease-reveal) 70ms both;
 
     @include mobile {
-      order: 1;
-      text-align: center;
-    }
-
-    @include tablet {
-      order: 1;
-      text-align: center;
+      order: 2;
     }
   }
 
   &__title {
-    font-size: 80px;
-    font-family: $font-display;
-    font-weight: $heading-weight;
-    letter-spacing: $heading-tracking;
+    font-size: clamp(36px, 5vw, 64px);
     color: var(--ink);
-    margin-bottom: $spacing-xl;
-    line-height: $heading-leading;
-    animation: fade-in-up var(--duration-very-slow) var(--ease-reveal);
-
-    @include mobile {
-      font-size: 36px;
-      margin-bottom: $spacing-md;
-    }
-
-    @include tablet {
-      font-size: 56px;
-      margin-bottom: $spacing-lg;
-    }
+    margin-bottom: $spacing-lg;
+    text-wrap: balance;
   }
 
   &__description {
-    font-size: 24px;
-    font-family: $font-primary;
-    font-weight: 400;
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.65;
     color: var(--ink-muted);
-    margin-bottom: $spacing-xl * 2;
-    line-height: 1.5;
-    max-width: 796px;
-    animation: fade-in-up var(--duration-very-slow) var(--ease-reveal) 70ms;
-    animation-fill-mode: both;
+    max-width: 34rem;
+    text-wrap: pretty;
 
     @include mobile {
-      font-size: 16px;
-      margin-bottom: $spacing-xl;
+      margin-inline: auto;
     }
-
-    @include tablet {
-      font-size: 20px;
-      max-width: 100%;
-    }
-  }
-
-  &__buttons {
-    display: flex;
-    gap: $spacing-lg;
-    animation: fade-in-up var(--duration-very-slow) var(--ease-reveal) 140ms;
-    animation-fill-mode: both;
-
-    @include mobile {
-      flex-direction: column;
-      gap: $spacing-md;
-    }
-
-    @include tablet {
-      justify-content: center;
-    }
-  }
-
-  &__button {
-    width: 240px;
-    height: 90px;
-    border: none;
-    border-radius: 20px;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    font-family: $font-primary;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition:
-      transform var(--duration-fast) var(--ease-smooth-out),
-      background-color var(--duration-fast) var(--ease-smooth-out),
-      border-color var(--duration-fast) var(--ease-smooth-out);
-
-    @include mobile {
-      width: 100%;
-      max-width: 340px;
-      height: 80px;
-      font-size: 18px;
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg,
-          transparent,
-          color-mix(in srgb, var(--on-blue) 30%, transparent),
-          transparent);
-      transition: left 0.6s ease;
-    }
-
-    &:hover::before {
-      left: 100%;
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--ha-blue);
-      outline-offset: 2px;
-    }
-
-    &--primary {
-      background: var(--ha-blue);
-      color: var(--on-blue);
-      box-shadow: var(--shadow-card);
-      animation: bounce-in var(--duration-slow) var(--ease-smooth-out) 210ms;
-      animation-fill-mode: both;
-
-      &:hover {
-        transition-duration: var(--duration-quick);
-        background: var(--ha-blue-hover);
-        transform: translateY(-3px);
-      }
-
-      &:active {
-        transform: translateY(-1px);
-      }
-    }
-
-    &--secondary {
-      background: var(--bg-elevated);
-      color: var(--ink);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-card);
-      animation: bounce-in var(--duration-slow) var(--ease-smooth-out) 280ms;
-      animation-fill-mode: both;
-
-      &:hover {
-        transition-duration: var(--duration-quick);
-        border-color: var(--ha-blue);
-        color: var(--ha-blue);
-        transform: translateY(-3px);
-      }
-
-      &:active {
-        transform: translateY(-1px);
-      }
-    }
-  }
-
-  &__button-text {
-    position: relative;
-    z-index: 1;
   }
 
   &__image-wrapper {
@@ -220,25 +59,26 @@
     animation-fill-mode: both;
 
 
-    // Свет за магом, а не цветной диск: у пятна нет края, оно растворяется.
-    // Нижний слой нейтральный (--bg-elevated — в тёмной теме это глубокий
-    // сине-чёрный), верхний добавляет холодный блик.
+    // A real disc behind the mage (it anchors the figure, so it doesn't float
+    // in empty space), lit from the top-left with a soft rim.
     &::before {
       content: '';
       position: absolute;
-      width: 124%;
-      height: 0;
-      padding-bottom: 124%;
+      width: min(100%, 480px);
+      aspect-ratio: 1;
+      top: 50%;
+      left: 50%;
+      translate: -50% -46%;
+      border-radius: 50%;
       z-index: 0;
       background:
-        radial-gradient(circle at 50% 42%,
-            color-mix(in srgb, var(--ha-blue-bright) 20%, transparent) 0%,
-            color-mix(in srgb, var(--ha-blue-bright) 7%, transparent) 36%,
-            transparent 64%),
-        radial-gradient(circle at 50% 46%,
-            var(--bg-elevated) 0%,
-            color-mix(in srgb, var(--bg-elevated) 55%, transparent) 50%,
-            transparent 72%);
+        radial-gradient(circle at 35% 30%,
+            color-mix(in srgb, var(--ha-blue-bright) 30%, var(--bg-elevated)) 0%,
+            color-mix(in srgb, var(--ha-blue-bright) 12%, var(--bg-elevated)) 55%,
+            color-mix(in srgb, var(--ha-blue) 18%, var(--bg)) 100%);
+      box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--ha-blue-bright) 22%, transparent),
+        0 40px 80px -40px color-mix(in srgb, var(--ha-blue) 55%, transparent);
     }
   }
 
@@ -246,8 +86,9 @@
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 436px;
+    max-width: 380px;
     height: auto;
+    filter: drop-shadow(0 24px 30px rgba(14, 30, 52, .28));
     transition: transform var(--duration-slow) var(--ease-smooth-out);
 
     &:hover {
@@ -256,13 +97,7 @@
     }
 
     @include mobile {
-      max-width: 60%;
-      margin-left: 0;
-    }
-
-    @include tablet {
-      max-width: 50%;
-      margin-left: 0;
+      max-width: 62%;
     }
   }
 }

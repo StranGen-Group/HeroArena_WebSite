@@ -2,103 +2,60 @@
 @import '../../assets/styles/mixins';
 
 .video-content {
-  padding: 100px 20px;
   position: relative;
-  overflow: hidden;
-
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23000000" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-    opacity: 0.3;
-    pointer-events: none;
-  }
+  padding: calc(var(--section-pad) * .4) clamp(16px, 3vw, 32px) var(--section-pad);
 
   &__container {
-    max-width: 1600px;
+    max-width: 1280px;
     margin: 0 auto;
-    position: relative;
-    z-index: 2;
-  }
-
-
-  // HUD-style readout, echoing the game's own "Wave: 1" label. Decorative —
-  // aria-hidden in the markup so it never gets read as part of the heading.
-  &__eyebrow {
-    display: block;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--ha-blue);
-    text-align: center;
-    margin-bottom: $spacing-sm;
   }
 
   &__title {
-    font-size: 44px;
-    font-weight: $heading-weight;
-    letter-spacing: $heading-tracking;
-    line-height: $heading-leading;
+    font-size: clamp(30px, 3.4vw, 44px);
     color: var(--ink);
     text-align: center;
-    margin: 0 0 50px;
+    margin: 0 0 clamp(32px, 4vw, 56px);
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
-    gap: 40px;
-    margin-bottom: 60px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+    gap: clamp(24px, 3vw, 40px);
   }
 
+  // No card chrome around the video: the poster is the object, the title is its label.
   &__item {
-    border-radius: 22px;
-    padding: 20px;
-    background: var(--bg-elevated);
-    box-shadow:
-      var(--shadow-card),
-      0 0 0 1px var(--line);
-    transition:
-      transform var(--duration-fast) var(--ease-smooth-out),
-      box-shadow var(--duration-fast) var(--ease-smooth-out),
-      background-color var(--duration-fast) var(--ease-in-out);
     position: relative;
-    overflow: hidden;
-
-    &:hover {
-      transition-duration: var(--duration-quick);
-      transform: translateY(-4px);
-      box-shadow:
-        var(--shadow-card),
-        0 0 0 2px color-mix(in srgb, var(--ha-blue) 60%, transparent);
-    }
   }
-
 
   &__frame {
     position: relative;
     display: block;
     width: 100%;
-    height: 460px;
+    aspect-ratio: 16 / 9;
     padding: 0;
     border: none;
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
+    background: var(--stage);
+    box-shadow: var(--shadow-card), 0 0 0 1px var(--line);
   }
 
   &__poster {
-    background: none;
     cursor: pointer;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, .35));
+      transition: opacity var(--duration-fast) var(--ease-smooth-out);
+      pointer-events: none;
+    }
 
     &:focus-visible {
       outline: 2px solid var(--ha-blue);
-      outline-offset: 2px;
+      outline-offset: 3px;
     }
   }
 
@@ -107,21 +64,27 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform var(--duration-slow) var(--ease-smooth-out);
+  }
+
+  &__poster:hover &__poster-image {
+    transform: scale(1.03);
   }
 
   &__play-icon {
     position: absolute;
     top: 50%;
     left: 50%;
+    z-index: 1;
     transform: translate(-50%, -50%);
-    filter: drop-shadow(0 2px 10px color-mix(in srgb, black 45%, transparent));
+    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, .45));
     transition: transform var(--duration-fast) var(--ease-smooth-out);
     pointer-events: none;
   }
 
   &__poster:hover &__play-icon,
   &__poster:focus-visible &__play-icon {
-    transform: translate(-50%, -50%) scale(1.08);
+    transform: translate(-50%, -50%) scale(1.1);
   }
 
   &__player {
@@ -132,85 +95,53 @@
   }
 
   &__info {
-    padding: 15px 0 0 0;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
+    gap: $spacing-md;
+    padding: $spacing-md 4px 0;
+
+    @include mobile {
+      flex-direction: column;
+      gap: 6px;
+    }
   }
 
   &__video-title {
-    font-size: 1.5rem;
-    font-family: $font-display;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-size: clamp(17px, 1.5vw, 20px);
     color: var(--ink);
-
+    text-wrap: balance;
   }
 
-  &__info a {
+  &__watch {
+    flex-shrink: 0;
     display: inline-flex;
-    border-radius: 8px;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-smooth-out);
+
+    &:hover {
+      color: var(--ha-blue);
+    }
 
     &:focus-visible {
       outline: 2px solid var(--ha-blue);
-      outline-offset: 2px;
+      outline-offset: 3px;
+      border-radius: 4px;
     }
   }
 
   &__youtube-icon {
-    width: 80%;
-    justify-content: center;
-    align-items: center;
+    width: 20px;
+    height: 20px;
 
     // Иконка залита чёрным, на тёмной теме её не видно.
     [data-theme="dark"] & {
       filter: invert(1);
-    }
-  }
-
-
-  // Адаптивность
-  @media (max-width: 768px) {
-    padding: 40px 15px;
-
-    &__title {
-      font-size: 2.5rem;
-    }
-
-    &__grid {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-
-    &__frame {
-      height: 250px;
-    }
-
-    &__ornament {
-      width: 60px;
-
-      &--left::before,
-      &--right::before {
-        display: none;
-      }
-    }
-  }
-
-  @media (max-width: 480px) {
-    &__title {
-      font-size: 2rem;
-    }
-
-    &__grid {
-      grid-template-columns: 1fr;
-    }
-
-    &__frame {
-      height: 200px;
-    }
-
-    &__video-title {
-      font-size: 1.5rem;
     }
   }
 }

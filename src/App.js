@@ -62,13 +62,16 @@ function App() {
       ) : (
         <LanguageProvider>
           <div className="app">
+            <a className="skip-link" href="#main-content">Skip to content</a>
             <Header />
-            <HeroSection />
-            <RosterSection />
-            <HeaderContent />
-            <HeroSectionSlider />
-            <VideoContent />
-            <Section />
+            <main id="main-content" tabIndex="-1">
+              <HeroSection />
+              <RosterSection />
+              <HeroSectionSlider />
+              <VideoContent />
+              <HeaderContent />
+              <Section />
+            </main>
             <Footer />
           </div>
         </LanguageProvider>
@@ -77,4 +80,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;

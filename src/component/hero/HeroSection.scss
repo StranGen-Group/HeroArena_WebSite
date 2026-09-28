@@ -4,63 +4,49 @@
 
 .hero {
   position: relative;
-  min-height: 960px;
-  // Фоновая картинка живёт на .hero__background (отдельный слой, ниже вуали),
-  // чтобы её можно было медленно скейлить/сдвигать transform'ом, не трогая
-  // расположение текста и не вызывая reflow. Тут — только цвет-заглушка на
-  // время загрузки, тон в тон с тёмным краем вуали.
-  background: var(--sg-ink);
+  // Fills the first screen on laptops, but never balloons on tall monitors.
+  min-height: min(calc(100dvh - 76px), 880px);
+  display: grid;
+  place-items: center;
+  padding: clamp(48px, 7vw, 96px) clamp(16px, 4vw, 48px) clamp(88px, 10vw, 136px);
+  // Фоновая картинка живёт на .hero__background (отдельный слой, ниже вуали).
+  // Тут — только цвет-заглушка на время загрузки, тон в тон с вуалью.
+  background: var(--stage);
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  padding: $spacing-xl * 2 $spacing-xl;
+  isolation: isolate;
 
-  // 📱 Мобильная версия
-  @include mobile {
-    min-height: auto;
-    padding: $spacing-xl $spacing-md;
-    flex-direction: column;
-  }
-
-  // 📟 Планшеты
-  @include tablet {
-    min-height: 500px;
-    padding: $spacing-xl * 1.5 $spacing-lg;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-
-  // Подложка под текстовой колонкой, а не вуаль на всю секцию.
-  // Плотная там, где лежит текст, и полностью прозрачная к середине —
-  // арт слева остаётся в своих настоящих цветах.
-  // --veil-hold: докуда держится плотность (от края с текстом),
-  // --veil-end:  где подложка уходит в ноль.
-  --veil-hold: 50%;
-  --veil-end: 68%;
-
+  // Подложка под текстовой колонкой: плотная у правого края, где текст,
+  // и прозрачная к середине — арт слева остаётся в своих цветах.
   &::before {
     content: '';
     position: absolute;
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    // 270deg — линия градиента смотрит влево, т.е. 0% у правого края,
-    // где стоит текстовый блок героя.
     background: linear-gradient(270deg,
-        color-mix(in srgb, var(--sg-ink) 76%, transparent) 0%,
-        color-mix(in srgb, var(--sg-ink) 70%, transparent) var(--veil-hold),
-        color-mix(in srgb, var(--sg-ink) 24%, transparent) calc(var(--veil-end) - 8%),
-        transparent var(--veil-end));
+        color-mix(in srgb, var(--stage) 84%, transparent) 0%,
+        color-mix(in srgb, var(--stage) 70%, transparent) 42%,
+        color-mix(in srgb, var(--stage) 18%, transparent) 64%,
+        transparent 78%);
 
-    // На узких экранах блоки складываются в колонку: текст сверху, арт снизу.
-    // Градиент разворачивается по вертикали и заметно легче прежнего.
     @include mobile {
       background: linear-gradient(180deg,
-          color-mix(in srgb, var(--sg-ink) 72%, transparent) 0%,
-          color-mix(in srgb, var(--sg-ink) 56%, transparent) 45%,
-          color-mix(in srgb, var(--sg-ink) 30%, transparent) 100%);
+          color-mix(in srgb, var(--stage) 80%, transparent) 0%,
+          color-mix(in srgb, var(--stage) 55%, transparent) 55%,
+          color-mix(in srgb, var(--stage) 30%, transparent) 100%);
     }
+  }
+
+  // The art melts into the roster below instead of stopping at a hard edge:
+  // hero and roster read as one continuous "game" block.
+  &::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 220px;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent, var(--stage));
   }
 
   &__background {
@@ -86,52 +72,33 @@
     position: relative;
     z-index: 2;
     display: grid;
-    grid-template-columns: 0.2fr 1fr;
-    gap: 0;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: clamp(24px, 4vw, 64px);
     align-items: center;
-    margin: 0 auto;
     width: 100%;
-    max-width: 1600px;
-
+    max-width: 1280px;
 
     @include mobile {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: $spacing-xl;
       text-align: center;
-    }
-
-    // 📟 Планшеты
-    @include tablet {
-      grid-template-columns: 1fr 1fr;
-      gap: $spacing-lg;
-      text-align: left;
-      align-items: center;
-      max-width: 100%;
     }
   }
 
   &__image-wrapper {
-    right: 250px;
     position: relative;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    // A slight bleed past the column toward the page edge, not the old
+    // right:250px hack that pushed half the phone off-screen.
+    margin-left: clamp(-96px, -5vw, 0px);
+    // The render itself is cropped mid-phone on the left. Fade that cut edge
+    // into the art so it never shows as a hard line, whatever the width.
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 16%);
 
     @include mobile {
       order: 2;
-      right: 16px;
-      max-width: 100%;
-      justify-content: center;
-    }
-
-    // 📟 Планшеты — изображение прижато к правому краю
-    @include tablet {
-      order: 1;
-      right: 30px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      margin-right: -20px; // Прижимаем к краю
+      margin: 0 auto;
+      max-width: 520px;
     }
   }
 
@@ -176,10 +143,11 @@
   }
 
   &__image {
-    width: 1044px;
+    display: block;
+    width: 100%;
     height: auto;
-    // Едва заметный дрейф вверх-вниз, чтобы мокап читался живым, а не застывшим.
-    // 7s и лёгкий отрицательный delay — специально не в фазе с hero-bg-drift (48s).
+    filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .45));
+    // Едва заметный дрейф вверх-вниз: 7s и отрицательный delay — не в фазе с фоном.
     animation: hero-phone-float 7s var(--ease-in-out) infinite;
     animation-delay: -2.3s;
     will-change: transform;
@@ -187,299 +155,141 @@
     @media (prefers-reduced-motion: reduce) {
       animation: none;
     }
-
-    @include mobile {
-      max-width: 100%;
-    }
-
-    // 📟 Планшеты — изображение прижато к правому краю
-    @include tablet {
-      width: auto;
-      max-width: 500px;
-      height: auto;
-      margin-right: 0;
-    }
   }
 
   &__text-content {
-    animation: fade-in-right var(--duration-very-slow) var(--ease-reveal);
-    animation-delay: 70ms;
-    animation-fill-mode: both;
+    animation: fade-in-right var(--duration-very-slow) var(--ease-reveal) 70ms both;
 
     @include mobile {
       order: 1;
-      text-align: center;
-    }
-
-    // 📟 Планшеты
-    @include tablet {
-      order: 1;
-      text-align: left;
-      padding-right: $spacing-md;
     }
   }
 
-  // HUD-style readout, echoing the game's own "Wave: 1" label. Decorative —
-  // aria-hidden in the markup so it never gets read as part of the heading.
   &__eyebrow {
-    display: block;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin: 0 0 $spacing-md;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .02em;
     color: var(--ha-blue-bright);
-    margin-bottom: $spacing-sm;
+
+    // small tower-shield pip instead of an all-caps label
+    &::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      background: currentColor;
+      rotate: 45deg;
+      box-shadow: 0 0 12px currentColor;
+    }
   }
 
   &__title {
-    font-size: 60px;
-    font-weight: $heading-weight;
-    letter-spacing: $heading-tracking;
-    color: #f4f6f8; // текст лежит на фото, светлый в обеих темах
+    font-size: clamp(44px, 6vw, 84px);
+    color: var(--stage-ink);
     margin-bottom: $spacing-lg;
-    line-height: $heading-leading;
-    animation: fade-in-up var(--duration-very-slow) var(--ease-reveal);
-
-    @include mobile {
-      font-size: 36px;
-      margin-bottom: $spacing-md;
-    }
-
-    // 📟 Планшеты
-    @include tablet {
-      font-size: 48px;
-      margin-bottom: $spacing-md;
-    }
+    text-wrap: balance;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, .35);
   }
 
   &__description {
-    font-size: 28px;
-    font-weight: 500;
-    color: #f4f6f8; // текст лежит на фото, светлый в обеих темах
-    margin-bottom: $spacing-xl * 2;
-    line-height: 1.4;
-    max-width: 636px;
-    animation: fade-in-up var(--duration-very-slow) var(--ease-reveal) 70ms;
-    animation-fill-mode: both;
+    font-size: clamp(17px, 1.45vw, 20px);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--stage-muted);
+    max-width: 32rem;
+    margin-bottom: clamp(28px, 3vw, 40px);
+    text-wrap: pretty;
 
     @include mobile {
-      font-size: 18px;
-      margin-bottom: $spacing-xl;
-      max-width: 100%;
-    }
-
-    // 📟 Планшеты
-    @include tablet {
-      font-size: 22px;
-      margin-bottom: $spacing-xl * 1.5;
-      max-width: 500px;
+      margin-inline: auto;
     }
   }
 
   &__buttons {
     display: flex;
-    gap: $spacing-lg;
-    animation: fade-in-up var(--duration-very-slow) var(--ease-reveal) 140ms;
-    animation-fill-mode: both;
+    flex-wrap: wrap;
+    gap: 12px;
 
     @include mobile {
       flex-direction: column;
-      gap: $spacing-md;
-      align-items: center;
-    }
-
-    // 📟 Планшеты
-    @include tablet {
-      justify-content: flex-start;
-      gap: $spacing-md;
-      flex-direction: row;
+      align-items: stretch;
+      max-width: 360px;
+      margin: 0 auto;
     }
   }
 
   &__button {
-    width: 250px;
-    height: 80px;
-    // Бейджи сторов: белая штатная графика требует тёмной подложки в обеих темах.
-    background: var(--sg-ink);
-    border-radius: 18px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    outline: 1px solid color-mix(in srgb, var(--ha-blue-bright) 45%, transparent);
-    outline-offset: -1px;
+    gap: 10px;
+    height: 56px;
+    padding: 0 24px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
     transition:
       transform var(--duration-fast) var(--ease-smooth-out),
-      box-shadow var(--duration-fast) var(--ease-smooth-out),
-      outline-color var(--duration-fast) var(--ease-smooth-out);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-
-    @include mobile {
-      width: 100%;
-      max-width: 340px;
-      height: 90px;
-    }
-
-    // 📟 Планшеты
-    @include tablet {
-      width: 200px;
-      height: 65px;
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg,
-          transparent,
-          color-mix(in srgb, var(--ha-blue-bright) 22%, transparent),
-          transparent);
-      transition: left 0.5s ease;
-    }
+      background-color var(--duration-fast) var(--ease-smooth-out),
+      border-color var(--duration-fast) var(--ease-smooth-out),
+      box-shadow var(--duration-fast) var(--ease-smooth-out);
 
     &:hover {
-      transition-duration: var(--duration-quick);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-card);
-      outline-color: var(--ha-blue-bright);
-
-      &::before {
-        left: 100%;
-      }
+      transform: translateY(-2px);
     }
 
     &:active {
-      transform: translateY(-1px);
+      transform: translateY(0) scale(.98);
     }
 
     &:focus-visible {
       outline: 2px solid var(--ha-blue-bright);
-      outline-offset: 2px;
+      outline-offset: 3px;
     }
 
-    &--google {
-      animation: bounce-in var(--duration-slow) var(--ease-smooth-out) 210ms;
-      animation-fill-mode: both;
+    // Primary: Discord is where the playtests and hero reveals happen.
+    &--primary {
+      background: var(--ha-blue-bright);
+      color: var(--stage);
+      box-shadow: 0 10px 30px -10px color-mix(in srgb, var(--ha-blue-bright) 70%, transparent);
+
+      &:hover {
+        background: #5cd2f7;
+        box-shadow: 0 14px 34px -10px color-mix(in srgb, var(--ha-blue-bright) 80%, transparent);
+      }
+
+      .hero__icon {
+        filter: brightness(0);
+        opacity: .85;
+      }
     }
 
-    &--apple {
-      animation: bounce-in var(--duration-slow) var(--ease-smooth-out) 280ms;
-      animation-fill-mode: both;
-    }
-  }
+    &--secondary {
+      background: color-mix(in srgb, var(--stage) 45%, transparent);
+      color: var(--stage-ink);
+      border: 1px solid color-mix(in srgb, var(--stage-ink) 24%, transparent);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
 
-  &__button-content {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+      &:hover {
+        border-color: var(--ha-blue-bright);
+        background: color-mix(in srgb, var(--stage) 65%, transparent);
+      }
+
+      .hero__icon {
+        filter: brightness(0) invert(1);
+      }
+    }
   }
 
   &__icon {
-    width: 90%;
-    height: auto;
-    max-width: 280px;
-  }
-}
-
-// 📟 Дополнительные улучшения для планшетов в ландшафтной ориентации
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  .hero {
-    min-height: 700px;
-
-    &__content {
-      gap: $spacing-xl;
-    }
-
-    &__title {
-      font-size: 44px;
-    }
-
-    &__description {
-      font-size: 20px;
-      max-width: 450px;
-    }
-
-    &__image-wrapper {
-      margin-right: -30px; // Сильнее прижимаем в ландшафте
-    }
-
-    &__image {
-      max-width: 450px;
-    }
-  }
-}
-
-// 📟 Планшеты в портретной ориентации
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-  .hero {
-    &__title {
-      font-size: 42px;
-    }
-
-    &__description {
-      font-size: 20px;
-      max-width: 400px;
-    }
-
-    &__image-wrapper {
-      margin-right: -15px;
-    }
-
-    &__image {
-      max-width: 400px;
-    }
-  }
-}
-
-// ✅ Add this section for Mac M1 Pro and similar 16:10 aspect ratio displays
-@media (min-width: 1280px) and (max-width: 1600px) {
-  .hero {
-    &__content {
-      grid-template-columns: 1fr 1fr;
-      gap: $spacing-lg;
-      max-width: 1300px;
-    }
-
-    &__image-wrapper {
-      // right: 0; // Remove the 250px offset
-      justify-content: center;
-      margin-right: 0;
-    }
-
-    &__image {
-      width: auto;
-      max-width: 700px;
-    }
-
-    &__text-content {
-      padding-left: $spacing-lg;
-    }
-
-    &__title {
-      font-size: 52px;
-    }
-
-    &__description {
-      font-size: 28px;
-      max-width: 650px;
-    }
-
-    &__buttons {
-      gap: $spacing-md;
-    }
-
-    &__button {
-      width: 220px;
-      height: 70px;
-    }
+    width: 22px;
+    height: 22px;
   }
 }
 
@@ -532,19 +342,3 @@
   }
 }
 
-// 📱 Очень маленькие экраны
-@media (max-width: 400px) {
-  .hero {
-    &__title {
-      font-size: 28px;
-    }
-
-    &__description {
-      font-size: 16px;
-    }
-
-    &__button {
-      height: 80px;
-    }
-  }
-}

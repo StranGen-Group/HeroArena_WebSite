@@ -9,6 +9,15 @@ import { track } from '../../utils/analytics';
 
 const PLAY_ANALYTICS_ID = { 0: 'pitch', 1: 'trailer' };
 
+// Not every upload has a maxres thumbnail. When it's missing YouTube still
+// answers with a 120x90 grey placeholder image, which the browser renders
+// instead of firing onError, so the size has to be checked on load too.
+const YT_PLACEHOLDER_WIDTH = 120;
+const swapToFallbackPoster = (img, id) => {
+  const fallback = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+  if (img.src !== fallback) img.src = fallback;
+};
+
 const VideoContent = () => {
   const { t } = useLanguage();
   const [video1Ref, video1InView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.HIGH });
@@ -42,7 +51,6 @@ const VideoContent = () => {
   return (
     <section className="video-content" id={SECTIONS.TRAILER}>
       <div className="video-content__container">
-        <span className="video-content__eyebrow" aria-hidden="true">{t('waveTrailer')}</span>
         <h2 className="video-content__title">{t('videoSectionTitle')}</h2>
 
         <div className="video-content__grid">
@@ -77,10 +85,12 @@ const VideoContent = () => {
                     width={1280}
                     height={720}
                     loading="lazy"
-                    onError={(e) => {
-                      e.currentTarget.onerror = null;
-                      e.currentTarget.src = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
+                    onLoad={(e) => {
+                      if (e.currentTarget.naturalWidth <= YT_PLACEHOLDER_WIDTH) {
+                        swapToFallbackPoster(e.currentTarget, video.id);
+                      }
                     }}
+                    onError={(e) => swapToFallbackPoster(e.currentTarget, video.id)}
                   />
                   <svg
                     className="video-content__play-icon"
@@ -98,14 +108,14 @@ const VideoContent = () => {
 
               <div className="video-content__info">
                 <h3 className="video-content__video-title">{video.title}</h3>
-                <a href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer">
-                  <img
-                    src={YoutubeIcon}
-                    alt="YouTube Icon"
-                    className="video-content__youtube-icon"
-                    width={60}
-                    height={60}
-                  />
+                <a
+                  className="video-content__watch"
+                  href={`https://www.youtube.com/watch?v=${video.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={YoutubeIcon} alt="" className="video-content__youtube-icon" width={20} height={20} />
+                  <span>{t('watchOnYoutube')}</span>
                 </a>
               </div>
             </div>

@@ -17,7 +17,11 @@ const JOBS = [
   ['about/mage.png', 'about', 'mage', [900], 80],
   ['phone/iPhone1.png', 'phone', 'iPhone1', [1200], 80],
   ['phone/iPhoneBg.png', 'phone', 'iPhoneBg', [1200], 80],
-  ['logo/gameLogo.png', 'logo', 'gameLogo', [320], 80],
+  // Square crossed-swords lockup, ~854x904. Header renders it 64px tall
+  // (~60px wide) -> 180w is a 3x source, so the small "HERO ARENA" lettering
+  // stays crisp on high-DPI screens. Quality 90: the thin outlines smear at 80.
+  ['logo/gameLogo.png', 'logo', 'gameLogo', [180], 90],
+  ['logo/logo_str.png', 'logo', 'logo_str', [210], 80],
   // Hero roster portraits, hand-sliced from the game's icon atlas. Transparent
   // PNGs -> WebP keeps the alpha channel, unlike a JPEG fallback would.
   ['heroes/hero-1.png', 'heroes', 'hero-1', [256], 82],
@@ -51,9 +55,9 @@ async function run() {
 
   // PWA/apple-touch icons: the CRA scaffold logos (logo192/512.png) were never
   // replaced, so an installed shortcut read "Hero Arena" under React's atom.
-  // gameLogo.png is a wide two-line lockup ("HERO" / "ARENA") — a centred
-  // contain-fit on the app's dark background keeps the full wordmark legible
-  // at 192px instead of squashing it or cropping to a mark that doesn't exist.
+  // gameLogo.png is now the near-square crossed-swords mark — a centred
+  // contain-fit on the app's dark background keeps it legible at 192px
+  // without squashing it the way the old wide wordmark would have needed.
   const logoSrc = path.join(SRC, 'logo/gameLogo.png');
   for (const size of [192, 512]) {
     const out = path.join(PUBLIC, `logo${size}.png`);

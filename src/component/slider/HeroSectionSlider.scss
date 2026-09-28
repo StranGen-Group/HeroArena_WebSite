@@ -4,83 +4,48 @@
 
 .slider {
   position: relative;
-  min-height: 20vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  padding: 80px 0;
+  padding: var(--section-pad) 0 calc(var(--section-pad) * .6);
   background: var(--bg);
-
-  @include mobile {
-    min-height: 30vh;
-    padding: 60px 0;
-  }
-
-  @include tablet {
-    min-height: 50vh;
-  }
 
   &__content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 100%;
-    max-width: 1600px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: 0 20px;
-
-    @include mobile {
-      padding: 0 10px;
-    }
+    padding: 0 clamp(16px, 3vw, 32px);
   }
 
   &__heading {
     text-align: center;
-    margin-bottom: $spacing-sm;
-  }
-
-  // HUD-style readout, echoing the game's own "Wave: 1" label. Decorative —
-  // aria-hidden in the markup so it never gets read as part of the heading.
-  &__eyebrow {
-    display: block;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--ha-blue);
-    margin-bottom: $spacing-sm;
   }
 
   &__title {
-    font-size: 44px;
-    font-weight: $heading-weight;
-    letter-spacing: $heading-tracking;
-    line-height: $heading-leading;
+    font-size: clamp(30px, 3.4vw, 44px);
     color: var(--ink);
     margin: 0;
-
-    @include mobile {
-      font-size: 30px;
-    }
-
-    @include tablet {
-      font-size: 38px;
-    }
   }
 
   &__slider-wrapper {
     position: relative;
     width: 100%;
-    max-width: 1500px;
+    max-width: 1280px;
+    // room for the arrows beside the track instead of off-screen
+    padding: 0 64px;
     z-index: 1;
+
+    @include mobile {
+      padding: 0;
+    }
 
     .slider-swiper {
       width: 100%;
-      padding: 60px 0 80px;
+      // vertical room so the hover lift and card shadow aren't clipped
+      padding: 40px 8px 64px;
 
       @include mobile {
-        padding: 40px 0 60px;
+        padding: 32px 0 52px;
       }
 
       .swiper-slide {
@@ -174,8 +139,10 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 52px;
-      height: 52px;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      margin-top: -26px; // centre on the image track, not track + pagination
       background: color-mix(in srgb, var(--bg-elevated) 95%, transparent);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
@@ -187,26 +154,20 @@
       align-items: center;
       justify-content: center;
       box-shadow: var(--shadow-card);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      color: var(--ha-blue);
-
-      svg {
-        transition: transform 0.3s ease;
-      }
+      transition:
+        transform var(--duration-fast) var(--ease-smooth-out),
+        border-color var(--duration-fast) var(--ease-smooth-out),
+        color var(--duration-fast) var(--ease-smooth-out);
+      color: var(--ink);
 
       &:hover {
-        background: var(--bg);
-        transform: translateY(-50%) scale(1.15);
-        box-shadow: var(--shadow-card);
+        transform: translateY(-50%) scale(1.08);
         border-color: var(--ha-blue);
-
-        svg {
-          transform: scale(1.1);
-        }
+        color: var(--ha-blue);
       }
 
       &:active {
-        transform: translateY(-50%) scale(1.05);
+        transform: translateY(-50%) scale(.96);
       }
 
       &:focus-visible {
@@ -215,32 +176,19 @@
       }
 
       &--prev {
-        left: -70px;
-
-        @include tablet {
-          left: -50px;
-        }
+        left: 0;
 
         @include mobile {
-          left: 5px;
+          left: 8px;
         }
       }
 
       &--next {
-        right: -70px;
-
-        @include tablet {
-          right: -50px;
-        }
+        right: 0;
 
         @include mobile {
-          right: 5px;
+          right: 8px;
         }
-      }
-
-      @include tablet {
-        width: 48px;
-        height: 48px;
       }
 
       @include mobile {
@@ -307,7 +255,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: color-mix(in srgb, var(--sg-ink) 95%, transparent);
+  background: color-mix(in srgb, var(--stage) 95%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 9999;
@@ -465,6 +413,7 @@
     transform: translateY(-50%);
     width: 60px;
     height: 60px;
+    padding: 0;
     background: color-mix(in srgb, var(--ha-blue-bright) 14%, transparent);
     backdrop-filter: blur(10px);
     border: 1px solid color-mix(in srgb, var(--ha-blue-bright) 35%, transparent);

@@ -4,86 +4,69 @@
 
 .roster {
   position: relative;
-  padding: $spacing-xl * 2 $spacing-xl;
-  background: var(--bg);
-
-  @include mobile {
-    padding: $spacing-xl $spacing-md;
-  }
-
-  @include tablet {
-    padding: $spacing-xl * 1.5 $spacing-lg;
-  }
+  // Same stage as the hero above it, so the two read as one game block.
+  background: var(--stage);
+  padding: 0 clamp(16px, 4vw, 48px) var(--section-pad);
 
   &__content {
     position: relative;
     z-index: 1;
-    max-width: 1600px;
+    max-width: 1280px;
     margin: 0 auto;
     text-align: center;
   }
 
-  // HUD-style readout, echoing the game's own "Wave: 1" label. Decorative —
-  // aria-hidden in the markup so it never gets read as part of the heading.
-  &__eyebrow {
-    display: block;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--ha-blue);
-    margin-bottom: $spacing-sm;
-  }
-
   &__title {
-    font-size: 44px;
-    font-weight: $heading-weight;
-    letter-spacing: $heading-tracking;
-    line-height: $heading-leading;
-    color: var(--ink);
+    font-size: clamp(30px, 3.4vw, 44px);
+    color: var(--stage-ink);
     margin-bottom: $spacing-sm;
-
-    @include mobile {
-      font-size: 30px;
-    }
-
-    @include tablet {
-      font-size: 38px;
-    }
+    text-wrap: balance;
   }
 
   &__status {
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--ink-muted);
-    margin-bottom: $spacing-xl * 1.5;
-
-    @include mobile {
-      font-size: 15px;
-      margin-bottom: $spacing-xl;
-    }
+    font-size: 17px;
+    color: var(--stage-muted);
+    margin-bottom: clamp(32px, 4vw, 48px);
+    text-wrap: balance;
   }
 
   &__row {
+    // flex-wrap rather than a grid, so a short last row stays centred on tablets
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: $spacing-lg;
-  }
 
-  // Each card mirrors the game's own dark roster-slot panel: it stays this
-  // ink tone regardless of the site's light/dark theme, the same way the
-  // hero screen inside the game is always dark on the player's device.
-  &__card {
-    width: 220px;
-    padding: $spacing-lg $spacing-md;
-    border-radius: var(--radius);
-    background: var(--sg-ink);
-    box-shadow: var(--shadow-card);
+    > * {
+      flex: 0 1 220px;
+    }
 
     @include mobile {
-      width: 100%;
-      max-width: 320px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+  }
+
+  // Each card mirrors the game's own roster-slot panel: a raised stage tone.
+  &__card {
+    padding: $spacing-lg $spacing-md;
+    border-radius: 18px;
+    background: linear-gradient(180deg, var(--stage-raised), color-mix(in srgb, var(--stage-raised) 60%, var(--stage)));
+    border: 1px solid var(--stage-line);
+    transition:
+      transform var(--duration-fast) var(--ease-smooth-out),
+      border-color var(--duration-fast) var(--ease-smooth-out),
+      box-shadow var(--duration-fast) var(--ease-smooth-out);
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--ha-blue-bright) 55%, transparent);
+      box-shadow: 0 18px 40px -20px color-mix(in srgb, var(--ha-blue-bright) 60%, transparent);
+    }
+
+    @include mobile {
+      padding: $spacing-md 12px;
     }
   }
 
@@ -92,9 +75,14 @@
     width: 128px;
     height: 128px;
     margin: 0 auto $spacing-md;
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
-    background: color-mix(in srgb, var(--ha-blue) 22%, transparent);
+    background: radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--ha-blue-bright) 30%, transparent), transparent 70%);
+
+    @include mobile {
+      width: 96px;
+      height: 96px;
+    }
 
     img {
       width: 100%;
@@ -113,11 +101,9 @@
   }
 
   &__name {
-    font-size: 19px;
-    font-weight: $heading-weight;
-    letter-spacing: $heading-tracking;
-    color: #f4f6f8; // fixed light text on the always-dark card, both themes
-    margin: 0 0 4px;
+    font-size: 17px;
+    color: var(--stage-ink);
+    margin: 0 0 6px;
   }
 
   &__role {
@@ -126,35 +112,54 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .06em;
-    color: var(--on-blue);
-    background: var(--ha-blue-bright);
-    border-radius: 999px;
-    padding: 3px 10px;
+    color: var(--ha-blue-bright);
+    background: color-mix(in srgb, var(--ha-blue-bright) 14%, transparent);
+    border-radius: 6px;
+    padding: 3px 8px;
     margin-bottom: $spacing-sm;
   }
 
   &__description {
     font-size: 14px;
-    line-height: 1.45;
-    color: color-mix(in srgb, #f4f6f8 78%, transparent);
+    line-height: 1.5;
+    color: var(--stage-muted);
     margin: 0;
+    text-wrap: pretty;
+
+    @include mobile {
+      font-size: 13px;
+    }
   }
 
   // The locked slot reads as "roster still filling up," not a broken card:
   // one dimmed, greyscale portrait carrying a count instead of a name.
   &__card--locked {
+    border-style: dashed;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    // Fifth card would sit alone in the 2-column grid: span it as a banner.
+    @include mobile {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      gap: $spacing-md;
+
+      .roster__portrait {
+        margin: 0;
+        width: 72px;
+        height: 72px;
+      }
+    }
   }
 
   &__portrait--locked {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: color-mix(in srgb, var(--sg-ink) 40%, black);
-    border: 1px dashed color-mix(in srgb, #f4f6f8 25%, transparent);
+    background: color-mix(in srgb, var(--stage) 70%, black);
+    border: 1px dashed var(--stage-line);
   }
 
   &__lock {
@@ -162,7 +167,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, calc(-50% - 14px));
-    color: color-mix(in srgb, #f4f6f8 70%, transparent);
+    color: var(--stage-muted);
   }
 
   &__more {
@@ -170,14 +175,15 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, calc(-50% + 20px));
-    font-size: 20px;
+    font-family: $font-display;
+    font-size: 18px;
     font-weight: $heading-weight;
-    color: #f4f6f8;
+    color: var(--stage-ink);
   }
 
   &__locked-label {
     font-size: 13px;
-    color: color-mix(in srgb, #f4f6f8 65%, transparent);
-    margin: $spacing-md 0 0;
+    color: var(--stage-muted);
+    margin: 0;
   }
 }

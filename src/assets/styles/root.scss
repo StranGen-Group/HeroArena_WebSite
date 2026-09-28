@@ -8,12 +8,14 @@ $color-gray-light: var(--line);
 
 /* Типографика */
 $font-primary: 'Inter Tight', system-ui, -apple-system, 'Segoe UI', sans-serif;
-$font-display: 'Inter Tight', system-ui, -apple-system, 'Segoe UI', sans-serif;
+// Unbounded: chunky, rounded display face in the spirit of the game logo.
+// Covers Latin-ext and Cyrillic, so EN/RU/UZ headings all render in it.
+$font-display: 'Unbounded', 'Inter Tight', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
-/* Заголовки: одна гарнитура на весь сайт, вес и трекинг делают акцент. */
-$heading-weight: 800;
-$heading-tracking: -0.03em;
-$heading-leading: 1.05;
+/* Заголовки: Unbounded 700, body — Inter Tight. */
+$heading-weight: 700;
+$heading-tracking: -0.02em;
+$heading-leading: 1.1;
 $font-size-sm: 14px;
 $font-size-md: 18px;
 $font-size-lg: 24px;

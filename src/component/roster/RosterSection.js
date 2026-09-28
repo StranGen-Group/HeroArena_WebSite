@@ -25,7 +25,6 @@ const RosterSection = () => {
   return (
     <section className="roster" id={SECTIONS.ROSTER}>
       <div className="roster__content">
-        <span className="roster__eyebrow" aria-hidden="true">{t('waveRoster')}</span>
         <h2 className="roster__title">{t('rosterTitle')}</h2>
         <p className="roster__status">{t('rosterStatus')}</p>
 
@@ -39,7 +38,7 @@ const RosterSection = () => {
               key={heroCard.nameKey}
             >
               <div className="roster__portrait">
-                <img src={heroCard.image} alt="" width={256} height={256} loading="lazy" />
+                <img src={heroCard.image} alt={t(heroCard.nameKey)} width={256} height={256} loading="lazy" />
                 <span className="roster__rank" aria-hidden="true">★</span>
               </div>
               <h3 className="roster__name">{t(heroCard.nameKey)}</h3>

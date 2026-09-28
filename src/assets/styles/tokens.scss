@@ -12,9 +12,19 @@
   --ha-blue-hover:  #005f87;
   --on-blue:        #ffffff;
 
-  --sg-ink: #181818;
+  /* "Stage": the game-world surface (hero, roster, community, footer). Dark in
+     both themes, like the game's own UI. One cool family instead of the old
+     neutral #181818 plus a separate navy, so dark bands read as one material. */
+  --stage:        #0e131b;
+  --stage-raised: #18202c;
+  --stage-line:   rgba(242, 245, 248, .10);
+  --stage-ink:    #f2f5f8;
+  --stage-muted:  rgba(242, 245, 248, .72);
 
-  --shadow-card: 0 12px 32px -16px rgba(16, 20, 24, .35);
+  --section-pad: clamp(64px, 9vw, 120px);
+
+  /* tinted with the page's cool ink, not generic black */
+  --shadow-card: 0 14px 34px -18px rgba(14, 30, 52, .40);
   --radius:      14px;
 
   /* Motion-tokens: shkala transitions.dev. Tema ikh ne pereopredelyaet. */
@@ -46,5 +56,8 @@
   --ha-blue-hover: #5cd2f7;
   --on-blue:       #181818;
 
-  --shadow-card: 0 12px 32px -16px rgba(0, 0, 0, .8);
+  --shadow-card: 0 14px 34px -18px rgba(0, 0, 0, .8);
+
+  --stage:        #080c12;
+  --stage-raised: #141b25;
 }

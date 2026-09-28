@@ -1,18 +1,17 @@
 @import '../../assets/styles/root';
 @import '../../assets/styles/mixins';
-@import '../../assets/styles/animations';
 
 .footer {
-  // Студийная плашка: near-black StranGen в обеих темах.
-  background-color: var(--sg-ink);
-  padding: $spacing-xl * 2 $spacing-xl;
-  border-top: 1px solid var(--ha-blue-bright);
-  // Светлый ink-литерал: плашка тёмная в обеих темах, var(--ink) здесь инвертировался бы.
-  color: #f4f6f8;
+  // Same stage tone the community section fades into: one continuous dark end.
+  background: var(--stage);
+  color: var(--stage-ink);
+  padding: $spacing-xl clamp(16px, 4vw, 48px) calc(#{$spacing-xl} + env(safe-area-inset-bottom));
 
   &__content {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
+    padding-top: $spacing-xl;
+    border-top: 1px solid var(--stage-line);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -20,211 +19,53 @@
 
     @include mobile {
       flex-direction: column;
-      gap: $spacing-xl;
-      text-align: center;
-    }
-
-    @include tablet {
-      flex-direction: column;
-      gap: $spacing-xl;
     }
   }
 
-  &__icons {
-    display: flex;
-    gap: $spacing-lg;
-    align-items: center;
-    animation: fade-in-up var(--duration-very-slow) var(--ease-reveal) 140ms;
-    animation-fill-mode: both;
-
-    a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 60px;
-      height: 60px;
-      // hover-in быстрее, чем hover-out: подсветка гаснет мягче, чем зажигается
-      transition:
-        transform var(--duration-fast) var(--ease-smooth-out),
-        background-color var(--duration-fast) var(--ease-smooth-out);
-      padding: 10px;
-      border-radius: 12px;
-
-      &:hover {
-        transition-duration: var(--duration-quick);
-        transform: translateY(-3px);
-        background: color-mix(in srgb, var(--ha-blue-bright) 22%, transparent);
-      }
-
-      &:focus-visible {
-        outline: 2px solid var(--ha-blue-bright);
-        outline-offset: 2px;
-      }
-
-      img {
-        width: 32px;
-        height: 32px;
-        filter: brightness(0) invert(1);
-        transition: transform var(--duration-fast) var(--ease-smooth-out);
-      }
-
-      &:hover img {
-        transition-duration: var(--duration-quick);
-        transform: scale(1.08);
-      }
-    }
-
-    @include mobile {
-      gap: $spacing-sm;
-      flex-wrap: wrap;
-      justify-content: center;
-
-      a {
-        width: 45px;
-        height: 45px;
-
-        img {
-          width: 22px;
-          height: 22px;
-        }
-      }
-    }
-  }
-
-  &__buttons {
-    display: flex;
-    gap: $spacing-lg;
-    animation-fill-mode: both;
-
-    @include mobile {
-      flex-direction: column;
-      gap: $spacing-md;
-      align-items: center;
-    }
-
-    @include tablet {
-      justify-content: center;
-    }
-  }
-
-  &__button {
-    width: 200px;
-    height: 60px;
-    background: var(--sg-ink);
-    border-radius: 15px;
+  &__studio {
     display: flex;
     align-items: center;
-    justify-content: center;
-    outline: 1px solid color-mix(in srgb, var(--ha-blue-bright) 45%, transparent);
-    outline-offset: -1px;
-    transition:
-      transform var(--duration-fast) var(--ease-smooth-out),
-      box-shadow var(--duration-fast) var(--ease-smooth-out),
-      outline-color var(--duration-fast) var(--ease-smooth-out);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
+    gap: $spacing-md;
+  }
 
-    @include mobile {
-      width: 100%;
-      max-width: 340px;
-      height: 90px;
-    }
+  // The mark is drawn for dark grounds (white letters, red arc), so it keeps
+  // its own colours here instead of being flattened to white.
+  &__studio-logo {
+    width: auto;
+    height: 36px;
+  }
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg,
-          transparent,
-          color-mix(in srgb, var(--ha-blue-bright) 22%, transparent),
-          transparent);
-      transition: left 0.5s ease;
+  &__studio-copy {
+    color: var(--stage-muted);
+    font-size: $font-size-sm;
+  }
+
+  &__top {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: var(--stage-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-smooth-out);
+
+    svg {
+      transition: transform var(--duration-fast) var(--ease-smooth-out);
     }
 
     &:hover {
-      transition-duration: var(--duration-quick);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-card);
-      outline-color: var(--ha-blue-bright);
-    }
+      color: var(--stage-ink);
 
-    &:active {
-      transform: translateY(-1px);
+      svg {
+        transform: translateY(-2px);
+      }
     }
 
     &:focus-visible {
       outline: 2px solid var(--ha-blue-bright);
-      outline-offset: 2px;
+      outline-offset: 3px;
+      border-radius: 4px;
     }
-  }
-
-  // Студийный кредит: марка StranGen живёт на странице постоянно,
-  // а не мелькает в прелоадере.
-  &__studio {
-    max-width: 1200px;
-    margin: $spacing-xl auto 0;
-    padding-top: $spacing-lg;
-    border-top: 1px solid color-mix(in srgb, #f4f6f8 12%, transparent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: $spacing-md;
-
-    @include mobile {
-      flex-direction: column;
-      gap: $spacing-sm;
-    }
-  }
-
-  &__studio-logo {
-    // Знак широкий (2.77:1), а словесная часть — нижняя четверть картинки,
-    // поэтому 26px читались как пятно. 38px — всё ещё скромно.
-    height: 38px;
-    width: auto;
-    // Плашка футера near-black в обеих темах, а в знаке половина букв чёрные.
-    // Монохромный белый знак — тот же приём, что у соц-иконок выше.
-    filter: brightness(0) invert(1);
-    opacity: .9;
-
-    @include mobile {
-      height: 32px;
-    }
-  }
-
-  &__studio-copy {
-    font-size: $font-size-sm;
-    font-weight: 500;
-    letter-spacing: .01em;
-    // 7.4:1 к плашке --sg-ink
-    color: color-mix(in srgb, #f4f6f8 65%, transparent);
-  }
-
-  &__button-content {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &__icon {
-    width: 90%;
-    height: auto;
-    max-width: 280px;
-    transition: all 0.3s ease;
-  }
-
-  @include mobile {
-    padding: $spacing-xl $spacing-md;
-  }
-
-  @include tablet {
-    padding: $spacing-xl * 1.5 $spacing-lg;
   }
 }

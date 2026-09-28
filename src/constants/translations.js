@@ -9,25 +9,21 @@ export const TRANSLATIONS = {
         gallery: 'Gallery',
         socials: 'Socials',
         trailer: 'Trailers',
+        joinDiscord: 'Join Discord',
+        followTelegram: 'Follow on Telegram',
 
         // Header Content
-        headerContentTitle: 'We make games!',
+        headerContentTitle: 'We make games',
         headerContentDescription: 'We are a passionate team of Uzbek developers and artists creating an epic hero-based tower defense game - packed with stunning visuals, deep progression, and global appeal.',
 
-        // Wave eyebrows: the game's own HUD reads "Wave: 1" in Latin script
-        // regardless of locale, so these stay literal like the hero names do.
-        waveGame: 'WAVE 01',
-        waveRoster: 'WAVE 02',
-        waveGallery: 'WAVE 03',
-        waveTrailer: 'WAVE 04',
-        waveSocials: 'WAVE 05',
+        heroEyebrow: 'Tower defense by StranGen Group',
 
         // Hero Section
         heroTitle: 'Hero Arena',
         heroDescription: 'A strategy game where heroes lead the defense. Recruit, upgrade, and command your champions to fight back. The fate of the castle is in your hands.',
 
         // Roster
-        rosterTitle: 'Build Your Roster',
+        rosterTitle: 'Build your roster',
         rosterStatus: '4 of 32 heroes recruited — more are joining the ranks.',
         rosterHero1Name: 'Swordsman',
         rosterHero1Role: 'Tank',
@@ -54,17 +50,19 @@ export const TRANSLATIONS = {
         galleryCaption5: 'Later waves send cavalry. Faster, and it hits harder.',
 
         // Section
-        sectionTitle: 'Follow StrangenGroup!',
-        sectionDescription: 'Join our journey to bring Hero Arena to life! Follow us on social media to stay up to date with the latest news and updates.',
+        sectionTitle: 'Join the Hero Arena community',
+        sectionDescription: 'Get development updates, new hero reveals, and playtest news directly from StranGen Group.',
 
         // Video
-        videoSectionTitle: 'Watch It in Action',
+        videoSectionTitle: 'Watch it in action',
         videoTitle1: 'Game Pitch for President Tech Award',
         videoTitle2: 'Official Game Trailer',
         playVideo: 'Play',
 
         // Footer
         footerCopyright: '© StranGen Group',
+        backToTop: 'Back to top',
+        watchOnYoutube: 'Watch on YouTube',
     },
 
     RU: {
@@ -74,18 +72,16 @@ export const TRANSLATIONS = {
         gallery: 'Галерея',
         socials: 'Соцсети',
         trailer: 'Трейлеры',
+        joinDiscord: 'Вступить в Discord',
+        followTelegram: 'Мы в Telegram',
 
         // Заголовок
-        headerContentTitle: 'Мы создаём игры!',
+        headerContentTitle: 'Мы создаём игры',
         headerContentDescription: 'Мы команда узбекских разработчиков и художников, создающих эпичную игру в жанре tower defense с героями - с потрясающей графикой, глубокой прогрессией и мировым потенциалом.',
 
         // Эйбраузы волн: в самой игре HUD всегда пишет "Wave: 1" латиницей,
         // поэтому эти ярлыки не переводятся, как и имена героев.
-        waveGame: 'WAVE 01',
-        waveRoster: 'WAVE 02',
-        waveGallery: 'WAVE 03',
-        waveTrailer: 'WAVE 04',
-        waveSocials: 'WAVE 05',
+        heroEyebrow: 'Tower defense от StranGen Group',
 
         // Герои
         heroTitle: 'Hero Arena',
@@ -119,8 +115,8 @@ export const TRANSLATIONS = {
         galleryCaption5: 'Поздние волны присылают кавалерию — быстрее и сильнее.',
 
         // Раздел
-        sectionTitle: 'Подписывайся на StrangenGroup!',
-        sectionDescription: 'Следи за тем, как мы воплощаем Hero Arena в жизнь! Будь в курсе всех новостей и обновлений.',
+        sectionTitle: 'Присоединяйся к сообществу Hero Arena',
+        sectionDescription: 'Получай новости разработки, новых героев и анонсы плейтестов прямо от StranGen Group.',
 
         // Видео
         videoSectionTitle: 'Смотри в деле',
@@ -130,6 +126,8 @@ export const TRANSLATIONS = {
 
         // Футер
         footerCopyright: '© StranGen Group',
+        backToTop: 'Наверх',
+        watchOnYoutube: 'Смотреть на YouTube',
     },
 
     UZ: {
@@ -139,19 +137,17 @@ export const TRANSLATIONS = {
         gallery: 'Galereya',
         socials: 'Ijtimoiy tarmoqlar',
         trailer: 'Trelerlar',
+        joinDiscord: 'Discord’ga qo‘shiling',
+        followTelegram: 'Telegram’da kuzating',
 
         // Sarlavha
-        headerContentTitle: 'Biz o‘yinlar yaratamiz!',
+        headerContentTitle: 'Biz o‘yinlar yaratamiz',
         headerContentDescription: 'Biz — o‘z ishiga mehr qo‘ygan o‘zbekistonlik dasturchilar va rassomlar jamoasimiz. Biz qahramonlarga asoslangan epik tower defense o‘yinini yaratyapmiz — ajoyib grafika, chuqur rivojlanish tizimi va global auditoriya uchun.',
 
         // Wave yorliqlari: o'yinning o'zida HUD har doim lotin yozuvida
         // "Wave: 1" deb ko'rsatadi, shuning uchun bu yorliqlar tarjima
         // qilinmaydi, xuddi qahramon ismlari kabi.
-        waveGame: 'WAVE 01',
-        waveRoster: 'WAVE 02',
-        waveGallery: 'WAVE 03',
-        waveTrailer: 'WAVE 04',
-        waveSocials: 'WAVE 05',
+        heroEyebrow: 'StranGen Group’dan tower defense',
 
         // Qahramonlar bo‘limi
         heroTitle: 'Hero Arena',
@@ -185,8 +181,8 @@ export const TRANSLATIONS = {
         galleryCaption5: 'Keyingi to\'lqinlarda otliqlar keladi — tezroq va kuchliroq.',
 
         // Bo‘lim
-        sectionTitle: 'StrangenGroup’ni kuzating!',
-        sectionDescription: 'Hero Arena loyihasini hayotga tatbiq etish yo‘lida bizga qo‘shiling! Ijtimoiy tarmoqlarda bizni kuzating va yangiliklardan xabardor bo‘ling.',
+        sectionTitle: 'Hero Arena hamjamiyatiga qo‘shiling',
+        sectionDescription: 'StranGen Group’dan ishlab chiqish yangiliklari, yangi qahramonlar va pleystest e’lonlarini oling.',
 
         // Video
         videoSectionTitle: 'Harakatda tomosha qiling',
@@ -196,6 +192,8 @@ export const TRANSLATIONS = {
 
         // Footer
         footerCopyright: '© StranGen Group',
+        backToTop: 'Yuqoriga',
+        watchOnYoutube: 'YouTube’da ko‘rish',
     },
 };
 

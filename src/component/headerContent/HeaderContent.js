@@ -39,7 +39,7 @@ const HeaderContent = () => {
         >
           <img
             src={aboutImage}
-            alt="About our team"
+            alt="Hero Arena mage character artwork"
             className="about__image"
             width={900}
             height={1350}

@@ -25,25 +25,20 @@ const Section = () => {
     { icon: Discord, url: APP_LINKS.SOCIAL.DISCORD, alt: 'Discord', size: 30 },
     { icon: Instagram, url: APP_LINKS.SOCIAL.INSTAGRAM, alt: 'Instagram', size: 30 },
     { icon: Telegram, url: APP_LINKS.SOCIAL.TELEGRAM, alt: 'Telegram', size: 30 },
-    { icon: X, url: APP_LINKS.SOCIAL.X, alt: 'X', size: 48 },
-    { icon: Facebook, url: APP_LINKS.SOCIAL.FACEBOOK, alt: 'Facebook', size: 48 },
+    { icon: X, url: APP_LINKS.SOCIAL.X, alt: 'X', size: 30 },
+    { icon: Facebook, url: APP_LINKS.SOCIAL.FACEBOOK, alt: 'Facebook', size: 30 },
   ];
 
   return (
     <section className="section" id={SECTIONS.SOCIALS}>
-      <div className="section__background">
-        <div className="section__shape hero__shape--cyan"></div>
-      </div>
-
       <div className="section__content">
         <div
           ref={textRef}
           className={`section__text-content ${textInView ? `${ANIMATION_CLASSES.FADE_IN_RIGHT} ${ANIMATION_CLASSES.ANIMATED}` : ANIMATION_CLASSES.HIDDEN}`}
         >
-          <span className="section__eyebrow" aria-hidden="true">{t('waveSocials')}</span>
-          <h1 className="section__title">
+          <h2 className="section__title">
             {t('sectionTitle')}
-          </h1>
+          </h2>
 
           <p className="section__description">
             {t('sectionDescription')}
@@ -57,8 +52,9 @@ const Section = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track('social_click', { network: link.alt.toLowerCase() })}
+                aria-label={`Follow StranGen Group on ${link.alt}`}
               >
-                <img src={link.icon} alt={link.alt} width={link.size} height={link.size} />
+                <img src={link.icon} alt="" width={link.size} height={link.size} />
               </a>
             ))}
           </div>
@@ -72,7 +68,7 @@ const Section = () => {
         >
           <img
             src={heroImage}
-            alt="Game Screenshot"
+            alt="Hero Arena game screen displayed on a phone"
             className="section__image"
             width={929}
             height={580}

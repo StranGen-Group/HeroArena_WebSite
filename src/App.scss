@@ -12,17 +12,32 @@ html {
   scroll-behavior: smooth;
 }
 
-// Заголовки: Inter Tight 800 с плотным трекингом. Размеры задаются в секциях.
+[id] {
+  scroll-margin-top: 76px;
+}
+
+// Заголовки: Unbounded 700 (см. root.scss). Размеры задаются в секциях.
 h1, h2, h3 {
   font-family: $font-display;
   font-weight: $heading-weight;
   letter-spacing: $heading-tracking;
   line-height: $heading-leading;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--ha-blue-bright) 35%, transparent);
 }
 
 body {
   font-family: $font-primary;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background: var(--bg);
   color: var(--ink);
   overflow-x: hidden;
@@ -49,41 +64,23 @@ body,
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  
-  &__content {
-    flex: 1;
-    width: 100%;
-  }
-  
-  &__image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    }
-  }
 }
 
-// Глобальные утилиты
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 $spacing-xl;
+.skip-link {
+  position: fixed;
+  top: $spacing-sm;
+  left: $spacing-sm;
+  z-index: 200;
+  padding: $spacing-sm $spacing-md;
+  background: var(--ha-blue);
+  color: var(--on-blue);
+  text-decoration: none;
+  transform: translateY(-160%);
+  transition: transform var(--duration-fast) var(--ease-smooth-out);
 
-  @include mobile {
-    padding: 0 $spacing-md;
-  }
-}
-
-.section {
-  padding: $spacing-xl * 2 0;
-
-  @include mobile {
-    padding: $spacing-xl 0;
+  &:focus {
+    transform: translateY(0);
+    outline: 2px solid var(--bg);
+    outline-offset: 2px;
   }
 }

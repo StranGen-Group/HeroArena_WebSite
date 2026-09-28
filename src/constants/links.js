@@ -32,7 +32,7 @@ export const getVideoId = (embedUrl) => embedUrl.split('/embed/')[1].split('?')[
 export const SECTIONS = {
   HOME: 'home', // top of page: the game (HeroSection) after the reorder
   ROSTER: 'roster', // RosterSection: anchor only, not a nav entry
-  STUDIO: 'studio', // studio pitch (HeaderContent), now second on the page
+  STUDIO: 'studio', // studio pitch (HeaderContent), after the game content
   GALLERY: 'gallery',
   TRAILER: 'trailer',
   SOCIALS: 'socials',

@@ -78,7 +78,6 @@ const HeroSectionSlider = () => {
         <section className="slider" id={SECTIONS.GALLERY}>
             <div className="slider__content">
                 <div className="slider__heading">
-                    <span className="slider__eyebrow" aria-hidden="true">{t('waveGallery')}</span>
                     <h2 className="slider__title">{t('galleryTitle')}</h2>
                 </div>
                 <div
@@ -130,16 +129,16 @@ const HeroSectionSlider = () => {
                         ))}
                     </Swiper>
 
-                    <div className="slider__nav-button slider__nav-button--prev">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <button type="button" className="slider__nav-button slider__nav-button--prev" aria-label="Previous screenshot">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                    </div>
-                    <div className="slider__nav-button slider__nav-button--next">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    </button>
+                    <button type="button" className="slider__nav-button slider__nav-button--next" aria-label="Next screenshot">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                    </div>
+                    </button>
                 </div>
             </div>
 
@@ -159,7 +158,7 @@ const HeroSectionSlider = () => {
                         aria-label="Close gallery"
                         ref={closeButtonRef}
                     >
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </button>
@@ -201,16 +200,16 @@ const HeroSectionSlider = () => {
                             ))}
                         </Swiper>
 
-                        <div className="slider-modal__nav slider-modal__nav--prev">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                        <button type="button" className="slider-modal__nav slider-modal__nav--prev" aria-label="Previous screenshot">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                 <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
-                        </div>
-                        <div className="slider-modal__nav slider-modal__nav--next">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                        </button>
+                        <button type="button" className="slider-modal__nav slider-modal__nav--next" aria-label="Next screenshot">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                 <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
-                        </div>
+                        </button>
                     </div>
                 </div>
             )}

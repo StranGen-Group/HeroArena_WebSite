@@ -1,12 +1,11 @@
 import React from 'react';
 import './HeroSection.scss';
 import heroImage from '../../assets/image/phone/iPhoneBg.webp';
-import googlePlayIcon from '../../assets/image/icons/google-play.svg';
-import appStoreIcon from '../../assets/image/icons/app-store.svg';
+import discordIcon from '../../assets/image/icons/Social Icons-1.svg';
+import telegramIcon from '../../assets/image/icons/Social Icons-3.svg';
 import { useLanguage } from '../../context/LanguageContext';
 import useInView from '../../hooks/useInView';
-import { APP_LINKS } from '../../constants/links';
-import { SECTIONS } from '../../constants/links';
+import { APP_LINKS, SECTIONS } from '../../constants/links';
 import { ANIMATION_CONFIG, ANIMATION_CLASSES } from '../../constants/animation';
 import { track } from '../../utils/analytics';
 
@@ -18,9 +17,7 @@ const HeroSection = () => {
 
   return (
     <section className="hero" id={SECTIONS.HOME}>
-      <div className="hero__background">
-        <div className="hero__shape hero__shape--cyan"></div>
-      </div>
+      <div className="hero__background" aria-hidden="true"></div>
 
       <div className="hero__content">
         <div 
@@ -29,7 +26,7 @@ const HeroSection = () => {
         >
           <img
             src={heroImage}
-            alt="Game Screenshot"
+            alt="Hero Arena game screen displayed on a phone"
             className="hero__image"
             width={929}
             height={580}
@@ -41,7 +38,7 @@ const HeroSection = () => {
         </div>
 
         <div className="hero__text-content">
-          <span className="hero__eyebrow" aria-hidden="true">{t('waveGame')}</span>
+          <p className="hero__eyebrow">{t('heroEyebrow')}</p>
           <h1
             ref={textRef}
             className={`hero__title ${textInView ? `${ANIMATION_CLASSES.FADE_IN_RIGHT} ${ANIMATION_CLASSES.ANIMATED}` : ANIMATION_CLASSES.HIDDEN}`}
@@ -63,37 +60,25 @@ const HeroSection = () => {
             style={{ animationDelay: ANIMATION_CONFIG.DELAY.EXTRA_LONG }}
           >
             <a 
-              href={APP_LINKS.GOOGLE_PLAY}
+              href={APP_LINKS.SOCIAL.DISCORD}
               target="_blank"
               rel="noopener noreferrer"
-              className="hero__button hero__button--google"
-              aria-label="Download on Google Play"
-              onClick={() => track('cta_click', { target: 'google_play' })}
+              className="hero__button hero__button--primary"
+              onClick={() => track('cta_click', { target: 'discord' })}
             >
-              <div className="hero__button-content">
-                <img 
-                  src={googlePlayIcon} 
-                  alt="Google Play" 
-                  className="hero__icon"
-                />
-              </div>
+              <img src={discordIcon} alt="" className="hero__icon" width={22} height={22} />
+              <span>{t('joinDiscord')}</span>
             </a>
 
             <a 
-              href={APP_LINKS.APP_STORE}
+              href={APP_LINKS.SOCIAL.TELEGRAM}
               target="_blank"
               rel="noopener noreferrer"
-              className="hero__button hero__button--apple"
-              aria-label="Download on App Store"
-              onClick={() => track('cta_click', { target: 'app_store' })}
+              className="hero__button hero__button--secondary"
+              onClick={() => track('cta_click', { target: 'telegram' })}
             >
-              <div className="hero__button-content">
-                <img 
-                  src={appStoreIcon} 
-                  alt="App Store" 
-                  className="hero__icon"
-                />
-              </div>
+              <img src={telegramIcon} alt="" className="hero__icon" width={22} height={22} />
+              <span>{t('followTelegram')}</span>
             </a>
           </div>
         </div>
