@@ -9,16 +9,13 @@ export const ANIMATION_CONFIG = {
     HIGH: 0.3,
   },
   
-  // Задержки анимаций (в секундах)
+  // Задержки анимаций: шаг 70 мс — стаггер между соседями одного блока
   DELAY: {
-    SHORT: '0.1s',
-    MEDIUM: '0.2s',
-    LONG: '0.3s',
-    EXTRA_LONG: '0.4s',
+    SHORT: '0.07s',
+    MEDIUM: '0.14s',
+    LONG: '0.21s',
+    EXTRA_LONG: '0.28s',
   },
-  
-  // Длительность загрузки прелоадера (в миллисекундах)
-  PRELOADER_DURATION: 2500,
 };
 
 export const ANIMATION_CLASSES = {

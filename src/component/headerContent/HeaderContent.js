@@ -1,6 +1,6 @@
 import React from 'react';
 import './HeaderContent.scss';
-import aboutImage from '../../assets/image/about/mage.png';
+import aboutImage from '../../assets/image/about/mage.webp';
 import { useLanguage } from '../../context/LanguageContext';
 import useInView from '../../hooks/useInView';
 import { ANIMATION_CONFIG, ANIMATION_CLASSES } from '../../constants/animation';
@@ -13,7 +13,7 @@ const HeaderContent = () => {
   const [imageRef, imageInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.MEDIUM });
 
   return (
-    <section className="about" id={SECTIONS.HOME}>
+    <section className="about" id={SECTIONS.STUDIO}>
       <div className="about__content">
         <div
           ref={titleRef}
@@ -39,8 +39,10 @@ const HeaderContent = () => {
         >
           <img
             src={aboutImage}
-            alt="About our team"
+            alt="Hero Arena mage character artwork"
             className="about__image"
+            width={900}
+            height={1350}
           />
         </div>
       </div>

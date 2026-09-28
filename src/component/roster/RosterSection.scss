@@ -1,0 +1,189 @@
+@import '../../assets/styles/root';
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/animations';
+
+.roster {
+  position: relative;
+  // Same stage as the hero above it, so the two read as one game block.
+  background: var(--stage);
+  padding: 0 clamp(16px, 4vw, 48px) var(--section-pad);
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    max-width: 1280px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: clamp(30px, 3.4vw, 44px);
+    color: var(--stage-ink);
+    margin-bottom: $spacing-sm;
+    text-wrap: balance;
+  }
+
+  &__status {
+    font-size: 17px;
+    color: var(--stage-muted);
+    margin-bottom: clamp(32px, 4vw, 48px);
+    text-wrap: balance;
+  }
+
+  &__row {
+    // flex-wrap rather than a grid, so a short last row stays centred on tablets
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $spacing-lg;
+
+    > * {
+      flex: 0 1 220px;
+    }
+
+    @include mobile {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+  }
+
+  // Each card mirrors the game's own roster-slot panel: a raised stage tone.
+  &__card {
+    padding: $spacing-lg $spacing-md;
+    border-radius: 18px;
+    background: linear-gradient(180deg, var(--stage-raised), color-mix(in srgb, var(--stage-raised) 60%, var(--stage)));
+    border: 1px solid var(--stage-line);
+    transition:
+      transform var(--duration-fast) var(--ease-smooth-out),
+      border-color var(--duration-fast) var(--ease-smooth-out),
+      box-shadow var(--duration-fast) var(--ease-smooth-out);
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--ha-blue-bright) 55%, transparent);
+      box-shadow: 0 18px 40px -20px color-mix(in srgb, var(--ha-blue-bright) 60%, transparent);
+    }
+
+    @include mobile {
+      padding: $spacing-md 12px;
+    }
+  }
+
+  &__portrait {
+    position: relative;
+    width: 128px;
+    height: 128px;
+    margin: 0 auto $spacing-md;
+    border-radius: 14px;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--ha-blue-bright) 30%, transparent), transparent 70%);
+
+    @include mobile {
+      width: 96px;
+      height: 96px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__rank {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    color: #ffd166;
+    font-size: 16px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .6);
+  }
+
+  &__name {
+    font-size: 17px;
+    color: var(--stage-ink);
+    margin: 0 0 6px;
+  }
+
+  &__role {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--ha-blue-bright);
+    background: color-mix(in srgb, var(--ha-blue-bright) 14%, transparent);
+    border-radius: 6px;
+    padding: 3px 8px;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__description {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--stage-muted);
+    margin: 0;
+    text-wrap: pretty;
+
+    @include mobile {
+      font-size: 13px;
+    }
+  }
+
+  // The locked slot reads as "roster still filling up," not a broken card:
+  // one dimmed, greyscale portrait carrying a count instead of a name.
+  &__card--locked {
+    border-style: dashed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    // Fifth card would sit alone in the 2-column grid: span it as a banner.
+    @include mobile {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      gap: $spacing-md;
+
+      .roster__portrait {
+        margin: 0;
+        width: 72px;
+        height: 72px;
+      }
+    }
+  }
+
+  &__portrait--locked {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--stage) 70%, black);
+    border: 1px dashed var(--stage-line);
+  }
+
+  &__lock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 14px));
+    color: var(--stage-muted);
+  }
+
+  &__more {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% + 20px));
+    font-family: $font-display;
+    font-size: 18px;
+    font-weight: $heading-weight;
+    color: var(--stage-ink);
+  }
+
+  &__locked-label {
+    font-size: 13px;
+    color: var(--stage-muted);
+    margin: 0;
+  }
+}

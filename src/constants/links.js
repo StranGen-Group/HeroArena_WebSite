@@ -21,11 +21,18 @@ export const VIDEO_LINKS = {
 };
 
 /**
+ * Pulls the video id out of a `.../embed/<id>?...` URL so the id lives in one
+ * place instead of being hardcoded wherever a poster/watch link is built.
+ */
+export const getVideoId = (embedUrl) => embedUrl.split('/embed/')[1].split('?')[0];
+
+/**
  * Секции сайта для навигации
  */
 export const SECTIONS = {
-  HOME: 'home',
-  ABOUT_GAME: 'about-game',
+  HOME: 'home', // top of page: the game (HeroSection) after the reorder
+  ROSTER: 'roster', // RosterSection: anchor only, not a nav entry
+  STUDIO: 'studio', // studio pitch (HeaderContent), after the game content
   GALLERY: 'gallery',
   TRAILER: 'trailer',
   SOCIALS: 'socials',

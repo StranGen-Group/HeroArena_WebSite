@@ -1,16 +1,18 @@
 import React from 'react';
 import './Preloader.scss';
-import LogoStr from '../../assets/image/logo/logo_str.png';
+import LogoStr from '../../assets/image/logo/logo_str.webp';
 
 const Preloader = () => {
   return (
     <div className="preloader">
       <div className="preloader__content">
         <div className="preloader__logo-container">
-          <img 
+          <img
             src={LogoStr}
-            alt="Loading..." 
+            alt="Loading..."
             className="preloader__logo"
+            width={210}
+            height={76}
           />
         </div>
         <div className="preloader__spinner"></div>

@@ -1,0 +1,63 @@
+:root {
+  --bg:           #eef1f6;
+  --bg-elevated:  #fafbfd;
+  --ink:          #101418;
+  --ink-muted:    #5a6572;
+  --line:         rgba(16, 20, 24, .12);
+
+  --ha-blue:        #0078a8;
+  --ha-blue-bright: #30c0f0;
+  /* Заливка акцента = var(--ha-blue) (тема переопределяет его ниже).
+     --on-blue — цвет подписи поверх этой заливки, --ha-blue-hover — состояние hover. */
+  --ha-blue-hover:  #005f87;
+  --on-blue:        #ffffff;
+
+  /* "Stage": the game-world surface (hero, roster, community, footer). Dark in
+     both themes, like the game's own UI. One cool family instead of the old
+     neutral #181818 plus a separate navy, so dark bands read as one material. */
+  --stage:        #0e131b;
+  --stage-raised: #18202c;
+  --stage-line:   rgba(242, 245, 248, .10);
+  --stage-ink:    #f2f5f8;
+  --stage-muted:  rgba(242, 245, 248, .72);
+
+  --section-pad: clamp(64px, 9vw, 120px);
+
+  /* tinted with the page's cool ink, not generic black */
+  --shadow-card: 0 14px 34px -18px rgba(14, 30, 52, .40);
+  --radius:      14px;
+
+  /* Motion-tokens: shkala transitions.dev. Tema ikh ne pereopredelyaet. */
+  --duration-stagger:   40ms;
+  --duration-micro:     80ms;
+  --duration-quick:    150ms;
+  --duration-fast:     250ms;
+  --duration-medium:   350ms;
+  --duration-slow:     400ms;
+  --duration-very-slow: 500ms;
+
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-reveal:     cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out:     ease-in-out;
+  --ease-linear:     linear;
+
+  --distance-reveal: 20px;
+  --scale-large:     0.96;
+}
+
+[data-theme="dark"] {
+  --bg:          #0c1016;
+  --bg-elevated: #141a22;
+  --ink:         #eef1f5;
+  --ink-muted:   #9aa5b2;
+  --line:        rgba(255, 255, 255, .10);
+
+  --ha-blue:       #30c0f0;
+  --ha-blue-hover: #5cd2f7;
+  --on-blue:       #181818;
+
+  --shadow-card: 0 14px 34px -18px rgba(0, 0, 0, .8);
+
+  --stage:        #080c12;
+  --stage-raised: #141b25;
+}

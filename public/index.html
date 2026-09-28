@@ -2,14 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/heroArena.ico" />
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var theme = stored === 'light' || stored === 'dark'
+            ? stored
+            : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <meta name="description" content="Hero Arena — a hero-driven tower defense from StranGen Group. Recruit champions, upgrade them between waves, and hold the castle. In English, Russian and Uzbek." />
+    <meta name="theme-color" content="#0c1016" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Hero Arena" />
+    <meta property="og:title" content="Hero Arena — hero-driven tower defense" />
+    <meta property="og:description" content="Recruit champions, upgrade them between waves, and hold the castle. From StranGen Group." />
+    <meta property="og:image" content="https://hero-arena-web-site.vercel.app/og-image.jpg" />
+    <meta property="og:url" content="https://hero-arena-web-site.vercel.app/" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hero Arena — hero-driven tower defense" />
+    <meta name="twitter:description" content="Recruit champions, upgrade them between waves, and hold the castle. From StranGen Group." />
+    <meta name="twitter:image" content="https://hero-arena-web-site.vercel.app/og-image.jpg" />
+
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -24,7 +50,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>Hero Arena</title>
+    <title>Hero Arena — Hero Tower Defense by StranGen Group</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

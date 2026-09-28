@@ -1,6 +1,6 @@
 import React from 'react';
 import './Section.scss';
-import heroImage from '../../assets/image/phone/iPhone1.png';
+import heroImage from '../../assets/image/phone/iPhone1.webp';
 import { useLanguage } from '../../context/LanguageContext';
 import useInView from '../../hooks/useInView';
 import { ANIMATION_CONFIG, ANIMATION_CLASSES } from '../../constants/animation';
@@ -13,6 +13,7 @@ import Telegram from '../../assets/image/icons/Social Icons-3.svg';
 import X from '../../assets/image/icons/Social Icons-5.svg';
 import Facebook from '../../assets/image/icons/Social Icons-4.svg';
 import { APP_LINKS } from '../../constants/links';
+import { track } from '../../utils/analytics';
 
 const Section = () => {
   const { t } = useLanguage();
@@ -20,28 +21,24 @@ const Section = () => {
   const [imageRef, imageInView] = useInView({ threshold: ANIMATION_CONFIG.THRESHOLD.HIGH });
 
   const socialLinks = [
-    { icon: YouTube, url: APP_LINKS.SOCIAL.YOUTUBE, alt: 'YouTube' },
-    { icon: Discord, url: APP_LINKS.SOCIAL.DISCORD, alt: 'Discord' },
-    { icon: Instagram, url: APP_LINKS.SOCIAL.INSTAGRAM, alt: 'Instagram' },
-    { icon: Telegram, url: APP_LINKS.SOCIAL.TELEGRAM, alt: 'Telegram' },
-    { icon: X, url: APP_LINKS.SOCIAL.X, alt: 'X' },
-    { icon: Facebook, url: APP_LINKS.SOCIAL.FACEBOOK, alt: 'Facebook' },
+    { icon: YouTube, url: APP_LINKS.SOCIAL.YOUTUBE, alt: 'YouTube', size: 30 },
+    { icon: Discord, url: APP_LINKS.SOCIAL.DISCORD, alt: 'Discord', size: 30 },
+    { icon: Instagram, url: APP_LINKS.SOCIAL.INSTAGRAM, alt: 'Instagram', size: 30 },
+    { icon: Telegram, url: APP_LINKS.SOCIAL.TELEGRAM, alt: 'Telegram', size: 30 },
+    { icon: X, url: APP_LINKS.SOCIAL.X, alt: 'X', size: 30 },
+    { icon: Facebook, url: APP_LINKS.SOCIAL.FACEBOOK, alt: 'Facebook', size: 30 },
   ];
 
   return (
     <section className="section" id={SECTIONS.SOCIALS}>
-      <div className="section__background">
-        <div className="section__shape hero__shape--cyan"></div>
-      </div>
-
       <div className="section__content">
         <div
           ref={textRef}
           className={`section__text-content ${textInView ? `${ANIMATION_CLASSES.FADE_IN_RIGHT} ${ANIMATION_CLASSES.ANIMATED}` : ANIMATION_CLASSES.HIDDEN}`}
         >
-          <h1 className="section__title">
+          <h2 className="section__title">
             {t('sectionTitle')}
-          </h1>
+          </h2>
 
           <p className="section__description">
             {t('sectionDescription')}
@@ -54,8 +51,10 @@ const Section = () => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => track('social_click', { network: link.alt.toLowerCase() })}
+                aria-label={`Follow StranGen Group on ${link.alt}`}
               >
-                <img src={link.icon} alt={link.alt} />
+                <img src={link.icon} alt="" width={link.size} height={link.size} />
               </a>
             ))}
           </div>
@@ -69,8 +68,10 @@ const Section = () => {
         >
           <img
             src={heroImage}
-            alt="Game Screenshot"
+            alt="Hero Arena game screen displayed on a phone"
             className="section__image"
+            width={929}
+            height={580}
           />
         </div>
       </div>

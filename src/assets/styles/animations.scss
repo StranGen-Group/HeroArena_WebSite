@@ -10,7 +10,7 @@
 @keyframes fade-in-up {
   0% { 
     opacity: 0; 
-    transform: translateY(50px);
+    transform: translateY(var(--distance-reveal));
   }
   100% { 
     opacity: 1; 
@@ -20,29 +20,13 @@
 
 // Плавное появление с масштабированием
 @keyframes fade-in {
-  0% { 
-    opacity: 0; 
-    transform: scale(0.3) translateY(30px);
+  0% {
+    opacity: 0;
+    transform: scale(0.98) translateY(var(--distance-reveal));
   }
-  50% { 
-    opacity: 0.8; 
-    transform: scale(1.1) translateY(-5px);
-  }
-  100% { 
-    opacity: 1; 
+  100% {
+    opacity: 1;
     transform: scale(1) translateY(0);
-  }
-}
-
-// Появление снизу
-@keyframes fade-in-up {
-  0% { 
-    opacity: 0; 
-    transform: translateY(50px);
-  }
-  100% { 
-    opacity: 1; 
-    transform: translateY(0);
   }
 }
 
@@ -50,7 +34,7 @@
 @keyframes fade-in-down {
   0% { 
     opacity: 0; 
-    transform: translateY(-50px);
+    transform: translateY(calc(var(--distance-reveal) * -1));
   }
   100% { 
     opacity: 1; 
@@ -62,7 +46,7 @@
 @keyframes fade-in-left {
   0% { 
     opacity: 0; 
-    transform: translateX(-50px);
+    transform: translateX(calc(var(--distance-reveal) * -1));
   }
   100% { 
     opacity: 1; 
@@ -74,7 +58,7 @@
 @keyframes fade-in-right {
   0% { 
     opacity: 0; 
-    transform: translateX(50px);
+    transform: translateX(var(--distance-reveal));
   }
   100% { 
     opacity: 1; 
@@ -156,23 +140,17 @@
 
 // Отскок при появлении
 @keyframes bounce-in {
-  0% { 
+  0% {
     opacity: 0;
-    transform: scale(0.3) translateY(100px) rotate(-10deg);
+    transform: scale(0.97) translateY(var(--distance-reveal));
   }
-  50% { 
+  60% {
     opacity: 1;
-    transform: scale(1.1) translateY(-20px) rotate(5deg);
+    transform: scale(1.008) translateY(-2px);
   }
-  70% { 
-    transform: scale(0.95) translateY(10px) rotate(-2deg);
-  }
-  85% { 
-    transform: scale(1.02) translateY(-5px) rotate(1deg);
-  }
-  100% { 
+  100% {
     opacity: 1;
-    transform: scale(1) translateY(0) rotate(0deg);
+    transform: scale(1) translateY(0);
   }
 }
 
@@ -429,7 +407,8 @@
 
 // Базовые классы для анимаций
 .animated {
-  animation-duration: 1s;
+  animation-duration: var(--duration-very-slow);
+  animation-timing-function: var(--ease-reveal);
   animation-fill-mode: both;
 }
 
@@ -437,7 +416,10 @@
 .hidden-until-inview {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.6s ease, transform 0.6s ease, visibility 0.6s ease;
+  transition:
+    opacity var(--duration-slow) var(--ease-reveal),
+    transform var(--duration-slow) var(--ease-reveal),
+    visibility var(--duration-slow) var(--ease-reveal);
 }
 
 // Класс для элементов, которые появляются в viewport
@@ -482,11 +464,11 @@
 }
 
 .animated.slow {
-  animation-duration: 2s;
+  animation-duration: 800ms;
 }
 
 .animated.fast {
-  animation-duration: 0.5s;
+  animation-duration: var(--duration-fast);
 }
 
 .animated.delay-1s {

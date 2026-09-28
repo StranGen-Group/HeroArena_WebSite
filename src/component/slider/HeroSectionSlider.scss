@@ -4,74 +4,80 @@
 
 .slider {
   position: relative;
-  min-height: 20vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  padding: 80px 0;
-  background: #ffffff;
-
-  @include mobile {
-    min-height: 30vh;
-    padding: 60px 0;
-  }
-
-  @include tablet {
-    min-height: 50vh;
-  }
+  padding: var(--section-pad) 0 calc(var(--section-pad) * .6);
+  background: var(--bg);
 
   &__content {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 100%;
-    max-width: 1600px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 clamp(16px, 3vw, 32px);
+  }
 
-    @include mobile {
-      padding: 0 10px;
-    }
+  &__heading {
+    text-align: center;
+  }
+
+  &__title {
+    font-size: clamp(30px, 3.4vw, 44px);
+    color: var(--ink);
+    margin: 0;
   }
 
   &__slider-wrapper {
     position: relative;
     width: 100%;
-    max-width: 1500px;
+    max-width: 1280px;
+    // room for the arrows beside the track instead of off-screen
+    padding: 0 64px;
     z-index: 1;
+
+    @include mobile {
+      padding: 0;
+    }
 
     .slider-swiper {
       width: 100%;
-      padding: 60px 0 80px;
+      // vertical room so the hover lift and card shadow aren't clipped
+      padding: 40px 8px 64px;
 
       @include mobile {
-        padding: 40px 0 60px;
+        padding: 32px 0 52px;
       }
 
       .swiper-slide {
-        height: 281px;
+        // image height (281/225/180) plus a fixed caption strip below it
+        height: 281px + 48px;
 
         @include tablet {
-          height: 225px;
+          height: 225px + 44px;
         }
 
         @include mobile {
-          height: 180px;
+          height: 180px + 40px;
         }
       }
     }
 
     .slider__slide {
       position: relative;
+      display: flex;
+      flex-direction: column;
       width: 100%;
       height: 100%;
       border-radius: 16px;
       overflow: hidden;
       box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.12),
-        0 0 0 1px rgba(0, 0, 0, 0.06);
-      background: #f8f9fa;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        var(--shadow-card),
+        0 0 0 1px var(--line);
+      background: var(--bg-elevated);
+      transition:
+        transform var(--duration-fast) var(--ease-smooth-out),
+        box-shadow var(--duration-fast) var(--ease-smooth-out),
+        background-color var(--duration-fast) var(--ease-in-out);
       cursor: pointer;
 
       @include mobile {
@@ -79,34 +85,53 @@
       }
 
       &:hover {
-        transform: translateY(-12px) scale(1.02);
+        transition-duration: var(--duration-quick);
+        transform: translateY(-4px);
         box-shadow:
-          0 30px 60px rgba(0, 0, 0, 0.25),
-          0 0 0 1px rgba(0, 0, 0, 0.12);
+          var(--shadow-card),
+          0 0 0 2px var(--ha-blue);
 
         @include mobile {
-          transform: translateY(-4px);
+          transform: translateY(-2px);
         }
 
         .slider__slide-image {
-          transform: scale(1.08);
+          transform: scale(1.04);
         }
       }
 
       &-image-container {
         position: relative;
         width: 100%;
-        height: 100%;
+        flex: 1;
+        min-height: 0;
         overflow: hidden;
-        background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+        background: var(--bg-elevated);
       }
 
       &-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform var(--duration-slow) var(--ease-smooth-out);
         display: block;
+      }
+
+      // Caption sits below the artwork, never over it.
+      &-caption {
+        flex: 0 0 auto;
+        margin: 0;
+        padding: 10px 14px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.3;
+        color: var(--ink);
+        background: var(--bg-elevated);
+
+        @include mobile {
+          font-size: 12px;
+          padding: 8px 10px;
+        }
       }
     }
 
@@ -114,74 +139,62 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 52px;
-      height: 52px;
-      background: rgba(255, 255, 255, 0.95);
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      margin-top: -26px; // centre on the image track, not track + pagination
+      background: color-mix(in srgb, var(--bg-elevated) 95%, transparent);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-radius: 50%;
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--line);
       cursor: pointer;
       z-index: 10;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      color: #1a202c;
-
-      svg {
-        transition: transform 0.3s ease;
-      }
+      box-shadow: var(--shadow-card);
+      transition:
+        transform var(--duration-fast) var(--ease-smooth-out),
+        border-color var(--duration-fast) var(--ease-smooth-out),
+        color var(--duration-fast) var(--ease-smooth-out);
+      color: var(--ink);
 
       &:hover {
-        background: #ffffff;
-        transform: translateY(-50%) scale(1.15);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
-        border-color: rgba(0, 0, 0, 0.12);
-
-        svg {
-          transform: scale(1.1);
-        }
+        transform: translateY(-50%) scale(1.08);
+        border-color: var(--ha-blue);
+        color: var(--ha-blue);
       }
 
       &:active {
-        transform: translateY(-50%) scale(1.05);
+        transform: translateY(-50%) scale(.96);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--ha-blue);
+        outline-offset: 2px;
       }
 
       &--prev {
-        left: -70px;
-
-        @include tablet {
-          left: -50px;
-        }
+        left: 0;
 
         @include mobile {
-          left: 5px;
+          left: 8px;
         }
       }
 
       &--next {
-        right: -70px;
-
-        @include tablet {
-          right: -50px;
-        }
+        right: 0;
 
         @include mobile {
-          right: 5px;
+          right: 8px;
         }
-      }
-
-      @include tablet {
-        width: 48px;
-        height: 48px;
       }
 
       @include mobile {
         width: 40px;
         height: 40px;
-        background: rgba(255, 255, 255, 0.9);
+        background: color-mix(in srgb, var(--bg-elevated) 90%, transparent);
 
         svg {
           width: 20px;
@@ -200,7 +213,7 @@
       &-bullet {
         width: 10px;
         height: 10px;
-        background: rgba(0, 0, 0, 0.25);
+        background: color-mix(in srgb, var(--ink) 25%, transparent);
         opacity: 1;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         margin: 0 6px !important;
@@ -212,14 +225,19 @@
         }
 
         &:hover {
-          background: rgba(0, 0, 0, 0.4);
+          background: color-mix(in srgb, var(--ink) 45%, transparent);
           transform: scale(1.3);
         }
 
+        &:focus-visible {
+          outline: 2px solid var(--ha-blue);
+          outline-offset: 2px;
+        }
+
         &-active {
-          background: #1a202c;
+          background: var(--ha-blue);
           transform: scale(1.5);
-          box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 8px color-mix(in srgb, var(--ha-blue) 50%, transparent);
 
           @include mobile {
             transform: scale(1.3);
@@ -237,7 +255,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.95);
+  background: color-mix(in srgb, var(--stage) 95%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 9999;
@@ -245,7 +263,7 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn var(--duration-fast) var(--ease-smooth-out);
 
   @include mobile {
     padding: 10px;
@@ -257,11 +275,11 @@
     right: 30px;
     width: 50px;
     height: 50px;
-    background: rgba(255, 255, 255, 0.1);
+    background: color-mix(in srgb, var(--ha-blue-bright) 14%, transparent);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid color-mix(in srgb, var(--ha-blue-bright) 35%, transparent);
     border-radius: 50%;
-    color: #ffffff;
+    color: var(--ha-blue-bright);
     cursor: pointer;
     z-index: 10001;
     display: flex;
@@ -282,12 +300,17 @@
     }
 
     &:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: color-mix(in srgb, var(--ha-blue-bright) 28%, transparent);
       transform: scale(1.1) rotate(90deg);
     }
 
     &:active {
       transform: scale(0.95) rotate(90deg);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ha-blue-bright);
+      outline-offset: 2px;
     }
   }
 
@@ -296,7 +319,7 @@
     width: 100%;
     max-width: 1400px;
     max-height: 90vh;
-    animation: scaleIn 0.3s ease;
+    animation: scaleIn var(--duration-fast) var(--ease-smooth-out);
 
     @include mobile {
       max-height: 85vh;
@@ -317,7 +340,7 @@
       &-bullet {
         width: 12px;
         height: 12px;
-        background: rgba(255, 255, 255, 0.4);
+        background: color-mix(in srgb, var(--ha-blue-bright) 40%, transparent);
         opacity: 1;
         margin: 0 8px !important;
         transition: all 0.3s ease;
@@ -329,12 +352,12 @@
         }
 
         &:hover {
-          background: rgba(255, 255, 255, 0.6);
+          background: color-mix(in srgb, var(--ha-blue-bright) 65%, transparent);
           transform: scale(1.3);
         }
 
         &-active {
-          background: #ffffff;
+          background: var(--ha-blue-bright);
           transform: scale(1.5);
 
           @include mobile {
@@ -347,6 +370,7 @@
 
   &__slide {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -355,16 +379,31 @@
 
   &__image {
     max-width: 100%;
-    max-height: 90vh;
+    max-height: 80vh;
     width: auto;
     height: auto;
     object-fit: contain;
     border-radius: 12px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: var(--shadow-card);
 
     @include mobile {
-      max-height: 85vh;
+      max-height: 75vh;
       border-radius: 8px;
+    }
+  }
+
+  &__caption {
+    margin: 14px 0 0;
+    max-width: 700px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #f4f6f8; // sits on the dark modal backdrop in both themes
+
+    @include mobile {
+      font-size: 13px;
+      margin-top: 10px;
+      padding: 0 10px;
     }
   }
 
@@ -374,11 +413,12 @@
     transform: translateY(-50%);
     width: 60px;
     height: 60px;
-    background: rgba(255, 255, 255, 0.1);
+    padding: 0;
+    background: color-mix(in srgb, var(--ha-blue-bright) 14%, transparent);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid color-mix(in srgb, var(--ha-blue-bright) 35%, transparent);
     border-radius: 50%;
-    color: #ffffff;
+    color: var(--ha-blue-bright);
     cursor: pointer;
     z-index: 10;
     display: flex;
@@ -397,12 +437,17 @@
     }
 
     &:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: color-mix(in srgb, var(--ha-blue-bright) 28%, transparent);
       transform: translateY(-50%) scale(1.1);
     }
 
     &:active {
       transform: translateY(-50%) scale(0.95);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ha-blue-bright);
+      outline-offset: 2px;
     }
 
     &--prev {
@@ -436,7 +481,7 @@
 @keyframes scaleIn {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(var(--scale-large));
   }
   to {
     opacity: 1;

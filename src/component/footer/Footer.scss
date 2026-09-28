@@ -1,15 +1,17 @@
 @import '../../assets/styles/root';
 @import '../../assets/styles/mixins';
-@import '../../assets/styles/animations';
 
 .footer {
-  background-color: $color-black;
-  padding: $spacing-xl * 2 $spacing-xl;
-  color: $color-white;
+  // Same stage tone the community section fades into: one continuous dark end.
+  background: var(--stage);
+  color: var(--stage-ink);
+  padding: $spacing-xl clamp(16px, 4vw, 48px) calc(#{$spacing-xl} + env(safe-area-inset-bottom));
 
   &__content {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
+    padding-top: $spacing-xl;
+    border-top: 1px solid var(--stage-line);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -17,153 +19,53 @@
 
     @include mobile {
       flex-direction: column;
-      gap: $spacing-xl;
-      text-align: center;
-    }
-
-    @include tablet {
-      flex-direction: column;
-      gap: $spacing-xl;
     }
   }
 
-  &__icons {
-    display: flex;
-    gap: $spacing-lg;
-    align-items: center;
-    animation: fade-in-up 1s ease-out 0.4s;
-    animation-fill-mode: both;
-
-    a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 60px;
-      height: 60px;
-      transition: all 0.3s ease;
-      padding: 10px;
-      border-radius: 12px;
-
-      &:hover {
-        transform: translateY(-4px);
-        animation: pulse 0.5s ease;
-      }
-
-      img {
-        width: 32px;
-        height: 32px;
-        filter: brightness(0) invert(1);
-        transition: all 0.3s ease;
-      }
-
-      &:hover img {
-        transform: scale(1.1);
-        animation: glow 0.8s ease;
-      }
-    }
-
-    @include mobile {
-      gap: $spacing-sm;
-      flex-wrap: wrap;
-      justify-content: center;
-
-      a {
-        width: 45px;
-        height: 45px;
-
-        img {
-          width: 22px;
-          height: 22px;
-        }
-      }
-    }
-  }
-
-  &__buttons {
-    display: flex;
-    gap: $spacing-lg;
-    animation-fill-mode: both;
-
-    @include mobile {
-      flex-direction: column;
-      gap: $spacing-md;
-      align-items: center;
-    }
-
-    @include tablet {
-      justify-content: center;
-    }
-  }
-
-  &__button {
-    width: 200px;
-    height: 60px;
-    background: $color-black;
-    border-radius: 15px;
+  &__studio {
     display: flex;
     align-items: center;
-    justify-content: center;
-    outline: 1px solid #4d4d4d;
-    outline-offset: -1px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
+    gap: $spacing-md;
+  }
 
-    @include mobile {
-      width: 100%;
-      max-width: 340px;
-      height: 90px;
-    }
+  // The mark is drawn for dark grounds (white letters, red arc), so it keeps
+  // its own colours here instead of being flattened to white.
+  &__studio-logo {
+    width: auto;
+    height: 36px;
+  }
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg,
-          transparent,
-          rgba(255, 255, 255, 0.1),
-          transparent);
-      transition: left 0.5s ease;
+  &__studio-copy {
+    color: var(--stage-muted);
+    font-size: $font-size-sm;
+  }
+
+  &__top {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: var(--stage-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-smooth-out);
+
+    svg {
+      transition: transform var(--duration-fast) var(--ease-smooth-out);
     }
 
     &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
-      outline-color: $color-white;
+      color: var(--stage-ink);
+
+      svg {
+        transform: translateY(-2px);
+      }
     }
 
-    &:active {
-      transform: translateY(-2px);
-      animation: none;
+    &:focus-visible {
+      outline: 2px solid var(--ha-blue-bright);
+      outline-offset: 3px;
+      border-radius: 4px;
     }
-  }
-
-  &__button-content {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &__icon {
-    width: 90%;
-    height: auto;
-    max-width: 280px;
-    transition: all 0.3s ease;
-  }
-
-  @include mobile {
-    padding: $spacing-xl $spacing-md;
-  }
-
-  @include tablet {
-    padding: $spacing-xl * 1.5 $spacing-lg;
   }
 }

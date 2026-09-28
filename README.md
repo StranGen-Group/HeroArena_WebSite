@@ -90,6 +90,24 @@ npm run build
 - Swiper 12.0.3 (для слайдера)
 - SCSS для стилей
 
+## 🖼 Images
+
+Source art lives in `art-source/` (outside `src/`, never bundled). Run
+`npm run images` after changing it to regenerate the WebP derivatives and the
+Open Graph share image that the components import.
+
+## 🎨 Themes
+
+Colour lives in `src/assets/styles/tokens.scss` as CSS custom properties, with a
+dark override under `[data-theme="dark"]`. The theme is applied to `<html>`
+before React mounts by an inline script in `public/index.html`.
+
+## 📊 Analytics
+
+`@vercel/analytics` (cookieless, no consent banner needed) plus Speed Insights.
+Events go through `src/utils/analytics.js` — never import the vendor SDK
+directly in a component.
+
 ## 🎨 Архитектурные принципы
 
 1. **Разделение ответственности** - Константы, компоненты, утилиты разделены

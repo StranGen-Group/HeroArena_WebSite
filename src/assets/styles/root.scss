@@ -1,13 +1,21 @@
-/* Цвета */
-$color-primary: #2563eb;
-$color-secondary: #7c3aed;
-$color-black: #000000;
-$color-white: #ffffff;
-$color-gray-dark: #4b5563;
-$color-gray-light: #e5e7eb;
+/* Цвета — значения живут в tokens.scss, здесь только псевдонимы */
+$color-primary: var(--ha-blue);
+$color-secondary: var(--ha-blue);
+$color-black: var(--ink);
+$color-white: var(--bg);
+$color-gray-dark: var(--ink-muted);
+$color-gray-light: var(--line);
 
 /* Типографика */
-$font-primary: 'Arial', 'Helvetica', sans-serif;
+$font-primary: 'Inter Tight', system-ui, -apple-system, 'Segoe UI', sans-serif;
+// Unbounded: chunky, rounded display face in the spirit of the game logo.
+// Covers Latin-ext and Cyrillic, so EN/RU/UZ headings all render in it.
+$font-display: 'Unbounded', 'Inter Tight', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+/* Заголовки: Unbounded 700, body — Inter Tight. */
+$heading-weight: 700;
+$heading-tracking: -0.02em;
+$heading-leading: 1.1;
 $font-size-sm: 14px;
 $font-size-md: 18px;
 $font-size-lg: 24px;
